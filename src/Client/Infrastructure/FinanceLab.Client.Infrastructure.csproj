@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Application\FinanceLab.Client.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot" />
+  </ItemGroup>
+
 </Project>
