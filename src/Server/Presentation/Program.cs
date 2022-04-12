@@ -1,7 +1,12 @@
+using FinanceLab.Server.Application.Handlers.Commands;
+using MediatR;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
+
+builder.Services.AddMediatR(typeof(CommandHandler));
 
 var app = builder.Build();
 
