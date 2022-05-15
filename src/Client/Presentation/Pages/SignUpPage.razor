@@ -1,0 +1,51 @@
+﻿@page "/SignUp"
+@inherits BaseComponent
+@attribute [AllowAnonymous]
+
+<PageTitle>Sign Up</PageTitle>
+<MudCard Class="mx-auto signup-card">
+    <MudCardHeader>
+        <MudText Typo="@Typo.h6">Sign Up</MudText>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudForm @ref="@_form" Model="@_input">
+            <MudTextField @bind-Value="@_input.FirstName"
+                          Validation="@_validator.ValidatePropertyAsync"
+                          For="@(() => _input.FirstName)"
+                          Label="First Name"/>
+            <MudTextField @bind-Value="@_input.LastName"
+                          Validation="@_validator.ValidatePropertyAsync"
+                          For="@(() => _input.LastName)"
+                          Label="Last Name"/>
+            <MudTextField @bind-Value="@_input.UserName"
+                          Validation="@_validator.ValidatePropertyAsync"
+                          For="@(() => _input.UserName)"
+                          Label="User Name"/>
+            <MudTextField @bind-Value="@_input.Password"
+                          Validation="@_validator.ValidatePropertyAsync"
+                          For="@(() => _input.Password)"
+                          Label="Password"
+                          HelperText="Choose a strong password"
+                          InputType="@InputType.Password"/>
+            <MudTextField @bind-Value="@_input.PasswordRepeat"
+                          Validation="@_validator.ValidatePropertyAsync"
+                          For="@(() => _input.PasswordRepeat)"
+                          Label="Password Repeat"
+                          HelperText="Repeat the password"
+                          InputType="@InputType.Password"/>
+        </MudForm>
+    </MudCardContent>
+    <MudCardActions>
+        <MudLink Href="/SignIn" Typo="@Typo.body2">
+            Do you have an account?
+        </MudLink>
+        <MudSpacer/>
+        <MudButton Variant="@Variant.Filled"
+                   Color="@Color.Primary"
+                   Class="ml-auto"
+                   Disabled="@_isSubmitDisabled"
+                   OnClick="@SubmitAsync">
+            Submit
+        </MudButton>
+    </MudCardActions>
+</MudCard>

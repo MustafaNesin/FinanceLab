@@ -1,5 +1,11 @@
 ﻿@page "/"
+@inherits BaseComponent
 
-<PageTitle>Index</PageTitle>
+<PageTitle>FinanceLab</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Hi, @_userName (@_fullName)</h1>
+<MudLink Href="/SignOut" Color="@Color.Error">Çıkış Yap</MudLink>
+
+<AuthorizeView Roles="@RoleConstants.Admin">
+    <p>You are an administrator!</p>
+</AuthorizeView>
