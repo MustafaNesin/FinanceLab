@@ -1,10 +1,11 @@
 ﻿using FinanceLab.Client.Application.Abstractions;
 using FinanceLab.Client.Domain.Models;
+using FinanceLab.Shared.Application.Abstractions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 
-namespace FinanceLab.Client.Infrastructure.Components;
+namespace FinanceLab.Client.Presentation.Components;
 
 public class BaseComponent : ComponentBase, IAsyncDisposable
 {
@@ -16,6 +17,9 @@ public class BaseComponent : ComponentBase, IAsyncDisposable
 
     [Inject]
     protected IHttpClientService HttpClientService { get; private set; } = default!;
+
+    [Inject]
+    protected ISharedResources L { get; private set; } = default!;
 
     [Inject]
     protected NavigationManager NavigationManager { get; set; } = default!;

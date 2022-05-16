@@ -23,12 +23,14 @@ public sealed class ProblemDetailsJsonConverter : JsonConverter<ProblemDetails>
     {
         var problemDetails = new ProblemDetails();
 
-        if (reader.TokenType != JsonTokenType.StartObject) throw new JsonException("Unexcepted end when reading JSON.");
+        if (reader.TokenType != JsonTokenType.StartObject)
+            throw new JsonException("Unexcepted end when reading JSON.");
 
         while (reader.Read() && reader.TokenType != JsonTokenType.EndObject)
             ReadValue(ref reader, problemDetails, options);
 
-        if (reader.TokenType != JsonTokenType.EndObject) throw new JsonException("Unexcepted end when reading JSON.");
+        if (reader.TokenType != JsonTokenType.EndObject)
+            throw new JsonException("Unexcepted end when reading JSON.");
 
         return problemDetails;
     }
@@ -91,15 +93,20 @@ public sealed class ProblemDetailsJsonConverter : JsonConverter<ProblemDetails>
         "JSON serialization and deserialization of ProblemDetails.Extensions might require types that cannot be statically analyzed.")]
     internal static void WriteProblemDetails(Utf8JsonWriter writer, ProblemDetails value, JsonSerializerOptions options)
     {
-        if (value.Type != null) writer.WriteString(Type, value.Type);
+        if (value.Type != null)
+            writer.WriteString(Type, value.Type);
 
-        if (value.Title != null) writer.WriteString(Title, value.Title);
+        if (value.Title != null)
+            writer.WriteString(Title, value.Title);
 
-        if (value.Status != null) writer.WriteNumber(Status, value.Status.Value);
+        if (value.Status != null)
+            writer.WriteNumber(Status, value.Status.Value);
 
-        if (value.Detail != null) writer.WriteString(Detail, value.Detail);
+        if (value.Detail != null)
+            writer.WriteString(Detail, value.Detail);
 
-        if (value.Instance != null) writer.WriteString(Instance, value.Instance);
+        if (value.Instance != null)
+            writer.WriteString(Instance, value.Instance);
 
         foreach (var kvp in value.Extensions)
         {

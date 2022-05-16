@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace FinanceLab.Client.Infrastructure.Components;
+namespace FinanceLab.Client.Presentation.Components;
 
 public partial class ProblemDialogComponent
 {

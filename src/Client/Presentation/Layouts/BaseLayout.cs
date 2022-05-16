@@ -1,7 +1,7 @@
 ﻿using FinanceLab.Client.Application.Abstractions;
 using Microsoft.AspNetCore.Components;
 
-namespace FinanceLab.Client.Infrastructure.Layouts;
+namespace FinanceLab.Client.Presentation.Layouts;
 
 public class BaseLayout : LayoutComponentBase, IAsyncDisposable
 {

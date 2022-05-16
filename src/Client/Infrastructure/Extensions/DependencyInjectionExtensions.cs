@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.Globalization;
+using System.Net.Http.Headers;
+using System.Text.Json;
 using FinanceLab.Client.Application.Abstractions;
 using FinanceLab.Client.Infrastructure.Converters;
 using FinanceLab.Client.Infrastructure.Providers;
@@ -26,8 +28,17 @@ public static class DependencyInjectionExtensions
 
     public static IServiceCollection AddHttpClientService(this IServiceCollection services, string baseAddress)
     {
-        services.AddHttpClient(Options.DefaultName, client => client.BaseAddress = new Uri(baseAddress));
+        services.AddHttpClient(Options.DefaultName, client =>
+        {
+            var language = new StringWithQualityHeaderValue(CultureInfo.CurrentUICulture.Name);
+
+            client.BaseAddress = new Uri(baseAddress);
+            client.DefaultRequestHeaders.AcceptLanguage.Clear();
+            client.DefaultRequestHeaders.AcceptLanguage.Add(language);
+        });
+
         services.AddSingleton<IHttpClientService, HttpClientService>();
+
         return services;
     }
 

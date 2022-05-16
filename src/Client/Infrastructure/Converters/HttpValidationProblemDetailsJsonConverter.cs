@@ -27,7 +27,8 @@ public sealed class HttpValidationProblemDetailsJsonConverter : JsonConverter<Ht
     public static HttpValidationProblemDetails ReadProblemDetails(ref Utf8JsonReader reader,
         JsonSerializerOptions options, HttpValidationProblemDetails problemDetails)
     {
-        if (reader.TokenType != JsonTokenType.StartObject) throw new JsonException("Unexcepted end when reading JSON.");
+        if (reader.TokenType != JsonTokenType.StartObject)
+            throw new JsonException("Unexcepted end when reading JSON.");
 
         while (reader.Read() && reader.TokenType != JsonTokenType.EndObject)
             if (reader.ValueTextEquals(Errors.EncodedUtf8Bytes))
@@ -40,7 +41,8 @@ public sealed class HttpValidationProblemDetailsJsonConverter : JsonConverter<Ht
             else
                 ProblemDetailsJsonConverter.ReadValue(ref reader, problemDetails, options);
 
-        if (reader.TokenType != JsonTokenType.EndObject) throw new JsonException("Unexcepted end when reading JSON.");
+        if (reader.TokenType != JsonTokenType.EndObject)
+            throw new JsonException("Unexcepted end when reading JSON.");
 
         return problemDetails;
 

@@ -1,6 +1,8 @@
 using FinanceLab.Server.Application.Extensions;
 using FinanceLab.Server.Infrastructure.Extensions;
 using FinanceLab.Server.Persistence.Extensions;
+using FinanceLab.Server.Presentation.Resources;
+using FinanceLab.Shared.Application.Abstractions;
 using Hellang.Middleware.ProblemDetails;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,12 +13,18 @@ builder.Services.AddMappers();
 builder.Services.AddHandlers();
 builder.Services.AddCookieAuthentication();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddLocalization().AddTransient<ISharedResources, SharedResources>();
 builder.Services.AddRazorPages();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization();
 builder.Services.AddValidators();
 builder.Services.AddProblemDetailsWithConventions();
 
 var app = builder.Build();
+var supportedCultures = new[] { "en-US", "tr-TR" };
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
 
 app.UseProblemDetails();
 app.UseHttpsRedirection();
@@ -24,6 +32,8 @@ app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseRouting();
+
+app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthentication();
 app.UseAuthorization();
