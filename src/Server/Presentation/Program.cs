@@ -1,4 +1,5 @@
 using FinanceLab.Server.Application.Extensions;
+using FinanceLab.Server.Infrastructure.Converters;
 using FinanceLab.Server.Infrastructure.Extensions;
 using FinanceLab.Server.Persistence.Extensions;
 using FinanceLab.Server.Presentation.Resources;
@@ -15,7 +16,9 @@ builder.Services.AddCookieAuthentication();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddLocalization().AddTransient<ISharedResources, SharedResources>();
 builder.Services.AddRazorPages();
-builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization();
+builder.Services.AddControllersWithViews()
+    .AddDataAnnotationsLocalization()
+    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new DateTimeOffsetConverter()));
 builder.Services.AddValidators();
 builder.Services.AddProblemDetailsWithConventions();
 
