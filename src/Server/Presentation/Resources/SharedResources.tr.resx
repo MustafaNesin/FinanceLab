@@ -22,4 +22,7 @@
     <data name="IncorrectPassword" xml:space="preserve">
         <value>Hatalı parola.</value>
     </data>
+    <data name="SortMustBe" xml:space="preserve">
+        <value>Sıralama alanı {0} değerlerinden biri olmalıdır.</value>
+    </data>
 </root>

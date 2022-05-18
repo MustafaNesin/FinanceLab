@@ -14,7 +14,8 @@ builder.Services.AddMappers();
 builder.Services.AddHandlers();
 builder.Services.AddCookieAuthentication();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddLocalization().AddTransient<ISharedResources, SharedResources>();
+builder.Services.AddLocalization()
+    .AddTransient<ISharedResources, SharedResources>();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews()
     .AddDataAnnotationsLocalization()

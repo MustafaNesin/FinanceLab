@@ -10,6 +10,14 @@ namespace FinanceLab.Server.Presentation.Controllers;
 [AllowAnonymous]
 public class UserController : BaseController
 {
+    [HttpGet(ApiRouteConstants.UserGetList)]
+    public async Task<IActionResult> GetListAsync([FromQuery] UserListInput input)
+    {
+        var request = new GetUserListQuery(input.Page, input.PageSize, input.Search, input.Sort, input.SortDirection);
+        var userList = await Mediator.Send(request);
+        return Ok(userList);
+    }
+
     [HttpGet(ApiRouteConstants.UserGet)]
     public async Task<IActionResult> GetSignedInAsync()
     {

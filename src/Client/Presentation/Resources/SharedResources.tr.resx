@@ -19,4 +19,7 @@
     <data name="SelectLanguage" xml:space="preserve">
         <value>Bir dil seçin</value>
     </data>
+    <data name="SortMustBe" xml:space="preserve">
+        <value>Sıralama alanı {0} değerlerinden biri olmalıdır.</value>
+    </data>
 </root>
