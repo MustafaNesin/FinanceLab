@@ -4,5 +4,4 @@ namespace FinanceLab.Client.Presentation.Pages;
 
 public abstract class BasePage : BaseComponent
 {
-    
 }

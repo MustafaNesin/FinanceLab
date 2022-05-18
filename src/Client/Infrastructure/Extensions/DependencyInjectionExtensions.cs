@@ -45,6 +45,11 @@ public static class DependencyInjectionExtensions
     public static IServiceCollection AddJsonSerializerOptions(this IServiceCollection services)
         => services.AddSingleton(new JsonSerializerOptions(JsonSerializerDefaults.Web)
         {
-            Converters = { new ProblemDetailsJsonConverter(), new HttpValidationProblemDetailsJsonConverter() }
+            Converters =
+            {
+                new DateTimeOffsetConverter(),
+                new HttpValidationProblemDetailsJsonConverter(),
+                new ProblemDetailsJsonConverter()
+            }
         });
 }

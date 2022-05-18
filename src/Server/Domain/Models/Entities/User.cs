@@ -11,5 +11,5 @@ public sealed class User
     public string UserName { get; set; } = default!;
     public string PasswordHash { get; set; } = default!;
     public string? Role { get; set; }
-    public DateTimeOffset RegisteredAtUtc { get; init; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset RegisteredAt { get; init; } = DateTimeOffset.UtcNow;
 }

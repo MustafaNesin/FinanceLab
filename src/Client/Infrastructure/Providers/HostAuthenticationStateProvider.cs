@@ -37,13 +37,13 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider, IHos
         }
 
         _logger.LogDebug("Fetching user");
-        _cachedUser = await FetchUser();
+        _cachedUser = await FetchUserAsync();
         _userLastCheck = now;
 
         return new AuthenticationState(_cachedUser);
     }
 
-    private async Task<ClaimsPrincipal> FetchUser()
+    private async Task<ClaimsPrincipal> FetchUserAsync()
     {
         var response = await _httpClientService.GetAsync<SignedInUserOutput>(ApiRouteConstants.UserGet);
 

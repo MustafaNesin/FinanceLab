@@ -3,8 +3,10 @@ using FinanceLab.Server.Domain.Models.Entities;
 using FinanceLab.Server.Persistence.Contexts;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace FinanceLab.Server.Persistence.Extensions;
 
@@ -23,10 +25,13 @@ public static class DependencyInjectionExtensions
 
     private static void RegisterEntities()
     {
+        var dateTimeOffsetSerializer = new DateTimeOffsetSerializer(BsonType.String);
+
         BsonClassMap.RegisterClassMap<User>(bcm =>
         {
             bcm.AutoMap();
             bcm.MapIdMember(d => d.Id).SetIdGenerator(StringObjectIdGenerator.Instance);
+            bcm.MapMember(d => d.RegisteredAt).SetSerializer(dateTimeOffsetSerializer);
         });
     }
 }
