@@ -2,12 +2,12 @@
 
 public static class ApiRouteConstants
 {
-    private const string Api = "Api";
-    private const string User = "User";
+    private const string Api = "api";
+    private const string User = "users";
 
     public const string UserGet = $"{Api}/{User}";
-    public const string UserGetList = $"{Api}/{User}/List";
-    public const string UserSignIn = $"{Api}/{User}/SignIn";
-    public const string UserSignOut = $"{Api}/{User}/SignOut";
-    public const string UserSignUp = $"{Api}/{User}/SignUp";
+    public const string UserGetList = $"{Api}/{User}/list";
+    public const string UserSignIn = $"{Api}/{User}/sign-in";
+    public const string UserSignOut = $"{Api}/{User}/sign-out";
+    public const string UserSignUp = $"{Api}/{User}/sign-up";
 }

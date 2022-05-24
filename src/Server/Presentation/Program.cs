@@ -1,9 +1,12 @@
+using FinanceLab.Server.Application.Abstractions;
 using FinanceLab.Server.Application.Extensions;
+using FinanceLab.Server.Application.Services;
 using FinanceLab.Server.Infrastructure.Converters;
 using FinanceLab.Server.Infrastructure.Extensions;
 using FinanceLab.Server.Persistence.Extensions;
 using FinanceLab.Server.Presentation.Resources;
 using FinanceLab.Shared.Application.Abstractions;
+using FinanceLab.Shared.Application.Constants;
 using Hellang.Middleware.ProblemDetails;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +16,7 @@ builder.Services.AddMongoDb(connectionString);
 builder.Services.AddMappers();
 builder.Services.AddHandlers();
 builder.Services.AddCookieAuthentication();
+builder.Services.AddHttpClient("binance", client => client.BaseAddress = new Uri(BinanceApiRouteConstants.BinanceBase));
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddLocalization()
     .AddTransient<ISharedResources, SharedResources>();
@@ -22,9 +26,11 @@ builder.Services.AddControllersWithViews()
     .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new DateTimeOffsetConverter()));
 builder.Services.AddValidators();
 builder.Services.AddProblemDetailsWithConventions();
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<IBinanceService, BinanceService>();
 
 var app = builder.Build();
-var supportedCultures = new[] { "en-US", "tr-TR" };
+var supportedCultures = new[] {"en-US", "tr-TR"};
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
