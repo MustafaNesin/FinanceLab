@@ -21,4 +21,12 @@
         <PackageReference Include="MongoDB.Driver" Version="2.15.1"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="Controllers"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Extensions\JsonSerializerExtensions.cs"/>
+    </ItemGroup>
+
 </Project>
