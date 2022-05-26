@@ -6,4 +6,5 @@ namespace FinanceLab.Server.Application.Abstractions;
 public interface IMongoDbContext
 {
     IMongoCollection<User> Users { get; }
+    IMongoCollection<Wallet> Wallets { get; }
 }

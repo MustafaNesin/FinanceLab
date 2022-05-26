@@ -12,7 +12,9 @@ public sealed class MongoDbContext : IMongoDbContext
         var mongoDatabase = mongoClient.GetDatabase(databaseName);
 
         Users = mongoDatabase.GetCollection<User>(nameof(IMongoDbContext.Users));
+        Wallets = mongoDatabase.GetCollection<Wallet>(nameof(IMongoDbContext.Wallets));
     }
 
     public IMongoCollection<User> Users { get; }
+    public IMongoCollection<Wallet> Wallets { get; }
 }
