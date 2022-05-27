@@ -2,4 +2,4 @@
 
 namespace FinanceLab.Shared.Domain.Models.Outputs;
 
-public record UserWalletOutput(IReadOnlyCollection<WalletDto> Wallet);
+public record UserWalletOutput(WalletDto Wallet);

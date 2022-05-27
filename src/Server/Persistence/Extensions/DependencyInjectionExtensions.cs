@@ -27,11 +27,17 @@ public static class DependencyInjectionExtensions
     {
         var dateTimeOffsetSerializer = new DateTimeOffsetSerializer(BsonType.String);
 
+        BsonClassMap.RegisterClassMap<Asset>(bcm =>
+        {
+            bcm.AutoMap();
+            bcm.MapIdMember(asset => asset.CoinCode);
+        });
+
         BsonClassMap.RegisterClassMap<User>(bcm =>
         {
             bcm.AutoMap();
-            bcm.MapIdMember(d => d.Id).SetIdGenerator(StringObjectIdGenerator.Instance);
-            bcm.MapMember(d => d.RegisteredAt).SetSerializer(dateTimeOffsetSerializer);
+            bcm.MapIdMember(user => user.Id).SetIdGenerator(StringObjectIdGenerator.Instance);
+            bcm.MapMember(user => user.RegisteredAt).SetSerializer(dateTimeOffsetSerializer);
         });
     }
 }

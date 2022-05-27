@@ -3,4 +3,4 @@
 namespace FinanceLab.Shared.Domain.Models.Dtos;
 
 [PublicAPI]
-public record WalletDto(List<AssetDto> Assets);
+public record AssetDto(string CoinCode, double Amount);
