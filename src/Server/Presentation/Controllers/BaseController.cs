@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceLab.Server.Presentation.Controllers;
 
-[ApiController]
 [Authorize]
+[ApiController]
 public abstract class BaseController : ControllerBase
 {
     private IMediator? _mediator;

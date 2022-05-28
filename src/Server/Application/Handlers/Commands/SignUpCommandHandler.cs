@@ -2,9 +2,9 @@
 using FinanceLab.Server.Application.Abstractions;
 using FinanceLab.Server.Domain.Models.Commands;
 using FinanceLab.Server.Domain.Models.Entities;
+using FinanceLab.Shared.Application.Abstractions;
 using JetBrains.Annotations;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using MongoDB.Driver;
 
@@ -14,22 +14,17 @@ namespace FinanceLab.Server.Application.Handlers.Commands;
 public sealed class SignUpCommandHandler : BaseRequestHandler<SignUpCommand>
 {
     private readonly IMongoDbContext _dbContext;
-    private readonly HttpContext _httpContext;
     private readonly IPasswordHasher<User> _passwordHasher;
 
-    public SignUpCommandHandler(IMongoDbContext dbContext, IHttpContextAccessor httpContextAccessor,
-        IPasswordHasher<User> passwordHasher)
+    public SignUpCommandHandler(IMongoDbContext dbContext, IPasswordHasher<User> passwordHasher,
+        ISharedResources sharedResources) : base(sharedResources)
     {
         _dbContext = dbContext;
-        _httpContext = httpContextAccessor.HttpContext!;
         _passwordHasher = passwordHasher;
     }
 
     public override async Task<Unit> Handle(SignUpCommand request, CancellationToken cancellationToken)
     {
-        if (_httpContext.User.Identity?.IsAuthenticated == true)
-            Throw(HttpStatusCode.BadRequest, "You are already logged in.");
-
         var existingUser = await _dbContext.Users
             .Find(u => u.UserName == request.UserName)
             .FirstOrDefaultAsync(cancellationToken);

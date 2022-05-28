@@ -31,7 +31,7 @@ public partial class SignUpPage
             return;
         }
 
-        var response = await HttpClientService.PostAsync(ApiRouteConstants.UserSignUp, _input);
+        var response = await HttpClientService.PostAsync(ApiRouteConstants.SignUp, _input);
 
         if (response.IsSuccessful)
         {

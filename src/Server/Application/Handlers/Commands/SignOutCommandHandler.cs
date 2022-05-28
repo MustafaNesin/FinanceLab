@@ -1,4 +1,5 @@
 ﻿using FinanceLab.Server.Domain.Models.Commands;
+using FinanceLab.Shared.Application.Abstractions;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
@@ -12,7 +13,8 @@ public sealed class SignOutCommandHandler : BaseRequestHandler<SignOutCommand>
 {
     private readonly HttpContext _httpContext;
 
-    public SignOutCommandHandler(IHttpContextAccessor httpContextAccessor)
+    public SignOutCommandHandler(IHttpContextAccessor httpContextAccessor, ISharedResources sharedResources)
+        : base(sharedResources)
         => _httpContext = httpContextAccessor.HttpContext!;
 
     public override async Task<Unit> Handle(SignOutCommand request, CancellationToken cancellationToken)

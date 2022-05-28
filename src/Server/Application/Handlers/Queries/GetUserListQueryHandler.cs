@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using FinanceLab.Server.Application.Abstractions;
 using FinanceLab.Server.Domain.Models.Queries;
+using FinanceLab.Shared.Application.Abstractions;
 using FinanceLab.Shared.Domain.Models.Dtos;
 using FinanceLab.Shared.Domain.Models.Outputs;
 using JetBrains.Annotations;
@@ -14,7 +15,8 @@ public sealed class GetUserListQueryHandler : BaseRequestHandler<GetUserListQuer
 {
     private readonly IMongoDbContext _dbContext;
 
-    public GetUserListQueryHandler(IMongoDbContext dbContext) => _dbContext = dbContext;
+    public GetUserListQueryHandler(IMongoDbContext dbContext, ISharedResources sharedResources) : base(sharedResources)
+        => _dbContext = dbContext;
 
     public override Task<UserListOutput> Handle(GetUserListQuery request, CancellationToken cancellationToken)
     {

@@ -16,12 +16,11 @@ builder.Logging.SetMinimumLevel(builder.HostEnvironment.IsDevelopment() ? LogLev
 builder.RootComponents.Add<AppComponent>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+builder.Services.AddLocalization().AddTransient<ISharedResources, SharedResources>();
 builder.Services.AddHttpClientService(builder.HostEnvironment.BaseAddress);
 builder.Services.AddStateContainerService();
 builder.Services.AddJsonSerializerOptions();
 builder.Services.AddAuthorization();
-builder.Services.AddLocalization()
-    .AddTransient<ISharedResources, SharedResources>();
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
 

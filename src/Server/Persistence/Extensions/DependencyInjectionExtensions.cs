@@ -27,7 +27,7 @@ public static class DependencyInjectionExtensions
     {
         var dateTimeOffsetSerializer = new DateTimeOffsetSerializer(BsonType.String);
 
-        BsonClassMap.RegisterClassMap<Asset>(bcm =>
+        BsonClassMap.RegisterClassMap<Wallet>(bcm =>
         {
             bcm.AutoMap();
             bcm.MapIdMember(asset => asset.CoinCode);

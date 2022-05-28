@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace FinanceLab.Client.Presentation.Pages;
 
@@ -9,14 +8,12 @@ public partial class IndexPage
     private string _fullName = default!;
     private string _userName = default!;
 
-    protected override async Task OnParametersSetAsync()
+    protected override void OnParametersSet()
     {
-        var authenticationState = await AuthenticationStateTask;
+        _userName = "@" + StateContainer.User!.UserName;
 
-        _userName = "@" + authenticationState.User.FindFirst(ClaimTypes.Name)!.Value;
-
-        var firstName = authenticationState.User.FindFirst(ClaimTypes.GivenName)!.Value;
-        var lastName = authenticationState.User.FindFirst(ClaimTypes.Surname)!.Value;
+        var firstName = StateContainer.User!.FirstName;
+        var lastName = StateContainer.User!.LastName;
 
         _fullName = $"{firstName} {lastName}";
     }

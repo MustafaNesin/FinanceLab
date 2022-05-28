@@ -22,21 +22,15 @@ public sealed class SignInCommandHandler : BaseRequestHandler<SignInCommand>
     private readonly IPasswordHasher<User> _passwordHasher;
 
     public SignInCommandHandler(IMongoDbContext dbContext, IHttpContextAccessor httpContextAccessor,
-        IPasswordHasher<User> passwordHasher, ISharedResources sharedResources)
+        IPasswordHasher<User> passwordHasher, ISharedResources sharedResources) : base(sharedResources)
     {
         _dbContext = dbContext;
         _httpContext = httpContextAccessor.HttpContext!;
         _passwordHasher = passwordHasher;
-        L = sharedResources;
     }
-
-    private ISharedResources L { get; }
 
     public override async Task<Unit> Handle(SignInCommand request, CancellationToken cancellationToken)
     {
-        if (_httpContext.User.Identity?.IsAuthenticated == true)
-            return Unit.Value;
-
         var user = await _dbContext.Users
             .Find(u => u.UserName == request.UserName)
             .FirstOrDefaultAsync(cancellationToken);

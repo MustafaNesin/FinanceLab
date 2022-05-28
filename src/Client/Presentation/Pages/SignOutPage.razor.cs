@@ -14,11 +14,11 @@ public partial class SignOutPage
 
     protected override async Task OnInitializedAsync()
     {
-        var response = await HttpClientService.PostAsync(ApiRouteConstants.UserSignOut);
+        var response = await HttpClientService.PostAsync(ApiRouteConstants.SignOut);
 
         if (response.IsSuccessful)
         {
-            AuthenticationStateProvider.RenewAuthenticationState();
+            AuthenticationStateProvider.SetAuthenticationState(null);
             Snackbar.Add("Signed out successfully!", Severity.Success);
         }
         else

@@ -2,6 +2,7 @@
 using FinanceLab.Shared.Application.Constants;
 using FinanceLab.Shared.Application.Validators;
 using FinanceLab.Shared.Domain.Models.Inputs;
+using FinanceLab.Shared.Domain.Models.Outputs;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
@@ -44,15 +45,15 @@ public partial class SignInPage
             return;
         }
 
-        var signInResponse = await HttpClientService.PostAsync(ApiRouteConstants.UserSignIn, _input);
+        var response = await HttpClientService.PostAsync<SignInInput, UserOutput>(ApiRouteConstants.SignIn, _input);
 
-        if (signInResponse.IsSuccessful)
+        if (response.IsSuccessful)
         {
-            AuthenticationStateProvider.RenewAuthenticationState();
+            AuthenticationStateProvider.SetAuthenticationState(response.Data.User);
             Snackbar.Add("Signed in successfully!", Severity.Success);
         }
         else
-            ShowProblem(signInResponse.ProblemDetails, false);
+            ShowProblem(response.ProblemDetails, false);
 
         _isSubmitDisabled = false;
     }

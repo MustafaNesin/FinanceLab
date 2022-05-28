@@ -12,5 +12,8 @@ public sealed class User
     public string PasswordHash { get; set; } = default!;
     public string? Role { get; set; }
     public DateTimeOffset RegisteredAt { get; init; } = DateTimeOffset.UtcNow;
-    public ICollection<Asset> Assets { get; init; } = new List<Asset>();
+
+    // public ICollection<Trade> Trades { get; init; } = new List<Trade>();
+    // public ICollection<Transfer> Transfers { get; init; } = new List<Transfer>();
+    public ICollection<Wallet> Wallets { get; init; } = new List<Wallet>();
 }

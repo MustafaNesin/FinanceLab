@@ -44,7 +44,7 @@ public partial class UserListPage
         parameters.Add(nameof(UserListInput.PageSize), state.PageSize.ToString());
 
         var query = string.Join('&', parameters.Cast<string>().Select(key => $"{key}={parameters[key]}"));
-        var response = await HttpClientService.GetAsync<UserListOutput>($"{ApiRouteConstants.UserGetList}?{query}");
+        var response = await HttpClientService.GetAsync<UserListOutput>($"{ApiRouteConstants.GetUserList}?{query}");
 
         if (response.IsSuccessful)
             return new TableData<UserDto>

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
+using FinanceLab.Shared.Application.Abstractions;
 using Hellang.Middleware.ProblemDetails;
 using JetBrains.Annotations;
 using MediatR;
@@ -10,6 +11,10 @@ namespace FinanceLab.Server.Application.Handlers;
 public abstract class BaseRequestHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
+    protected BaseRequestHandler(ISharedResources sharedResources) => L = sharedResources;
+
+    protected ISharedResources L { get; }
+
     public abstract Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken);
 
     [DoesNotReturn]
@@ -33,4 +38,7 @@ public abstract class BaseRequestHandler<TRequest, TResponse> : IRequestHandler<
 public abstract class BaseRequestHandler<TRequest> : BaseRequestHandler<TRequest, Unit>
     where TRequest : IRequest<Unit>
 {
+    protected BaseRequestHandler(ISharedResources sharedResources) : base(sharedResources)
+    {
+    }
 }

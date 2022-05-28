@@ -10,7 +10,7 @@ namespace FinanceLab.Server.Presentation.Controllers;
 
 public class WalletController : BaseController
 {
-    [HttpGet(ApiRouteConstants.WalletGet)]
+    [HttpGet(ApiRouteConstants.GetWallet)]
     public async Task<IActionResult> GetAsync([FromRoute] string userName)
     {
         var signedInUserRole = HttpContext.User.FindFirstValue(ClaimTypes.Role);
@@ -18,13 +18,10 @@ public class WalletController : BaseController
 
         // Giriş yapmış kullanıcı admin değilse başkasının cüzdanını sorgulayamaz
         if (signedInUserRole is not RoleConstants.Admin && !userName.Equals(signedInUserName))
-        {
-            var problemDetails = StatusCodeProblemDetails.Create((int)HttpStatusCode.Unauthorized);
-            return Unauthorized(problemDetails);
-        }
+            throw new ProblemDetailsException((int)HttpStatusCode.Unauthorized);
 
-        var getUserWalletQuery = new GetUserWalletQuery(userName);
-        var userWallet = await Mediator.Send(getUserWalletQuery);
-        return Ok(userWallet);
+        var query = new GetWalletListQuery(userName);
+        var wallet = await Mediator.Send(query);
+        return Ok(wallet);
     }
 }

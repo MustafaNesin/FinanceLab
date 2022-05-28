@@ -4,5 +4,5 @@ using MediatR;
 
 namespace FinanceLab.Server.Domain.Models.Queries;
 
-public record GetUserListQuery(int Page, int PageSize, string? Search, string? Sort,
+public sealed record GetUserListQuery(int Page, int PageSize, string? Search, string? Sort,
     ListSortDirection? SortDirection) : IRequest<UserListOutput>;

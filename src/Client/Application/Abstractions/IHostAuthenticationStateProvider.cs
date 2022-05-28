@@ -1,6 +1,8 @@
-﻿namespace FinanceLab.Client.Application.Abstractions;
+﻿using FinanceLab.Shared.Domain.Models.Dtos;
+
+namespace FinanceLab.Client.Application.Abstractions;
 
 public interface IHostAuthenticationStateProvider
 {
-    void RenewAuthenticationState();
+    void SetAuthenticationState(UserDto? user);
 }
