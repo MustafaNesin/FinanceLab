@@ -1,5 +1,9 @@
 ﻿using FinanceLab.Shared.Domain.Models.Dtos;
+using JetBrains.Annotations;
 
 namespace FinanceLab.Shared.Domain.Models.Outputs;
 
-public record UserListOutput(IReadOnlyCollection<UserDto> Items, int TotalItems);
+[PublicAPI]
+public record UserListOutput(
+    IReadOnlyCollection<UserDto> Items,
+    int TotalItems);

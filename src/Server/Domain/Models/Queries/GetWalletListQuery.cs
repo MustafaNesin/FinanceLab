@@ -3,4 +3,5 @@ using MediatR;
 
 namespace FinanceLab.Server.Domain.Models.Queries;
 
-public sealed record GetWalletListQuery(string UserName) : IRequest<WalletListOutput>;
+public sealed record GetWalletListQuery(
+    string UserName) : IRequest<WalletListOutput>;

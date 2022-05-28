@@ -1,5 +1,8 @@
-﻿namespace FinanceLab.Shared.Domain.Models.Inputs;
+﻿using JetBrains.Annotations;
 
+namespace FinanceLab.Shared.Domain.Models.Inputs;
+
+[PublicAPI]
 public sealed class SignInInput
 {
     public string UserName { get; set; } = default!;

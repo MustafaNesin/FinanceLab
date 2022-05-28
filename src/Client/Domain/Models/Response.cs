@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 
 namespace FinanceLab.Client.Domain.Models;
 
+[PublicAPI]
 public readonly struct Response<T>
 {
     [MemberNotNullWhen(true, nameof(Data))]

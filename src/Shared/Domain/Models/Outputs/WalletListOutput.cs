@@ -1,5 +1,8 @@
 ﻿using FinanceLab.Shared.Domain.Models.Dtos;
+using JetBrains.Annotations;
 
 namespace FinanceLab.Shared.Domain.Models.Outputs;
 
-public record WalletListOutput(IReadOnlyCollection<WalletDto> Wallets);
+[PublicAPI]
+public record WalletListOutput(
+    IReadOnlyCollection<WalletDto> Wallets);

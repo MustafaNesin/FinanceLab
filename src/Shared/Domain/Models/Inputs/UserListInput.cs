@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
+using JetBrains.Annotations;
 
 namespace FinanceLab.Shared.Domain.Models.Inputs;
 
+[PublicAPI]
 public sealed class UserListInput
 {
     public int Page { get; set; }
