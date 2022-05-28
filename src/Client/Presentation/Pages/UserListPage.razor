@@ -39,6 +39,16 @@
                 Registered At
             </MudTableSortLabel>
         </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(UserDto.GameDifficulty)" T="@UserDto">
+                Game Difficulty
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(UserDto.GameRestartedAt)" T="@UserDto">
+                Game Restarted At
+            </MudTableSortLabel>
+        </MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Role">
@@ -55,6 +65,12 @@
         </MudTd>
         <MudTd DataLabel="Registered At">
             @context.RegisteredAt.ToString("g")
+        </MudTd>
+        <MudTd DataLabel="Game Difficulty">
+            @context.GameDifficulty
+        </MudTd>
+        <MudTd DataLabel="Game Restarted At">
+            @context.GameRestartedAt.ToString("g")
         </MudTd>
     </RowTemplate>
     <NoRecordsContent>

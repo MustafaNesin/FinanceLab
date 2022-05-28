@@ -1,6 +1,14 @@
-﻿using JetBrains.Annotations;
+﻿using FinanceLab.Shared.Domain.Models.Enums;
+using JetBrains.Annotations;
 
 namespace FinanceLab.Shared.Domain.Models.Dtos;
 
 [PublicAPI]
-public record UserDto(string FirstName, string LastName, string UserName, string? Role, DateTimeOffset RegisteredAt);
+public record UserDto(
+    string UserName,
+    string FirstName,
+    string LastName,
+    string? Role,
+    DateTimeOffset RegisteredAt,
+    GameDifficulty GameDifficulty,
+    DateTimeOffset GameRestartedAt);

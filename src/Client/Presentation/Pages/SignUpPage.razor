@@ -1,4 +1,5 @@
 ﻿@page "/SignUp"
+@using FinanceLab.Shared.Domain.Models.Enums
 @inherits BasePage
 @attribute [AllowAnonymous]
 
@@ -34,6 +35,32 @@
                               Label="Password Repeat"
                               HelperText="Repeat the password"
                               InputType="@InputType.Password"/>
+                <MudSelect @bind-Value="@_input.GameDifficulty"
+                           Validation="@_validator.ValidatePropertyAsync"
+                           For="@(() => _input.GameDifficulty)"
+                           Label="Game Difficulty"
+                           HelperText="Select a game difficulty, 
+                                    you can 
+                                    always start 
+                                    a
+                                    new game
+                                    with a 
+                                    different game 
+                                    difficulty.
+                                    ">
+                    <MudSelectItem Value="@GameDifficulty.Sandbox">
+                        Sandbox
+                    </MudSelectItem>
+                    <MudSelectItem Value="@GameDifficulty.Easy">
+                        Easy
+                    </MudSelectItem>
+                    <MudSelectItem Value="@GameDifficulty.Normal">
+                        Normal
+                    </MudSelectItem>
+                    <MudSelectItem Value="@GameDifficulty.Hard">
+                        Hard
+                    </MudSelectItem>
+                </MudSelect>
             </MudForm>
         </MudCardContent>
         <MudCardActions>

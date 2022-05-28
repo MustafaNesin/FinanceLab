@@ -13,9 +13,9 @@ namespace FinanceLab.Client.Presentation.Pages;
 public partial class SignInPage
 {
     private readonly SignInInput _input = new();
-    private readonly SignInInputValidator _validator = new();
     private MudForm _form = default!;
     private bool _isSubmitDisabled;
+    private SignInInputValidator _validator = default!;
 
     [Parameter]
     [SupplyParameterFromQuery]
@@ -32,6 +32,7 @@ public partial class SignInPage
             NavigationManager.NavigateTo("/");
 
         _input.UserName = UserName!;
+        _validator = new SignInInputValidator(L);
     }
 
     private async Task OnSubmitAsync()

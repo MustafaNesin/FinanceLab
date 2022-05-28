@@ -3,6 +3,7 @@ using FinanceLab.Server.Application.Abstractions;
 using FinanceLab.Server.Domain.Models.Commands;
 using FinanceLab.Server.Domain.Models.Entities;
 using FinanceLab.Shared.Application.Abstractions;
+using FinanceLab.Shared.Domain.Models.Enums;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -36,8 +37,27 @@ public sealed class SignUpCommandHandler : BaseRequestHandler<SignUpCommand>
         {
             UserName = request.UserName,
             FirstName = request.FirstName,
-            LastName = request.LastName
+            LastName = request.LastName,
+            GameDifficulty = request.GameDifficulty
         };
+
+        switch (request.GameDifficulty)
+        {
+            case GameDifficulty.Sandbox:
+                break;
+            case GameDifficulty.Easy:
+                user.Wallets.Add(new Wallet("TRY", 10_000));
+                break;
+            case GameDifficulty.Normal:
+                user.Wallets.Add(new Wallet("TRY", 1_000));
+                break;
+            case GameDifficulty.Hard:
+                user.Wallets.Add(new Wallet("TRY", 100));
+                break;
+            default:
+                Throw(HttpStatusCode.BadRequest, "Game difficulty value is out of range.");
+                break;
+        }
 
         user.PasswordHash = _passwordHasher.HashPassword(user, request.Password);
         await _dbContext.Users.InsertOneAsync(user, null, cancellationToken);

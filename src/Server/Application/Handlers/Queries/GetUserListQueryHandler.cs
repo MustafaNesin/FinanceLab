@@ -61,6 +61,18 @@ public sealed class GetUserListQueryHandler : BaseRequestHandler<GetUserListQuer
                 ListSortDirection.Descending => from user in query orderby user.RegisteredAt descending select user,
                 _ => query
             },
+            nameof(UserDto.GameDifficulty) => request.SortDirection switch
+            {
+                ListSortDirection.Ascending => from user in query orderby user.GameDifficulty select user,
+                ListSortDirection.Descending => from user in query orderby user.GameDifficulty descending select user,
+                _ => query
+            },
+            nameof(UserDto.GameRestartedAt) => request.SortDirection switch
+            {
+                ListSortDirection.Ascending => from user in query orderby user.GameRestartedAt select user,
+                ListSortDirection.Descending => from user in query orderby user.GameRestartedAt descending select user,
+                _ => query
+            },
             _ => query
         };
 

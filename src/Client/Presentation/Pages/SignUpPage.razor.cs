@@ -10,13 +10,14 @@ namespace FinanceLab.Client.Presentation.Pages;
 public partial class SignUpPage
 {
     private readonly SignUpInput _input = new();
-    private readonly SignUpInputValidator _validator = new();
     private MudForm _form = default!;
     private bool _isSubmitDisabled = true;
+    private SignUpInputValidator _validator = default!;
 
-    protected override Task OnInitializedAsync()
+    protected override Task OnParametersSetAsync()
     {
         _isSubmitDisabled = false;
+        _validator = new SignUpInputValidator(L);
         return Task.CompletedTask;
     }
 

@@ -38,6 +38,7 @@ public static class DependencyInjectionExtensions
             bcm.AutoMap();
             bcm.MapIdMember(user => user.Id).SetIdGenerator(StringObjectIdGenerator.Instance);
             bcm.MapMember(user => user.RegisteredAt).SetSerializer(dateTimeOffsetSerializer);
+            bcm.MapMember(user => user.GameRestartedAt).SetSerializer(dateTimeOffsetSerializer);
         });
     }
 }

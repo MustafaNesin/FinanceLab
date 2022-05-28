@@ -41,7 +41,9 @@ public class AuthController : BaseController
         if (HttpContext.User.Identity?.IsAuthenticated == true)
             throw new ProblemDetailsException((int)HttpStatusCode.BadRequest, "You are already logged in.");
 
-        var request = new SignUpCommand(input.FirstName, input.LastName, input.UserName, input.Password);
+        var request = new SignUpCommand(
+            input.UserName, input.FirstName, input.LastName, input.Password, input.GameDifficulty);
+
         await Mediator.Send(request);
         return Ok();
     }

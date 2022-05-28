@@ -48,7 +48,8 @@ public sealed class SignInCommandHandler : BaseRequestHandler<SignInCommand>
             new(ClaimTypes.NameIdentifier, user.Id),
             new(ClaimTypes.Name, user.UserName),
             new(ClaimTypes.GivenName, user.FirstName),
-            new(ClaimTypes.Surname, user.LastName)
+            new(ClaimTypes.Surname, user.LastName),
+            new(nameof(User.GameDifficulty), ((int)user.GameDifficulty).ToString())
         };
 
         if (user.Role is not null)
