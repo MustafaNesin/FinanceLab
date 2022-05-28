@@ -1,4 +1,4 @@
-﻿namespace FinanceLab.Shared.Domain.Constants;
+﻿namespace FinanceLab.Shared.Application.Constants;
 
 public static class RoleConstants
 {

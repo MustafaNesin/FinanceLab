@@ -2,7 +2,7 @@
 
 namespace FinanceLab.Shared.Domain.Models.Inputs;
 
-public class UserListInput
+public sealed class UserListInput
 {
     public int Page { get; set; }
     public int PageSize { get; set; }

@@ -27,10 +27,24 @@ public static class DependencyInjectionExtensions
     {
         var dateTimeOffsetSerializer = new DateTimeOffsetSerializer(BsonType.String);
 
-        BsonClassMap.RegisterClassMap<Wallet>(bcm =>
+        BsonClassMap.RegisterClassMap<Market>(bcm =>
         {
             bcm.AutoMap();
-            bcm.MapIdMember(asset => asset.CoinCode);
+            bcm.MapIdMember(market => market.Symbol);
+        });
+
+        BsonClassMap.RegisterClassMap<Trade>(bcm =>
+        {
+            bcm.AutoMap();
+            bcm.MapIdMember(trade => trade.Id).SetIdGenerator(StringObjectIdGenerator.Instance);
+            bcm.MapMember(trade => trade.OccurredAt).SetSerializer(dateTimeOffsetSerializer);
+        });
+
+        BsonClassMap.RegisterClassMap<Transfer>(bcm =>
+        {
+            bcm.AutoMap();
+            bcm.MapIdMember(transfer => transfer.CoinCode);
+            bcm.MapMember(transfer => transfer.OccurredAt).SetSerializer(dateTimeOffsetSerializer);
         });
 
         BsonClassMap.RegisterClassMap<User>(bcm =>
@@ -39,6 +53,12 @@ public static class DependencyInjectionExtensions
             bcm.MapIdMember(user => user.Id).SetIdGenerator(StringObjectIdGenerator.Instance);
             bcm.MapMember(user => user.RegisteredAt).SetSerializer(dateTimeOffsetSerializer);
             bcm.MapMember(user => user.GameRestartedAt).SetSerializer(dateTimeOffsetSerializer);
+        });
+
+        BsonClassMap.RegisterClassMap<Wallet>(bcm =>
+        {
+            bcm.AutoMap();
+            bcm.MapIdMember(wallet => wallet.CoinCode);
         });
     }
 }

@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using FinanceLab.Server.Domain.Models.Queries;
 using FinanceLab.Shared.Application.Constants;
-using FinanceLab.Shared.Domain.Constants;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Mvc;
 
