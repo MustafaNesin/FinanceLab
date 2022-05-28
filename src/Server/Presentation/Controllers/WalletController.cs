@@ -1,26 +1,20 @@
-﻿using System.Net;
-using System.Security.Claims;
-using FinanceLab.Server.Domain.Models.Queries;
+﻿using FinanceLab.Server.Domain.Models.Queries;
 using FinanceLab.Shared.Application.Constants;
-using Hellang.Middleware.ProblemDetails;
+using FinanceLab.Shared.Domain.Models.Inputs;
+using FinanceLab.Shared.Domain.Models.Outputs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceLab.Server.Presentation.Controllers;
 
-public class WalletController : BaseController
+public sealed class WalletController : BaseController
 {
-    [HttpGet(ApiRouteConstants.GetWallet)]
-    public async Task<IActionResult> GetAsync([FromRoute] string userName)
+    [HttpGet(ApiRouteConstants.GetWalletList)]
+    public async Task<ActionResult<WalletListOutput>> GetListAsync([FromQuery] WalletListInput input)
     {
-        var signedInUserRole = HttpContext.User.FindFirstValue(ClaimTypes.Role);
-        var signedInUserName = HttpContext.User.FindFirstValue(ClaimTypes.Name);
+        var userName = EnsureAuthorizationForUserName(input.UserName);
+        var request = new GetWalletListQuery(userName, input.Filter, input.Page, input.Sort);
+        var walletList = await Mediator.Send(request);
 
-        // Giriş yapmış kullanıcı admin değilse başkasının cüzdanını sorgulayamaz
-        if (signedInUserRole is not RoleConstants.Admin && !userName.Equals(signedInUserName))
-            throw new ProblemDetailsException((int)HttpStatusCode.Unauthorized);
-
-        var query = new GetWalletListQuery(userName);
-        var wallet = await Mediator.Send(query);
-        return Ok(wallet);
+        return Ok(walletList);
     }
 }

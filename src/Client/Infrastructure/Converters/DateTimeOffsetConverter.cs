@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace FinanceLab.Client.Infrastructure.Converters;
 
-public class DateTimeOffsetConverter : JsonConverter<DateTimeOffset>
+public sealed class DateTimeOffsetConverter : JsonConverter<DateTimeOffset>
 {
     public override DateTimeOffset Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         => reader.GetDateTimeOffset().ToLocalTime();

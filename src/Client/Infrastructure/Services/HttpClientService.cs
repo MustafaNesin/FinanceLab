@@ -5,7 +5,7 @@ using FinanceLab.Client.Domain.Models;
 
 namespace FinanceLab.Client.Infrastructure.Services;
 
-public class HttpClientService : IHttpClientService
+public sealed class HttpClientService : IHttpClientService
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly JsonSerializerOptions _jsonSerializerOptions;

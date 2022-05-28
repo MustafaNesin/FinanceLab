@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace FinanceLab.Shared.Domain.Models.Dtos;
 
 [PublicAPI]
-public record UserDto(
+public sealed record UserDto(
     string UserName,
     string FirstName,
     string LastName,

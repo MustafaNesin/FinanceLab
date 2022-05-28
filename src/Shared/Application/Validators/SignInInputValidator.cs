@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace FinanceLab.Shared.Application.Validators;
 
-public class SignInInputValidator : BaseValidator<SignInInput>
+public sealed class SignInInputValidator : BaseValidator<SignInInput>
 {
     public SignInInputValidator(ISharedResources l) : base(l)
     {

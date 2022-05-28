@@ -1,9 +1,8 @@
 ﻿@page "/UserList"
-@using FinanceLab.Shared.Domain.Models.Dtos
-@inherits BasePage
+@inherits BaseListPage<UserDto, UserListOutput>
 @attribute [Authorize(Roles = RoleConstants.Admin)]
 
-<MudTable ServerData="@ServerReload" @ref="_table">
+<MudTable ServerData="@GetTableDataAsync" @ref="@Table">
     <ToolBarContent>
         <MudText Typo="@Typo.h6">
             User List
@@ -80,6 +79,13 @@
         <MudText>Loading...</MudText>
     </LoadingContent>
     <PagerContent>
-        <MudTablePager/>
+        @if (Environment.IsDevelopment())
+        {
+            <MudTablePager PageSizeOptions="@(new[] { 1, 2, 3 })"/>
+        }
+        else
+        {
+            <MudTablePager/>
+        }
     </PagerContent>
 </MudTable>

@@ -1,8 +1,8 @@
 ﻿using FinanceLab.Client.Application.Abstractions;
 using FinanceLab.Shared.Application.Constants;
 using FinanceLab.Shared.Application.Validators;
+using FinanceLab.Shared.Domain.Models.Dtos;
 using FinanceLab.Shared.Domain.Models.Inputs;
-using FinanceLab.Shared.Domain.Models.Outputs;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
@@ -46,11 +46,11 @@ public partial class SignInPage
             return;
         }
 
-        var response = await HttpClientService.PostAsync<SignInInput, UserOutput>(ApiRouteConstants.SignIn, _input);
+        var response = await HttpClientService.PostAsync<SignInInput, UserDto>(ApiRouteConstants.SignIn, _input);
 
         if (response.IsSuccessful)
         {
-            AuthenticationStateProvider.SetAuthenticationState(response.Data.User);
+            AuthenticationStateProvider.SetAuthenticationState(response.Data);
             Snackbar.Add("Signed in successfully!", Severity.Success);
         }
         else

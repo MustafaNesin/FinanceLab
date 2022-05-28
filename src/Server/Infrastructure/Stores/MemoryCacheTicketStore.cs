@@ -4,7 +4,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace FinanceLab.Server.Infrastructure.Stores;
 
-public class MemoryCacheTicketStore : ITicketStore
+public sealed class MemoryCacheTicketStore : ITicketStore
 {
     private const string KeyPrefix = "AuthSessionStore-";
     private readonly IMemoryCache _cache;

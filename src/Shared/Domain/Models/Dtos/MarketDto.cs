@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace FinanceLab.Shared.Domain.Models.Dtos;
 
 [PublicAPI]
-public record MarketDto(
+public sealed record MarketDto(
     string BaseCoinCode,
     string QuoteCoinCode)
 {

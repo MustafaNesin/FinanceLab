@@ -22,52 +22,52 @@ public sealed class GetUserListQueryHandler : BaseRequestHandler<GetUserListQuer
     {
         var query = _dbContext.Users.AsQueryable().AsQueryable();
 
-        if (request.Search is { Length: > 0 })
+        if (request.Filter is { Length: > 0 })
             query = from user in query
-                where user.FirstName.Contains(request.Search) ||
-                      user.LastName.Contains(request.Search) ||
-                      user.UserName.Contains(request.Search)
+                where user.FirstName.Contains(request.Filter) ||
+                      user.LastName.Contains(request.Filter) ||
+                      user.UserName.Contains(request.Filter)
                 select user;
 
-        query = request.Sort switch
+        query = request.Sort.By switch
         {
-            nameof(UserDto.FirstName) => request.SortDirection switch
+            nameof(UserDto.FirstName) => request.Sort.Direction switch
             {
                 ListSortDirection.Ascending => from user in query orderby user.FirstName select user,
                 ListSortDirection.Descending => from user in query orderby user.FirstName descending select user,
                 _ => query
             },
-            nameof(UserDto.LastName) => request.SortDirection switch
+            nameof(UserDto.LastName) => request.Sort.Direction switch
             {
                 ListSortDirection.Ascending => from user in query orderby user.LastName select user,
                 ListSortDirection.Descending => from user in query orderby user.LastName descending select user,
                 _ => query
             },
-            nameof(UserDto.UserName) => request.SortDirection switch
+            nameof(UserDto.UserName) => request.Sort.Direction switch
             {
                 ListSortDirection.Ascending => from user in query orderby user.UserName select user,
                 ListSortDirection.Descending => from user in query orderby user.UserName descending select user,
                 _ => query
             },
-            nameof(UserDto.Role) => request.SortDirection switch
+            nameof(UserDto.Role) => request.Sort.Direction switch
             {
                 ListSortDirection.Ascending => from user in query orderby user.Role select user,
                 ListSortDirection.Descending => from user in query orderby user.Role descending select user,
                 _ => query
             },
-            nameof(UserDto.RegisteredAt) => request.SortDirection switch
+            nameof(UserDto.RegisteredAt) => request.Sort.Direction switch
             {
                 ListSortDirection.Ascending => from user in query orderby user.RegisteredAt select user,
                 ListSortDirection.Descending => from user in query orderby user.RegisteredAt descending select user,
                 _ => query
             },
-            nameof(UserDto.GameDifficulty) => request.SortDirection switch
+            nameof(UserDto.GameDifficulty) => request.Sort.Direction switch
             {
                 ListSortDirection.Ascending => from user in query orderby user.GameDifficulty select user,
                 ListSortDirection.Descending => from user in query orderby user.GameDifficulty descending select user,
                 _ => query
             },
-            nameof(UserDto.GameRestartedAt) => request.SortDirection switch
+            nameof(UserDto.GameRestartedAt) => request.Sort.Direction switch
             {
                 ListSortDirection.Ascending => from user in query orderby user.GameRestartedAt select user,
                 ListSortDirection.Descending => from user in query orderby user.GameRestartedAt descending select user,
@@ -76,12 +76,12 @@ public sealed class GetUserListQueryHandler : BaseRequestHandler<GetUserListQuer
             _ => query
         };
 
-        var totalItems = query.Count();
+        var total = query.Count();
 
-        query = query.Skip(request.Page * request.PageSize).Take(request.PageSize);
+        query = query.Skip(request.Page.Current * request.Page.Size).Take(request.Page.Size);
 
         var items = query.ToList().Adapt<IReadOnlyCollection<UserDto>>();
-        var output = new UserListOutput(items, totalItems);
+        var output = new UserListOutput(items, total);
 
         return Task.FromResult(output);
     }

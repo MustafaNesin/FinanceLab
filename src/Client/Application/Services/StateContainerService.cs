@@ -3,7 +3,7 @@ using FinanceLab.Shared.Domain.Models.Dtos;
 
 namespace FinanceLab.Client.Application.Services;
 
-public class StateContainerService : IStateContainerService
+public sealed class StateContainerService : IStateContainerService
 {
     public event Action? StateHasChanged;
     public UserDto? User { get; private set; }

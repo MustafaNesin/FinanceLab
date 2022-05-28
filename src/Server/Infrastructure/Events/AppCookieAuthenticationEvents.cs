@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace FinanceLab.Server.Infrastructure.Events;
 
-public class AppCookieAuthenticationEvents : CookieAuthenticationEvents
+public sealed class AppCookieAuthenticationEvents : CookieAuthenticationEvents
 {
     private readonly IMongoDbContext _dbContext;
 

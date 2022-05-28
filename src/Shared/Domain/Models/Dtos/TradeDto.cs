@@ -4,9 +4,10 @@ using JetBrains.Annotations;
 namespace FinanceLab.Shared.Domain.Models.Dtos;
 
 [PublicAPI]
-public record TradeDto(
+public sealed record TradeDto(
     TradeSide Side,
     string BaseCoinCode,
     string QuoteCoinCode,
     double Amount,
+    double Price,
     DateTimeOffset OccurredAt);

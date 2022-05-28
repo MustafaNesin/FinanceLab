@@ -3,6 +3,6 @@
 namespace FinanceLab.Shared.Domain.Models.Dtos;
 
 [PublicAPI]
-public record WalletDto(
+public sealed record WalletDto(
     string CoinCode,
     double Amount);

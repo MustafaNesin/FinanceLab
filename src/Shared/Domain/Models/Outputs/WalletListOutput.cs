@@ -4,5 +4,9 @@ using JetBrains.Annotations;
 namespace FinanceLab.Shared.Domain.Models.Outputs;
 
 [PublicAPI]
-public record WalletListOutput(
-    IReadOnlyCollection<WalletDto> Wallets);
+public sealed class WalletListOutput : BaseListOutput<WalletDto>
+{
+    public WalletListOutput(IReadOnlyCollection<WalletDto> items, int total) : base(items, total)
+    {
+    }
+}

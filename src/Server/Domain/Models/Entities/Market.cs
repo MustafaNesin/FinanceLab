@@ -3,7 +3,7 @@
 namespace FinanceLab.Server.Domain.Models.Entities;
 
 [PublicAPI]
-public record Market(
+public sealed record Market(
     string Symbol,
     string BaseCoinCode,
     string QuoteCoinCode)

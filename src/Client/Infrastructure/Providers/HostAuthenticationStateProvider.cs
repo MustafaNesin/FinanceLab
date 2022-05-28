@@ -2,13 +2,12 @@
 using FinanceLab.Client.Application.Abstractions;
 using FinanceLab.Shared.Application.Constants;
 using FinanceLab.Shared.Domain.Models.Dtos;
-using FinanceLab.Shared.Domain.Models.Outputs;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Logging;
 
 namespace FinanceLab.Client.Infrastructure.Providers;
 
-public class HostAuthenticationStateProvider : AuthenticationStateProvider, IHostAuthenticationStateProvider
+public sealed class HostAuthenticationStateProvider : AuthenticationStateProvider, IHostAuthenticationStateProvider
 {
     private static readonly TimeSpan UserCacheRefreshInterval = TimeSpan.FromMinutes(1);
     private readonly IHttpClientService _httpClientService;
@@ -54,12 +53,9 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider, IHos
 
     private async Task<ClaimsPrincipal> FetchUserAsync()
     {
-        var response = await _httpClientService.GetAsync<UserOutput>(ApiRouteConstants.GetUser);
-        var user = response.Data?.User;
-
-        _stateContainerService.SetUser(user, false);
-
-        return CreateClaimsPrincipal(user);
+        var response = await _httpClientService.GetAsync<UserDto>(ApiRouteConstants.GetUser);
+        _stateContainerService.SetUser(response.Data, false);
+        return CreateClaimsPrincipal(response.Data);
     }
 
     private static ClaimsPrincipal CreateClaimsPrincipal(UserDto? user)

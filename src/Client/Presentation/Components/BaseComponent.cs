@@ -3,6 +3,7 @@ using FinanceLab.Client.Domain.Models;
 using FinanceLab.Shared.Application.Abstractions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor;
 
 namespace FinanceLab.Client.Presentation.Components;
@@ -15,6 +16,9 @@ public class BaseComponent : ComponentBase, IAsyncDisposable
     [Inject]
     protected IDialogService DialogService { get; private set; } = default!;
 
+    [Inject]
+    protected IWebAssemblyHostEnvironment Environment { get; set; } = default!;
+    
     [Inject]
     protected IHttpClientService HttpClientService { get; private set; } = default!;
 

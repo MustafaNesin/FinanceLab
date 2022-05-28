@@ -6,7 +6,7 @@ using static FinanceLab.Server.Infrastructure.Constants.BinanceApiConstants;
 
 namespace FinanceLab.Server.Infrastructure.Services;
 
-public class BinanceService : IBinanceService
+public sealed class BinanceService : IBinanceService
 {
     private readonly TimeSpan _cacheExpiration = TimeSpan.FromSeconds(CacheExpirationSeconds);
     private readonly IHttpClientFactory _httpClientFactory;

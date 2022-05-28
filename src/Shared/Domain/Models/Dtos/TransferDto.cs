@@ -3,7 +3,7 @@
 namespace FinanceLab.Shared.Domain.Models.Dtos;
 
 [PublicAPI]
-public record TransferDto(
+public sealed record TransferDto(
     string CoinCode,
     double Amount,
     DateTimeOffset OccurredAt);
