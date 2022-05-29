@@ -1,0 +1,42 @@
+﻿@inherits BaseListComponent<WalletDto, WalletListOutput>
+
+<MudTable ServerData="@GetTableDataAsync" @ref="@Table">
+    <ToolBarContent>
+        <MudText Typo="@Typo.h6">
+            Wallet List
+        </MudText>
+        <MudSpacer/>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(WalletDto.CoinCode)" T="@WalletDto">
+                Coin Code
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(WalletDto.Amount)" T="@WalletDto">
+                Amount
+            </MudTableSortLabel>
+        </MudTh>
+    </HeaderContent>
+    <NoRecordsContent>
+        <MudText>No matching records found.</MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <MudText>Loading...</MudText>
+    </LoadingContent>
+    <PagerContent>
+        @if (Environment.IsDevelopment())
+        {
+            <MudTablePager PageSizeOptions="@(new[] {1, 2, 3})"/>
+        }
+        else
+        {
+            <MudTablePager/>
+        }
+    </PagerContent>
+</MudTable>
+
+@code {
+
+}
