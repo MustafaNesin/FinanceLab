@@ -3,9 +3,12 @@
 <MudTable ServerData="@GetTableDataAsync" @ref="@Table">
     <ToolBarContent>
         <MudText Typo="@Typo.h6">
-            Wallet List
+            Wallet List of @UserName
         </MudText>
         <MudSpacer/>
+        <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="Search"
+                      Adornment="@Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                      IconSize="@Size.Medium"/>
     </ToolBarContent>
     <HeaderContent>
         <MudTh>
@@ -19,11 +22,23 @@
             </MudTableSortLabel>
         </MudTh>
     </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Coin">
+            @context.CoinCode
+        </MudTd>
+        <MudTd DataLabel="Amount">
+            @context.Amount
+        </MudTd>
+    </RowTemplate>
     <NoRecordsContent>
-        <MudText>No matching records found.</MudText>
+        <MudText>
+            No matching records found.
+        </MudText>
     </NoRecordsContent>
     <LoadingContent>
-        <MudText>Loading...</MudText>
+        <MudText>
+            Loading...
+        </MudText>
     </LoadingContent>
     <PagerContent>
         @if (Environment.IsDevelopment())
@@ -36,7 +51,3 @@
         }
     </PagerContent>
 </MudTable>
-
-@code {
-
-}
