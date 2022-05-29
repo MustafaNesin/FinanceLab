@@ -61,6 +61,8 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
 
                     if (newAmount > 0d)
                     {
+                        await AddTrade(request, cancellationToken, user);
+
                         var updateQuoteWallet =
                             Builders<User>.Update.Set(
                                 string.Join(".", nameof(User.Wallets), "$", nameof(Wallet.Amount)), newAmount);
@@ -111,6 +113,8 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
                 {
                     if (baseWallet.Amount >= soldAmount)
                     {
+                        await AddTrade(request, cancellationToken, user);
+
                         var newAmount = baseWallet.Amount - soldAmount;
 
                         var updateBaseWallet =
@@ -162,6 +166,25 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
                 Throw(HttpStatusCode.BadRequest, L["InvalidTradeSide"]);
                 break;
         }
+
+        return Unit.Value;
+    }
+
+    public async Task<Unit> AddTrade(TradeCommand request, CancellationToken cancellationToken, User user)
+    {
+        var trade = new Trade
+        {
+            Id = ObjectId.GenerateNewId().ToString(),
+            Side = request.Side,
+            BaseCoinCode = request.BaseCoinCode,
+            QuoteCoinCode = request.QuoteCoinCode,
+            Amount = request.Quantity
+        };
+
+        var filter = Builders<User>.Filter.Eq(nameof(User.UserName), request.UserName);
+        var update = Builders<User>.Update.Push(nameof(user.Trades), trade);
+
+        await _dbContext.Users.UpdateOneAsync(filter, update, null, cancellationToken);
 
         return Unit.Value;
     }
