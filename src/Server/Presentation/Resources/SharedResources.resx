@@ -33,4 +33,13 @@
     <data name="SortMustBe" xml:space="preserve">
         <value>The sort field must be one of {0}.</value>
     </data>
+    <data name="PurchaseNotAuthorized" xml:space="preserve">
+        <value>Invalid operation.</value>
+    </data>
+    <data name="WalletTypeDoesNotExist" xml:space="preserve">
+        <value>No wallet with type {0} does exist.</value>
+    </data>
+    <data name="InvalidTradeSide" xml:space="preserve">
+        <value>Only Buy/Sell operations are allowed.</value>
+    </data>
 </root>

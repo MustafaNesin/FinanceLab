@@ -25,4 +25,13 @@
     <data name="SortMustBe" xml:space="preserve">
         <value>Sıralama alanı {0} değerlerinden biri olmalıdır.</value>
     </data>
+    <data name="PurchaseNotAuthorized" xml:space="preserve">
+        <value>Hatalı Alım/Satım işlemi.</value>
+    </data>
+    <data name="WalletTypeDoesNotExist" xml:space="preserve">
+        <value>{0} tipinde işlem yapılabilecek bir cüzdan bulunmamaktadır.</value>
+    </data>
+    <data name="InvalidTradeSide" xml:space="preserve">
+        <value>Sadece Alım/Satım işlemlerine izin verilmektedir.</value>
+    </data>
 </root>
