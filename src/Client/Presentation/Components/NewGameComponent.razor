@@ -1,0 +1,47 @@
+﻿@inherits BaseComponent
+
+<MudDialog>
+    <DialogContent>
+        <MudAlert Severity="Severity.Warning">@newGameWarning</MudAlert>
+        <MudForm>
+            <MudSelect T="string"
+                       Label="Game Difficulty"
+                       HelperText="Select a game difficulty. 
+                    ">
+                <MudSelectItem Value="@("Sandbox")">
+                    Sandbox
+                </MudSelectItem>
+                <MudSelectItem Value="@("Easy")">
+                    Easy
+                </MudSelectItem>
+                <MudSelectItem Value="@("Normal")">
+                    Normal
+                </MudSelectItem>
+                <MudSelectItem Value="@("Hard")">
+                    Hard
+                </MudSelectItem>
+            </MudSelect>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary">Start</MudButton>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+
+    [CascadingParameter]
+    MudDialogInstance MudDialog { get; set; }
+
+    [Parameter]
+    public string newGameText { get; set; } = "Start A New Game";
+
+    [Parameter]
+    public string newGameWarning { get; set; } = "All your progress will be lost when the game is restarted";
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+}
