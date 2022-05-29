@@ -1,4 +1,5 @@
-﻿using FinanceLab.Shared.Application.Constants;
+﻿using FinanceLab.Client.Domain.Models;
+using FinanceLab.Shared.Application.Constants;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 
@@ -12,9 +13,13 @@ public partial class WalletListPage
 
     protected override void OnParametersSet()
     {
-        if (UserName is not null &&
-            UserName != StateContainer.User?.UserName &&
-            StateContainer.User?.Role is not RoleConstants.Admin)
-            NavigationManager.NavigateTo("/Wallets");
+        UserName ??= StateContainer.User?.UserName;
+
+        if (StateContainer.User?.UserName == UserName ||
+            StateContainer.User?.Role is RoleConstants.Admin)
+            return;
+        
+        ShowProblem(new ProblemDetails { Title = "You're not authorized to view this page."}, false);
+        NavigationManager.NavigateTo("/Wallets");
     }
 }
