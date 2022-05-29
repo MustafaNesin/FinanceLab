@@ -71,13 +71,12 @@ public sealed class GetTradeListQueryHandler : BaseRequestHandler<GetTradeListQu
                 ListSortDirection.Descending => from trade in query orderby trade.QuoteCoinCode descending select trade,
                 _ => query
             },
-            //TODO: Cast date time to string
-            /*nameof(TradeDto.OccurredAt) => request.Sort.Direction switch
+            nameof(TradeDto.OccurredAt) => request.Sort.Direction switch
             {
-                ListSortDirection.Ascending => from trade in query orderby trade.OccuredAt select trade,
-                ListSortDirection.Descending => from trade in query orderby trade.OccuredAt descending select trade,
+                ListSortDirection.Ascending => from trade in query orderby trade.OccurredAt select trade,
+                ListSortDirection.Descending => from trade in query orderby trade.OccurredAt descending select trade,
                 _ => query
-            },*/
+            },
             _ => query
         };
 

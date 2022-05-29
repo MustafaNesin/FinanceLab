@@ -1,4 +1,4 @@
-﻿namespace FinanceLab.Server.Infrastructure.Abstractions;
+﻿namespace FinanceLab.Server.Application.Abstractions;
 
 public interface IBinanceService
 {

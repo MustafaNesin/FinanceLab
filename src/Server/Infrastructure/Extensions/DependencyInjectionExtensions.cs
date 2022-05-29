@@ -1,5 +1,5 @@
-﻿using FinanceLab.Server.Domain.Models.Entities;
-using FinanceLab.Server.Infrastructure.Abstractions;
+﻿using FinanceLab.Server.Application.Abstractions;
+using FinanceLab.Server.Domain.Models.Entities;
 using FinanceLab.Server.Infrastructure.Constants;
 using FinanceLab.Server.Infrastructure.Events;
 using FinanceLab.Server.Infrastructure.Services;

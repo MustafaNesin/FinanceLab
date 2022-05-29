@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using FinanceLab.Server.Infrastructure.Abstractions;
+using FinanceLab.Server.Application.Abstractions;
 using FinanceLab.Server.Infrastructure.Models;
 using Microsoft.Extensions.Caching.Memory;
 using static FinanceLab.Server.Infrastructure.Constants.BinanceApiConstants;

@@ -7,8 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Shared\Infrastructure\FinanceLab.Shared.Infrastructure.csproj"/>
         <ProjectReference Include="..\Application\FinanceLab.Server.Application.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Abstractions"/>
     </ItemGroup>
 
 </Project>
