@@ -16,7 +16,7 @@ public sealed class User
     public GameDifficulty GameDifficulty { get; set; }
     public DateTimeOffset GameRestartedAt { get; set; } = DateTimeOffset.UtcNow;
 
-    public ICollection<Trade> Trades { get; init; } = new List<Trade>();
-    public ICollection<Transfer> Transfers { get; init; } = new List<Transfer>();
-    public ICollection<Wallet> Wallets { get; init; } = new List<Wallet>();
+    public IList<Trade> Trades { get; init; } = new List<Trade>();
+    public IList<Transfer> Transfers { get; init; } = new List<Transfer>();
+    public IList<Wallet> Wallets { get; init; } = new List<Wallet>();
 }

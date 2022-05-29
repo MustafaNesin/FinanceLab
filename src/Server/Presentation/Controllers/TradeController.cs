@@ -30,8 +30,8 @@ public sealed class TradeController : BaseController
         return Ok(tradeList);
     }
 
-    [HttpGet(ApiRouteConstants.PostTrade)]
-    public async Task<ActionResult<TradeOutput>> PostAsync([FromQuery] TradeInput input)
+    [HttpPost(ApiRouteConstants.PostTrade)]
+    public async Task<ActionResult<TradeOutput>> PostAsync([FromBody] TradeInput input)
     {
         var userName = _httpContext.User.FindFirstValue(ClaimTypes.Name);
         var price = await _binanceService.GetTickerPriceAsync(input.BaseCoinCode + input.QuoteCoinCode);

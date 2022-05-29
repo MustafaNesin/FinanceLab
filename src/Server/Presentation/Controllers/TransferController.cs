@@ -25,8 +25,8 @@ public sealed class TransferController : BaseController
         return Ok(transferList);
     }
 
-    [HttpGet(ApiRouteConstants.PostTransfer)]
-    public async Task<IActionResult> PostAsync([FromQuery] TransferInput input)
+    [HttpPost(ApiRouteConstants.PostTransfer)]
+    public async Task<IActionResult> PostAsync([FromBody] TransferInput input)
     {
         var userName = _httpContext.User.FindFirstValue(ClaimTypes.Name);
         var request = new TransferCommand(userName, input.CoinCode, input.Amount);

@@ -8,7 +8,7 @@ public sealed class TransferInputValidator : BaseValidator<TransferInput>
 {
     public TransferInputValidator(ISharedResources l) : base(l)
     {
-        RuleFor(input => input.CoinCode).NotEmpty().Length(3);
+        RuleFor(input => input.CoinCode).NotEmpty().MaximumLength(7);
         RuleFor(input => input.Amount).GreaterThan(0d);
     }
 }
