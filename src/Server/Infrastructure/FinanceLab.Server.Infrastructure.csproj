@@ -10,8 +10,4 @@
         <ProjectReference Include="..\Application\FinanceLab.Server.Application.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Abstractions"/>
-    </ItemGroup>
-
 </Project>

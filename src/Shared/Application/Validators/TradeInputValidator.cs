@@ -11,6 +11,6 @@ public sealed class TradeInputValidator : BaseValidator<TradeInput>
         RuleFor(input => input.Side).IsInEnum();
         RuleFor(input => input.BaseCoinCode).NotEmpty().Length(3);
         RuleFor(input => input.QuoteCoinCode).NotEmpty().Length(3);
-        RuleFor(input => input.Amount).GreaterThan(0d);
+        RuleFor(input => input.Quantity).GreaterThan(0d);
     }
 }
