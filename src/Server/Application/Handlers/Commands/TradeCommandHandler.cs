@@ -178,7 +178,8 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
             Side = request.Side,
             BaseCoinCode = request.BaseCoinCode,
             QuoteCoinCode = request.QuoteCoinCode,
-            Amount = request.Quantity
+            Amount = request.Quantity,
+            Price = request.Price
         };
 
         var filter = Builders<User>.Filter.Eq(nameof(User.UserName), request.UserName);
