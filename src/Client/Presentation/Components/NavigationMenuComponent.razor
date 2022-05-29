@@ -1,43 +1,90 @@
 ﻿@inherits BaseComponent
 
-<MudThemeProvider Theme="MuudstrapTheme"/>
-
-<MudAppBar style="color: white ;background-color: black" Fixed="false" Elevation="0" DisableGutters="true" Class="muudstrap-navbar">
-    <div style="color: white ;background-color: black" class="d-none d-md-flex align-center px-12">
-        <MudPaper style="color: white ;background-color: black" Height="36px" Width="36px" Elevation="0" Class="pa-1 rounded-lg d-flex justify-center align-center mud-theme-primary">
-            <MudText Typo="Typo.h6">FL</MudText>
+<MudAppBar DisableGutters="true" Class="muudstrap-navbar" 
+           Style="color: white; background-color: black" Fixed="false" Elevation="0">
+    <div style="color: white; background-color: black" class="d-none d-md-flex align-center px-12">
+        <MudPaper style="color: white; background-color: black" Height="36px" Width="36px" Elevation="0"
+                  Class="pa-1 rounded-lg d-flex justify-center align-center mud-theme-primary">
+            <MudText Typo="Typo.h6">
+                FL
+            </MudText>
         </MudPaper>
-        <MudText Style="color: white ;background-color: black" Typo="Typo.h6" Class="ml-4 mr-12 pt-1 pb-2">Finance Lab</MudText>
+        <MudText Style="color: white; background-color: black" Typo="Typo.h6" Class="ml-4 mr-12 pt-1 pb-2">
+            Finance Lab
+        </MudText>
         <AuthorizeView>
             <Authorized>
-                <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2" Color="Color.Dark" Link="/Markets">Markets</MudButton>
-                <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2" Color="Color.Dark" Link="/Wallets">Wallets</MudButton>
-                <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2" Color="Color.Dark" Link="/Trades">Trades</MudButton>
-                @if (StateContainer.User.GameDifficulty == GameDifficulty.Sandbox)
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/Markets">
+                    Markets
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/Wallets">
+                    Wallets
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/Trades">
+                    Trades
+                </MudButton>
+                @if (StateContainer.User?.GameDifficulty == GameDifficulty.Sandbox)
                 {
-                    <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2"Color="Color.Dark" Link="/Transfers">Transfers</MudButton>
-                    <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2" Color="Color.Dark" Link="/Transfers/Deposit">Deposit</MudButton>
+                    <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+                               Color="Color.Dark" Href="/Transfers">
+                        Transfers
+                    </MudButton>
+                    <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+                               Color="Color.Dark" Href="/Transfers/Deposit">
+                        Deposit
+                    </MudButton>
                 }
-                @if (StateContainer.User.Role == RoleConstants.Admin)
+                @if (StateContainer.User?.Role == RoleConstants.Admin)
                 {
-                    <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2" Color="Color.Dark" Link="/Users">Users</MudButton>
+                    <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+                               Color="Color.Dark" Href="/Users">
+                        Users
+                    </MudButton>
                 }
-                <MudMenu Color="Color.Inherit" Label="Dictionary" EndIcon="@Icons.Material.Filled.Language" AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                    <MudMenuItem Link="/action">tr (TR)</MudMenuItem>
-                    <MudMenuItem Link="/another-action">en (English)</MudMenuItem>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/Dictionary">
+                    Dictionary
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/SignOut">
+                    Sign Out
+                </MudButton>
+                <MudMenu Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language" 
+                         AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+                    <MudMenuItem Href="/action">
+                        tr (TR)
+                    </MudMenuItem>
+                    <MudMenuItem Href="/another-action">
+                        en (English)
+                    </MudMenuItem>
                 </MudMenu>
-                <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2" Color="Color.Dark" Link="/SignOut">SignOut</MudButton>
             </Authorized>
             <NotAuthorized>
-                <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2" Color="Color.Dark" Link="/SignIn">SignIn</MudButton>
-                <MudButton Style="color: white ;background-color: black" Class="ml-4 mr-12 pt-1 pb-2" Color="Color.Dark" Link="/SignUp">SignUp</MudButton>
-                <MudMenu Color="Color.Inherit" Label="Dictionary" EndIcon="@Icons.Material.Filled.Language" AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                    <MudMenuItem Link="/action">tr (TR)</MudMenuItem>
-                    <MudMenuItem Link="/another-action">en (English)</MudMenuItem>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/Dictionary">
+                    Dictionary
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/SignIn">
+                    Sign In
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/SignUp">
+                    Sign Up
+                </MudButton>
+                <MudMenu Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language" 
+                         AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+                    <MudMenuItem Href="/action">
+                        tr (TR)
+                    </MudMenuItem>
+                    <MudMenuItem Href="/another-action">
+                        en (English)
+                    </MudMenuItem>
                 </MudMenu>
             </NotAuthorized>
         </AuthorizeView>
     </div>
-
-
 </MudAppBar>
