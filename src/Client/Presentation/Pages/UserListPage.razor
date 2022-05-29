@@ -1,5 +1,5 @@
 ﻿@page "/UserList"
-@inherits BaseListPage<UserDto, UserListOutput>
+@inherits BaseListComponent<UserDto, UserListOutput>
 @attribute [Authorize(Roles = RoleConstants.Admin)]
 
 <MudTable ServerData="@GetTableDataAsync" @ref="@Table">

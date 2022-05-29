@@ -4,9 +4,9 @@ using FinanceLab.Shared.Domain.Models.Inputs;
 using FinanceLab.Shared.Domain.Models.Outputs;
 using MudBlazor;
 
-namespace FinanceLab.Client.Presentation.Pages;
+namespace FinanceLab.Client.Presentation.Components;
 
-public abstract class BaseListPage<TDto, TOutput> : BasePage
+public abstract class BaseListComponent<TDto, TOutput> : BaseComponent
     where TOutput : BaseListOutput<TDto>
 {
     private string? _filter;
@@ -21,7 +21,8 @@ public abstract class BaseListPage<TDto, TOutput> : BasePage
         return Table.ReloadServerData();
     }
 
-    protected async Task<TableData<TDto>> GetTableDataAsync(TableState tableState, string endpointRoute)
+    protected async Task<TableData<TDto>> GetTableDataAsync(
+        TableState tableState, string endpointRoute, string? userName = default)
     {
         const string filterParameterName = nameof(BaseListInput.Filter);
 
@@ -54,6 +55,9 @@ public abstract class BaseListPage<TDto, TOutput> : BasePage
         parameters.Add(sortDirectionParameterName, ((int)sortDirection).ToString());
         parameters.Add(currentPageParameterName, tableState.Page.ToString());
         parameters.Add(pageSizeParameterName, tableState.PageSize.ToString());
+
+        if (userName is { Length: > 0 })
+            parameters.Add(nameof(userName), userName);
 
         var query = string.Join('&', parameters.Cast<string>().Select(key => $"{key}={parameters[key]}"));
         var endpointUrl = $"{endpointRoute}?{query}";
