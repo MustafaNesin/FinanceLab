@@ -41,7 +41,7 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
         var baseWallet = user.Wallets.FirstOrDefault(w => w.CoinCode == request.BaseCoinCode);
 
         //Filters
-        var filterUserName = Builders<User>.Filter.Eq("UserName", request.UserName);
+        var filterUserName = Builders<User>.Filter.Eq(nameof(user.UserName), request.UserName);
         var filterQuoteWallet =
             Builders<User>.Filter.ElemMatch(u => u.Wallets, w => w.CoinCode == request.QuoteCoinCode);
         var filterBaseWallet =
