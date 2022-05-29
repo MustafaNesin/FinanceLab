@@ -102,7 +102,7 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
 
                         quoteWallet.Amount = quoteWallet is null ? soldAmount : quoteWallet.Amount + soldAmount;
 
-                        var updateQuoteWallet = Builders<User>.Update.Push(nameof(user.Wallets), quoteWallet);
+                        var updateQuoteWallet = Builders<User>.Update.Push(nameof(User.Wallets), quoteWallet);
 
                         //Update for quote wallet
                         await _dbContext.Users.UpdateOneAsync(filterUserName & filterQuoteWallet, updateQuoteWallet,
