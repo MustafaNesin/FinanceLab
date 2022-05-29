@@ -29,4 +29,25 @@
     <data name="SortMustBe" xml:space="preserve">
         <value>The sort field must be one of {0}.</value>
     </data>
+    <data name="Markets" xml:space="preserve">
+        <value>Markets</value>
+    </data>
+    <data name="Wallets" xml:space="preserve">
+        <value>Wallets</value>
+    </data>
+    <data name="Trades" xml:space="preserve">
+        <value>Trades</value>
+    </data>
+    <data name="Users" xml:space="preserve">
+        <value>Users</value>
+    </data>
+    <data name="SignOut" xml:space="preserve">
+        <value>Sign Out</value>
+    </data>
+    <data name="SignIn" xml:space="preserve">
+        <value>Sign In</value>
+    </data>
+    <data name="SignUp" xml:space="preserve">
+        <value>Sign Up</value>
+    </data>
 </root>

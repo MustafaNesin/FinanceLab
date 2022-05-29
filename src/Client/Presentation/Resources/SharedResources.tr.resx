@@ -22,4 +22,25 @@
     <data name="SortMustBe" xml:space="preserve">
         <value>Sıralama alanı {0} değerlerinden biri olmalıdır.</value>
     </data>
+    <data name="Markets" xml:space="preserve">
+        <value>Market</value>
+    </data>
+    <data name="Wallets" xml:space="preserve">
+        <value>Cüzdanlar</value>
+    </data>
+    <data name="Trades" xml:space="preserve">
+        <value>Al-Sat</value>
+    </data>
+    <data name="Users" xml:space="preserve">
+        <value>Kullanıcılar</value>
+    </data>
+    <data name="SignOut" xml:space="preserve">
+        <value>Çıkış</value>
+    </data>
+    <data name="SignIn" xml:space="preserve">
+        <value>Giriş</value>
+    </data>
+    <data name="SignUp" xml:space="preserve">
+        <value>Kayıt Ol</value>
+    </data>
 </root>

@@ -1,0 +1,35 @@
+﻿@inherits BaseComponent
+
+<MudDialog>
+    <DialogContent>
+        <MudAlert Severity="Severity.Warning">
+            All your progress will be lost when the game is restarted
+        </MudAlert>
+        <MudForm>
+            <MudSelect T="GameDifficulty"
+                       Label="Game Difficulty"
+                       HelperText="Select a game difficulty.">
+                <MudSelectItem Value="@GameDifficulty.Sandbox">
+                    Sandbox
+                </MudSelectItem>
+                <MudSelectItem Value="@GameDifficulty.Easy">
+                    Easy
+                </MudSelectItem>
+                <MudSelectItem Value="@GameDifficulty.Normal">
+                    Normal
+                </MudSelectItem>
+                <MudSelectItem Value="@GameDifficulty.Hard">
+                    Hard
+                </MudSelectItem>
+            </MudSelect>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">
+            Cancel
+        </MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Submit">
+            Start
+        </MudButton>
+    </DialogActions>
+</MudDialog>

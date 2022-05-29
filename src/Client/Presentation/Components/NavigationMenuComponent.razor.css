@@ -1,0 +1,17 @@
+﻿.mud-expand-panel, .muudstrap-navbar-expand {
+    color: black;
+    background-color: coral;
+}
+
+.muudstrap-navbar .mud-button {
+    text-transform: none;
+    color: white;
+    background-color: black;
+}
+
+.muudstrap-navbar .mud-expand-panel-header {
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    flex: none;
+}

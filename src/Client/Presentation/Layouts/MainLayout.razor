@@ -1,8 +1,18 @@
 ﻿@inherits BaseLayout
 
+<NavigationMenuComponent/>
 <CultureSelectComponent/>
+
 @Body
 
-<MudThemeProvider/>
+<div>
+    <MudButton OnClick="@OpenDialog"
+               Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+               Color="Color.Dark">
+        Start A New Game
+    </MudButton>
+</div>
+
+<MudThemeProvider Theme="@_muudstrapTheme"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
