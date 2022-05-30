@@ -16,6 +16,7 @@ public static class ApiRouteConstants
     public const string SignUp = $"{Api}{Authentication}/signup";
 
     public const string GetMarketList = $"{Api}{Markets}{List}";
+    public const string CheckMarketExist = $"{Api}{Markets}";
 
     public const string GetTradeList = $"{Api}{Trades}{List}";
     public const string PostTrade = $"{Api}{Trades}";
