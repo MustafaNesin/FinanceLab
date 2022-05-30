@@ -169,4 +169,19 @@
     <data name="NotAuthorized" xml:space="preserve">
         <value>Bu sayfayı görmeye yetkiniz yok.</value>
     </data>
+    <data name="TradeListOf" xml:space="preserve">
+        <value>{0} Adlı Kullanıcının Alım Satımları</value>
+    </data>
+    <data name="TransferListOf" xml:space="preserve">
+        <value>{0} Adlı Kullanıcının Transferleri</value>
+    </data>
+    <data name="NewGame" xml:space="preserve">
+        <value>Yeni Oyun</value>
+    </data>
+    <data name="FullName" xml:space="preserve">
+        <value>Ad Soyad</value>
+    </data>
+    <data name="OccurredAt" xml:space="preserve">
+        <value>İşlem Tarihi</value>
+    </data>
 </root>

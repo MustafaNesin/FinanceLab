@@ -17,7 +17,7 @@ public class BaseComponent : ComponentBase, IAsyncDisposable
     protected IDialogService DialogService { get; private set; } = default!;
 
     [Inject]
-    protected IWebAssemblyHostEnvironment Environment { get; set; } = default!;
+    protected IWebAssemblyHostEnvironment Environment { get; private set; } = default!;
     
     [Inject]
     protected IHttpClientService HttpClientService { get; private set; } = default!;
@@ -26,7 +26,7 @@ public class BaseComponent : ComponentBase, IAsyncDisposable
     protected ISharedResources L { get; private set; } = default!;
 
     [Inject]
-    protected NavigationManager NavigationManager { get; set; } = default!;
+    protected NavigationManager NavigationManager { get; private set; } = default!;
 
     [Inject]
     protected ISnackbar Snackbar { get; private set; } = default!;

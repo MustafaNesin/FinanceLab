@@ -3,4 +3,6 @@
 @inherits BasePage
 
 <PageTitle>@L["WalletListOf", UserName] | FinanceLab</PageTitle>
-<WalletListComponent UserName="@UserName"/>
+<MudContainer MaxWidth="@MaxWidth.Medium">
+    <WalletListComponent UserName="@UserName"/>
+</MudContainer>

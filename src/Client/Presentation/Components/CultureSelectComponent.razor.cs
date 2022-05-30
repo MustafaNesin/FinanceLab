@@ -6,25 +6,12 @@ namespace FinanceLab.Client.Presentation.Components;
 
 public partial class CultureSelectComponent
 {
-    private readonly CultureInfo[] _supportedCultures =
-    {
-        new("en-US"),
-        new("tr-TR")
-    };
-
     [Inject]
     private ISyncLocalStorageService LocalStorage { get; set; } = default!;
 
-    private CultureInfo Culture
+    private void ChangeLang(string value)
     {
-        get => CultureInfo.CurrentCulture;
-        set
-        {
-            if (value.Equals(CultureInfo.CurrentCulture))
-                return;
-
-            LocalStorage.SetItemAsString("Culture", value.Name);
-            NavigationManager.NavigateTo(NavigationManager.Uri, true);
-        }
+        LocalStorage.SetItemAsString("Culture", value);
+        NavigationManager.NavigateTo(NavigationManager.Uri, true);
     }
 }
