@@ -1,0 +1,88 @@
+﻿@inherits BaseListComponent<TradeDto, TradeListOutput>
+
+<MudTable ServerData="@GetTableDataAsync" @ref="@Table">
+    <ToolBarContent>
+        <MudText Typo="@Typo.h6">
+            @L["PastTradeList"]
+        </MudText>
+        <MudSpacer/>
+        <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="@L["Search"]"
+                      Adornment="@Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                      IconSize="@Size.Medium"/>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.BaseCoinCode)" T="@TradeDto">
+                @L["BaseCoin"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.QuoteCoinCode)" T="@TradeDto">
+                @L["QuoteCoin"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.Side)" T="@TradeDto">
+                @L["Side"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.Amount)" T="@TradeDto">
+                @L["Amount"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.Price)" T="@TradeDto">
+                @L["Price"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.OccurredAt)" T="@TradeDto">
+                @L["OccuredAt"]
+            </MudTableSortLabel>
+        </MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="@L["BaseCoin"]">
+            @context.BaseCoinCode
+        </MudTd>
+        <MudTd DataLabel="@L["QuoteCoin"]">
+            @context.QuoteCoinCode
+        </MudTd>
+        <MudTd DataLabel="@L["Side"]">
+            @{
+                string typeString = context.Side == TradeSide.Buy ? L["Buy"] : L["Sell"];
+            }
+            @typeString
+        </MudTd>
+        <MudTd DataLabel="@L["Amount"]">
+            @context.Amount
+        </MudTd>
+        <MudTd DataLabel="@L["Price"]">
+            @context.Price
+        </MudTd>
+        <MudTd DataLabel="@L["OccuredAt"]">
+            @context.OccurredAt.ToString("g")
+        </MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>
+            @L["NoRecordsFound"]
+        </MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <MudText>
+            @L["Loading"]
+        </MudText>
+    </LoadingContent>
+    <PagerContent>
+        @if (Environment.IsDevelopment())
+        {
+            <MudTablePager PageSizeOptions="@(new[] {1, 2, 3})"/>
+        }
+        else
+        {
+            <MudTablePager/>
+        }
+    </PagerContent>
+</MudTable>

@@ -1,0 +1,7 @@
+﻿@page "/Trades"
+@page "/Users/{UserName}/Trades"
+@inherits BasePage
+
+<PageTitle>@L["WalletListOf", UserName] | FinanceLab</PageTitle>
+<TradeListComponent UserName="@UserName"/>
+<TradeComponent BaseCoinCode="BTC" QuoteCoinCode="TRY" Side="@TradeSide.Buy"/>

@@ -191,4 +191,28 @@
     <data name="OccurredAt" xml:space="preserve">
         <value>Occurred At</value>
     </data>
+    <data name="BaseCoin" xml:space="preserve">
+        <value>Base Coin Name</value>
+    </data>
+    <data name="QuoteCoin" xml:space="preserve">
+        <value>Quote Coin Name</value>
+    </data>
+    <data name="Buy" xml:space="preserve">
+        <value>Buy</value>
+    </data>
+    <data name="Sell" xml:space="preserve">
+        <value>Sell</value>
+    </data>
+    <data name="Side" xml:space="preserve">
+        <value>Type</value>
+    </data>
+    <data name="Price" xml:space="preserve">
+        <value>Price</value>
+    </data>
+    <data name="OccuredAt" xml:space="preserve">
+        <value>Transaction Date</value>
+    </data>
+    <data name="PastTradeList" xml:space="preserve">
+        <value>Your Past Trades</value>
+    </data>
 </root>

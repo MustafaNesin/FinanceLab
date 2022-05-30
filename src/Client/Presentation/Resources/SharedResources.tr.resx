@@ -184,4 +184,28 @@
     <data name="OccurredAt" xml:space="preserve">
         <value>İşlem Tarihi</value>
     </data>
+    <data name="BaseCoin" xml:space="preserve">
+        <value>Ana Para Birimi</value>
+    </data>
+    <data name="QuoteCoin" xml:space="preserve">
+        <value>Hedef Para Birimi</value>
+    </data>
+    <data name="Buy" xml:space="preserve">
+        <value>Sell</value>
+    </data>
+    <data name="Sell" xml:space="preserve">
+        <value>Sat</value>
+    </data>
+    <data name="Side" xml:space="preserve">
+        <value>İşlem Türü</value>
+    </data>
+    <data name="Price" xml:space="preserve">
+        <value>Fiyat</value>
+    </data>
+    <data name="OccuredAt" xml:space="preserve">
+        <value>İşlem Tarihi</value>
+    </data>
+    <data name="PastTradeList" xml:space="preserve">
+        <value>Geçmiş Tarihli İşlemleriniz</value>
+    </data>
 </root>
