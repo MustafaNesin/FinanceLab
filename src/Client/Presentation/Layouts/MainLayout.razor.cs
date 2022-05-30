@@ -1,4 +1,6 @@
-﻿using MudBlazor;
+﻿using FinanceLab.Client.Presentation.Components;
+using Microsoft.AspNetCore.Components;
+using MudBlazor;
 
 namespace FinanceLab.Client.Presentation.Layouts;
 
