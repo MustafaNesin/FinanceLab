@@ -3,4 +3,6 @@
 @inherits BasePage
 
 <PageTitle>@L["TransferListOf", UserName] | FinanceLab</PageTitle>
-<TransferListComponent UserName="@UserName"/>
+<MudContainer MaxWidth="@MaxWidth.Medium">
+    <TransferListComponent UserName="@UserName"/>
+</MudContainer>

@@ -1,11 +1,11 @@
 ﻿@inherits BaseComponent
 
-<MudMenu Class="ml-2 mr-8  pt-1 pb-2" Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language"
+<MudMenu Class="ml-2 mr-8 pt-1 pb-2" Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language"
          AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-    <MudMenuItem OnClick="@(e => ChangeLang("en-US"))">
-        en-US
+    <MudMenuItem OnClick="@(_ => ChangeLang("en-US"))">
+        English
     </MudMenuItem>
-    <MudMenuItem OnClick="@(e => ChangeLang("tr-TR"))">
-        tr-TR
+    <MudMenuItem OnClick="@(_ => ChangeLang("tr-TR"))">
+        Türkçe
     </MudMenuItem>
 </MudMenu>

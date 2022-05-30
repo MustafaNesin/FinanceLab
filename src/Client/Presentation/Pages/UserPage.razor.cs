@@ -8,9 +8,4 @@ public partial class UserPage
 {
     [Parameter]
     public string UserName { get; set; } = default!;
-
-    protected override void OnParametersSet()
-    {
-        UserName ??= StateContainer.User?.UserName!;
-    }
 }

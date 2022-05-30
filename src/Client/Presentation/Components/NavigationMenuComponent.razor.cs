@@ -2,9 +2,9 @@
 
 public partial class NavigationMenuComponent
 {
-    private string _fullName = default!;
-    private string _userName = default!;
-    private string _userUri = default!;
+    private string? _fullName;
+    private string? _userName;
+    private string? _userUri;
 
     protected override async Task OnParametersSetAsync()
     {

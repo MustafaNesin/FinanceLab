@@ -11,5 +11,5 @@ public partial class TransferListComponent
     public string UserName { get; set; } = default!;
 
     private Task<TableData<TransferDto>> GetTableDataAsync(TableState tableState)
-        => base.GetTableDataAsync(tableState, ApiRouteConstants.GetWalletList, UserName);
+        => base.GetTableDataAsync(tableState, ApiRouteConstants.GetTransferList, UserName);
 }

@@ -182,4 +182,13 @@
     <data name="TransferListOf" xml:space="preserve">
         <value>Transfers of {0}</value>
     </data>
+    <data name="NewGame" xml:space="preserve">
+        <value>New Game</value>
+    </data>
+    <data name="FullName" xml:space="preserve">
+        <value>Full Name</value>
+    </data>
+    <data name="OccurredAt" xml:space="preserve">
+        <value>Occurred At</value>
+    </data>
 </root>
