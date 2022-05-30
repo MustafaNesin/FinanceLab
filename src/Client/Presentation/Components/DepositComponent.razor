@@ -1,0 +1,32 @@
+﻿@inherits BaseComponent
+<MudDialog>
+    <DialogContent>
+        <MudPaper Height="400px" Width="100%">
+            <MudContainer MaxWidth="MaxWidth.Small">
+                <MudPaper Height="400px" Width="100%" Square="true" Class="mud-theme-BackgroundGray">
+                    <MudCardContent>
+                        <MudTextField T="string" Label="Amount"/>
+                        <MudSelect T="string" Label="Coin Code" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+                            <MudSelectItem Value="@("USDT")"/>
+                            <MudSelectItem Value="@("TRY")"/>
+                            <MudSelectItem Value="@("BTC")"/>
+                            <MudSelectItem Value="@("ETH")"/>
+                        </MudSelect>
+                    </MudCardContent>
+                </MudPaper>
+            </MudContainer>
+        </MudPaper>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">
+            Cancel
+        </MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Submit">
+            Start
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+
+}

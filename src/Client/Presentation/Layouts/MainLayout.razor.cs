@@ -4,6 +4,8 @@ namespace FinanceLab.Client.Presentation.Layouts;
 
 public partial class MainLayout
 {
+    private readonly DialogOptions _dialogOptions = new() {MaxWidth = MaxWidth.Medium, FullWidth = true};
+
     private readonly MudTheme _muudstrapTheme = new()
     {
         Palette = new Palette
@@ -41,4 +43,11 @@ public partial class MainLayout
             }
         }
     };
+  
+    [Inject]
+    private IDialogService DialogService { get; set; } = default!;
+
+    private void OpenNewGameDialog() => DialogService.Show<NewGameComponent>("New Game", _dialogOptions);
+
+    private void OpenDepositDialog() => DialogService.Show<DepositComponent>("Deposit", _dialogOptions);
 }
