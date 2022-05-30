@@ -30,6 +30,8 @@ var localizationOptions = new RequestLocalizationOptions()
     .AddSupportedCultures(supportedCultures)
     .AddSupportedUICultures(supportedCultures);
 
+app.SeedDatabase();
+
 app.UseProblemDetails();
 app.UseHttpsRedirection();
 
