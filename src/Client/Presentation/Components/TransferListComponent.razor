@@ -1,9 +1,9 @@
-﻿@inherits BaseListComponent<WalletDto, WalletListOutput>
+﻿@inherits BaseListComponent<TransferDto, TransferListOutput>
 
-<MudTable Style=" width:100% ; height: 400px" ServerData="@GetTableDataAsync" @ref="@Table">
+<MudTable Style="margin-top: 5%; width: 100%; height: 400px;" ServerData="@GetTableDataAsync" @ref="@Table">
     <ToolBarContent>
         <MudText Typo="@Typo.h6">
-            @L["WalletListOf", UserName]
+            @L["TransferListOf", UserName]
         </MudText>
         <MudSpacer/>
         <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="@L["Search"]"
@@ -12,13 +12,18 @@
     </ToolBarContent>
     <HeaderContent>
         <MudTh>
-            <MudTableSortLabel SortLabel="@nameof(WalletDto.CoinCode)" T="@WalletDto">
+            <MudTableSortLabel SortLabel="@nameof(TransferDto.CoinCode)" T="@TransferDto">
                 @L["Coin"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel SortLabel="@nameof(WalletDto.Amount)" T="@WalletDto">
+            <MudTableSortLabel SortLabel="@nameof(TransferDto.Amount)" T="@TransferDto">
                 @L["Amount"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TransferDto.OccurredAt)" T="@TransferDto">
+                @L["OccuredAt"]
             </MudTableSortLabel>
         </MudTh>
     </HeaderContent>
@@ -28,6 +33,9 @@
         </MudTd>
         <MudTd DataLabel="@L["Amount"]">
             @context.Amount
+        </MudTd>
+        <MudTd DataLabel="@L["OccuredAt"]">
+            @context.OccurredAt
         </MudTd>
     </RowTemplate>
     <NoRecordsContent>

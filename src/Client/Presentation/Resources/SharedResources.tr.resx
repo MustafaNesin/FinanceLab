@@ -169,4 +169,10 @@
     <data name="NotAuthorized" xml:space="preserve">
         <value>Bu sayfayı görmeye yetkiniz yok.</value>
     </data>
+    <data name="TradeListOf" xml:space="preserve">
+        <value>{0} Adlı Kullanıcının Alım Satımları</value>
+    </data>
+    <data name="TransferListOf" xml:space="preserve">
+        <value>{0} Adlı Kullanıcının Transferleri</value>
+    </data>
 </root>

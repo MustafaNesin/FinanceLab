@@ -176,4 +176,10 @@
     <data name="NotAuthorized" xml:space="preserve">
         <value>You're not authorized to view this page.</value>
     </data>
+    <data name="TradeListOf" xml:space="preserve">
+        <value>Trades of {0}</value>
+    </data>
+    <data name="TransferListOf" xml:space="preserve">
+        <value>Transfers of {0}</value>
+    </data>
 </root>

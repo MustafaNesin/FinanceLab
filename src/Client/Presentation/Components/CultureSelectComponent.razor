@@ -1,12 +1,11 @@
-﻿@using System.Globalization
-@inherits BaseComponent
+﻿@inherits BaseComponent
 
-<MudSelect T="@CultureInfo" @bind-Value="@Culture" Style="max-width: 200px"
-           AdornmentIcon="@Icons.Material.Filled.Language" AdornmentColor="Color.Primary">
-    @foreach (var cultureInfo in _supportedCultures)
-    {
-        <MudSelectItem T="@CultureInfo" Value="@cultureInfo">
-            @cultureInfo.NativeName
-        </MudSelectItem>
-    }
-</MudSelect>
+<MudMenu Class="ml-2 mr-8  pt-1 pb-2" Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language"
+         AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+    <MudMenuItem OnClick="@(e => ChangeLang("en-US"))">
+        en-US
+    </MudMenuItem>
+    <MudMenuItem OnClick="@(e => ChangeLang("tr-TR"))">
+        tr-TR
+    </MudMenuItem>
+</MudMenu>

@@ -1,0 +1,11 @@
+﻿@page "/Users/{UserName}"
+@inherits BaseComponent
+<div class="d-none d-md-flex align-center px-12">
+
+    <UserProfileComponent UserName="@UserName"></UserProfileComponent>
+    <WalletListComponent UserName="@UserName"></WalletListComponent>
+
+</div>
+<div class="d-none d-md-flex align-center px-12">
+    <TransferListComponent UserName="@UserName"></TransferListComponent>
+</div>

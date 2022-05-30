@@ -1,0 +1,24 @@
+﻿@inherits BaseComponent
+@inject IDialogService Dialog
+<MudPaper Height="50%" Width="100%">
+
+    <MudContainer Fixed="true">
+        <MudPaper Style="background-color: white" Height="400px" Width="100%" Square="true" Class="ml-4 mr-6 pt-1 pb-2">
+            <MudAvatar Style="margin-left:45%" Typo="Typo.h6" Color="Color.Info">@_avatar</MudAvatar>
+            <MudText Class="mudtext" Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h6">Name and Surname: @_fullName</MudText>
+            <MudText Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h6">Username: @UserName</MudText>
+            <MudText Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h6">Game Difficulty: @_gameDifficulty</MudText>
+            <MudButton Style="background-color: black; color: white ;alignment: center; margin-top: 10%; margin-left: 35%" OnClick="@(e => OpenDialog(maxWidth))">Start A New Game</MudButton>
+        </MudPaper>
+    </MudContainer>
+</MudPaper>
+
+@code
+{
+    DialogOptions maxWidth = new() {MaxWidth = MaxWidth.Medium, FullWidth = true};
+
+    private void OpenDialog(DialogOptions options)
+    {
+        Dialog.Show<NewGameComponent>("New Game Start", maxWidth);
+    }
+}
