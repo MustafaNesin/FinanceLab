@@ -1,5 +1,7 @@
 ﻿using FinanceLab.Server.Application.Handlers.Commands;
+using FinanceLab.Server.Domain.Models.Entities;
 using FinanceLab.Shared.Application.Validators;
+using FinanceLab.Shared.Domain.Models.Dtos;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Hellang.Middleware.ProblemDetails;
@@ -24,6 +26,10 @@ public static class DependencyInjectionExtensions
     {
         services.AddSingleton(TypeAdapterConfig.GlobalSettings);
         services.AddScoped<IMapper, ServiceMapper>();
+        
+        TypeAdapterConfig<Market, MarketDto>.NewConfig()
+            .ConstructUsing(market => new MarketDto(market.BaseCoinCode, market.QuoteCoinCode));
+
         return services;
     }
 

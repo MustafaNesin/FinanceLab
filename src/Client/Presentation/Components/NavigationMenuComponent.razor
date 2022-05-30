@@ -10,47 +10,47 @@
             </MudText>
         </MudPaper>
         <MudText Style="color: white; background-color: black" Typo="Typo.h6" Class="ml-4 mr-12 pt-1 pb-2">
-            Finance Lab
+            FinanceLab
         </MudText>
         <AuthorizeView>
             <Authorized>
                 <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
                            Color="Color.Dark" Href="/Markets">
-                    Markets
+                    @L["Market"]
                 </MudButton>
                 <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
                            Color="Color.Dark" Href="/Wallets">
-                    Wallets
+                    @L["Wallet"]
                 </MudButton>
                 <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
                            Color="Color.Dark" Href="/Trades">
-                    Trades
+                    @L["Trades"]
                 </MudButton>
                 @if (StateContainer.User?.GameDifficulty == GameDifficulty.Sandbox)
                 {
                     <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
                                Color="Color.Dark" Href="/Transfers">
-                        Transfers
+                        @L["Transfers"]
                     </MudButton>
                     <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
                                Color="Color.Dark" Href="/Transfers/Deposit">
-                        Deposit
+                        @L["Deposit"]
                     </MudButton>
                 }
                 @if (StateContainer.User?.Role == RoleConstants.Admin)
                 {
                     <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
                                Color="Color.Dark" Href="/Users">
-                        Users
+                        @L["Users"]
                     </MudButton>
                 }
                 <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
                            Color="Color.Dark" Href="/Dictionary">
-                    Dictionary
+                     @L["Dictionary"]
                 </MudButton>
                 <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
                            Color="Color.Dark" Href="/SignOut">
-                    Sign Out
+                    @L["SignOut"]
                 </MudButton>
                 <MudMenu Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language" 
                          AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
@@ -64,16 +64,16 @@
             </Authorized>
             <NotAuthorized>
                 <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
-                           Color="Color.Dark" Href="/Dictionary">
-                    Dictionary
-                </MudButton>
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
                            Color="Color.Dark" Href="/SignIn">
-                    Sign In
+                    @L["SignIn"]
                 </MudButton>
                 <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
                            Color="Color.Dark" Href="/SignUp">
-                    Sign Up
+                    @L["SignUp"]
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                           Color="Color.Dark" Href="/Dictionary">
+                    @L["Dictionary"]
                 </MudButton>
                 <MudMenu Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language" 
                          AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">

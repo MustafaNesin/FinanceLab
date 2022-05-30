@@ -36,6 +36,10 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
         if (user is null)
             Throw(HttpStatusCode.NotFound, L["UserNotFound"]);
 
+        if (request.Price <= 0)
+            Throw(HttpStatusCode.BadRequest,
+                L["FaultyPriceInformation", request.BaseCoinCode, request.QuoteCoinCode, request.Price]);
+
         //Wallets
         var quoteWallet = user.Wallets.FirstOrDefault(w => w.CoinCode == request.QuoteCoinCode);
         var baseWallet = user.Wallets.FirstOrDefault(w => w.CoinCode == request.BaseCoinCode);
@@ -75,7 +79,7 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
                         //Else create new wallet and assign its amount as purchasedAmount
                         if (baseWallet is not null)
                         {
-                            baseWallet.Amount += purchaseAmount;
+                            baseWallet.Amount += request.Quantity;
 
                             var updateBaseWallet = Builders<User>.Update.Set(
                                 string.Join(".", nameof(User.Wallets), "$", nameof(Wallet.Amount)), baseWallet.Amount);
@@ -88,7 +92,7 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
                         {
                             var newWalletBson = new BsonDocument("_id", request.BaseCoinCode);
 
-                            newWalletBson.Add(nameof(Wallet.Amount), purchaseAmount);
+                            newWalletBson.Add(nameof(Wallet.Amount), request.Quantity);
 
                             baseWallet = BsonSerializer.Deserialize<Wallet>(newWalletBson);
 
@@ -111,11 +115,11 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
 
                 if (baseWallet is not null)
                 {
-                    if (baseWallet.Amount >= soldAmount)
+                    if (baseWallet.Amount >= request.Quantity)
                     {
                         await AddTrade(request, cancellationToken, user);
 
-                        var newAmount = baseWallet.Amount - soldAmount;
+                        var newAmount = baseWallet.Amount - request.Quantity;
 
                         var updateBaseWallet =
                             Builders<User>.Update

@@ -24,16 +24,16 @@
         </value>
     </resheader>
     <data name="SelectLanguage" xml:space="preserve">
-        <value>Select a language</value>
+        <value>Choose a language</value>
     </data>
     <data name="SortMustBe" xml:space="preserve">
         <value>The sort field must be one of {0}.</value>
     </data>
-    <data name="Markets" xml:space="preserve">
-        <value>Markets</value>
+    <data name="Market" xml:space="preserve">
+        <value>Market</value>
     </data>
-    <data name="Wallets" xml:space="preserve">
-        <value>Wallets</value>
+    <data name="Wallet" xml:space="preserve">
+        <value>Wallet</value>
     </data>
     <data name="Trades" xml:space="preserve">
         <value>Trades</value>
@@ -49,5 +49,131 @@
     </data>
     <data name="SignUp" xml:space="preserve">
         <value>Sign Up</value>
+    </data>
+    <data name="Authorizing" xml:space="preserve">
+        <value>Authorizing...</value>
+    </data>
+    <data name="NotFoundDescription" xml:space="preserve">
+        <value>Sorry, there's nothing at this address.</value>
+    </data>
+    <data name="NotFound" xml:space="preserve">
+        <value>Page Not Found</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="Deposit" xml:space="preserve">
+        <value>Deposit</value>
+    </data>
+    <data name="Transfers" xml:space="preserve">
+        <value>Transfers</value>
+    </data>
+    <data name="Dictionary" xml:space="preserve">
+        <value>Dictionary</value>
+    </data>
+    <data name="NewGameWarning" xml:space="preserve">
+        <value>All your progress will be lost when the game is restarted</value>
+    </data>
+    <data name="GameDifficulty" xml:space="preserve">
+        <value>Game Difficulty</value>
+    </data>
+    <data name="SelectGameDifficulty" xml:space="preserve">
+        <value>Choose game difficulty.</value>
+    </data>
+    <data name="Sandbox" xml:space="preserve">
+        <value>Sandbox</value>
+    </data>
+    <data name="Easy" xml:space="preserve">
+        <value>Easy</value>
+    </data>
+    <data name="Normal" xml:space="preserve">
+        <value>Normal</value>
+    </data>
+    <data name="Hard" xml:space="preserve">
+        <value>Hard</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="Start" xml:space="preserve">
+        <value>Start</value>
+    </data>
+    <data name="Redirecting" xml:space="preserve">
+        <value>Redirecting...</value>
+    </data>
+    <data name="NoRecordsFound" xml:space="preserve">
+        <value>No matching records found.</value>
+    </data>
+    <data name="Loading" xml:space="preserve">
+        <value>Loading...</value>
+    </data>
+    <data name="Coin" xml:space="preserve">
+        <value>Coin</value>
+    </data>
+    <data name="Amount" xml:space="preserve">
+        <value>Amount</value>
+    </data>
+    <data name="Search" xml:space="preserve">
+        <value>Search</value>
+    </data>
+    <data name="WalletListOf" xml:space="preserve">
+        <value>Wallet of {0}</value>
+    </data>
+    <data name="UserName" xml:space="preserve">
+        <value>User Name</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="RememberMe" xml:space="preserve">
+        <value>Remember Me</value>
+    </data>
+    <data name="DontHaveAccount" xml:space="preserve">
+        <value>Don't have an account?</value>
+    </data>
+    <data name="Submit" xml:space="preserve">
+        <value>Submit</value>
+    </data>
+    <data name="SuccessfulSignIn" xml:space="preserve">
+        <value>Signed in successfully!</value>
+    </data>
+    <data name="SigningOut" xml:space="preserve">
+        <value>Signing out...</value>
+    </data>
+    <data name="SuccessfulSignOut" xml:space="preserve">
+        <value>Signed out successfully!</value>
+    </data>
+    <data name="FirstName" xml:space="preserve">
+        <value>FirstName</value>
+    </data>
+    <data name="LastName" xml:space="preserve">
+        <value>LastName</value>
+    </data>
+    <data name="PasswordRepeat" xml:space="preserve">
+        <value>Password Repeat</value>
+    </data>
+    <data name="HaveAccount" xml:space="preserve">
+        <value>Do you have an account?</value>
+    </data>
+    <data name="ChoosePassword" xml:space="preserve">
+        <value>Choose a strong password</value>
+    </data>
+    <data name="RepeatPassword" xml:space="preserve">
+        <value>Repeat the password</value>
+    </data>
+    <data name="Role" xml:space="preserve">
+        <value>Role</value>
+    </data>
+    <data name="RegisteredAt" xml:space="preserve">
+        <value>Registered At</value>
+    </data>
+    <data name="GameRestartedAt" xml:space="preserve">
+        <value>Game Restarted At</value>
+    </data>
+    <data name="User" xml:space="preserve">
+        <value>User</value>
+    </data>
+    <data name="NotAuthorized" xml:space="preserve">
+        <value>You're not authorized to view this page.</value>
     </data>
 </root>

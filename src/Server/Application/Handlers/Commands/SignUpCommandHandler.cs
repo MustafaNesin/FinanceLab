@@ -55,7 +55,7 @@ public sealed class SignUpCommandHandler : BaseRequestHandler<SignUpCommand>
                 user.Wallets.Add(new Wallet("TRY", 100));
                 break;
             default:
-                Throw(HttpStatusCode.BadRequest, "Game difficulty value is out of range.");
+                Throw(HttpStatusCode.BadRequest, L["InvalidGameDifficulty"]);
                 break;
         }
 

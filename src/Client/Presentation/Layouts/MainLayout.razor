@@ -6,18 +6,16 @@
 @Body
 
 <div>
-    <MudButton OnClick="@OpenDialog"
+    <MudButton OnClick="@OpenNewGameDialog"
                Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
                Color="Color.Dark">
-        Start A New Game
+        New Game
     </MudButton>
     <MudButton OnClick="@OpenDepositDialog"
                Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
                Color="Color.Dark">
-        Open Deposit
+        Deposit
     </MudButton>
-
-
 </div>
 
 <MudThemeProvider Theme="@_muudstrapTheme"/>

@@ -9,17 +9,18 @@ namespace FinanceLab.Client.Presentation.Pages;
 public partial class WalletListPage
 {
     [Parameter]
-    public string? UserName { get; set; }
+    public string UserName { get; set; } = default!;
 
     protected override void OnParametersSet()
     {
-        UserName ??= StateContainer.User?.UserName;
+        // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+        UserName ??= StateContainer.User?.UserName!;
 
         if (StateContainer.User?.UserName == UserName ||
             StateContainer.User?.Role is RoleConstants.Admin)
             return;
         
-        ShowProblem(new ProblemDetails { Title = "You're not authorized to view this page."}, false);
+        ShowProblem(new ProblemDetails { Title = L["NotAuthorized"]}, false);
         NavigationManager.NavigateTo("/Wallets");
     }
 }

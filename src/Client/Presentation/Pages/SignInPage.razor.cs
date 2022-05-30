@@ -51,7 +51,7 @@ public partial class SignInPage
         if (response.IsSuccessful)
         {
             AuthenticationStateProvider.SetAuthenticationState(response.Data);
-            Snackbar.Add("Signed in successfully!", Severity.Success);
+            Snackbar.Add(L["SuccessfulSignIn"], Severity.Success);
         }
         else
             ShowProblem(response.ProblemDetails, false);

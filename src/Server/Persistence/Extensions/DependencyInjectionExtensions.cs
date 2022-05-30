@@ -2,11 +2,13 @@
 using FinanceLab.Server.Domain.Models.Entities;
 using FinanceLab.Server.Persistence.Contexts;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Driver;
 
 namespace FinanceLab.Server.Persistence.Extensions;
 
@@ -21,6 +23,63 @@ public static class DependencyInjectionExtensions
             ActivatorUtilities.CreateInstance<MongoDbContext>(serviceProvider, connectionString, "FinanceLab"));
 
         return services;
+    }
+
+    public static IApplicationBuilder SeedDatabase(this IApplicationBuilder app)
+    {
+        var dbContext = app.ApplicationServices.GetRequiredService<IMongoDbContext>();
+
+        if (dbContext.Markets.AsQueryable().Any())
+            return app;
+        
+        dbContext.Markets.InsertMany(new Market[]
+        {
+            new("USDT", "TRY"),
+            new("BTC", "TRY"),
+            new("BTC", "USDT"),
+            new("BNB", "TRY"),
+            new("BNB", "USDT"),
+            new("ETH", "TRY"),
+            new("ETH", "USDT"),
+            new("BNB", "BTC"),
+            new("BNB", "ETH"),
+            new("ETH", "BTC"),
+            new("XRP", "BTC"),
+            new("XRP", "BNB"),
+            new("XRP", "ETH"),
+            new("DOGE", "BTC"),
+            new("DOGE", "BNB"),
+            new("ADA", "BTC"),
+            new("ADA", "BNB"),
+            new("ADA", "ETH"),
+            new("SOL", "BTC"),
+            new("SOL", "BNB"),
+            new("SOL", "ETH"),
+            new("TRX", "BTC"),
+            new("TRX", "BNB"),
+            new("TRX", "ETH"),
+            new("TRX", "XRP"),
+            new("XRP", "TRY"),
+            new("XRP", "USDT"),
+            new("DOGE", "TRY"),
+            new("DOGE", "USDT"),
+            new("ADA", "TRY"),
+            new("ADA", "USDT"),
+            new("SOL", "TRY"),
+            new("SOL", "USDT"),
+            new("TRX", "TRY"),
+            new("TRX", "USDT"),
+            new("BTC", "EUR"),
+            new("BNB", "EUR"),
+            new("ETH", "EUR"),
+            new("XRP", "EUR"),
+            new("DOGE", "EUR"),
+            new("ADA", "EUR"),
+            new("SOL", "EUR"),
+            new("TRX", "EUR")
+        });
+
+        return app;
     }
 
     private static void RegisterEntities()

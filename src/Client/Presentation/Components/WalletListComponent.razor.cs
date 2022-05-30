@@ -8,7 +8,7 @@ namespace FinanceLab.Client.Presentation.Components;
 public partial class WalletListComponent
 {
     [Parameter]
-    public string? UserName { get; set; }
+    public string UserName { get; set; } = default!;
 
     private Task<TableData<WalletDto>> GetTableDataAsync(TableState tableState)
         => base.GetTableDataAsync(tableState, ApiRouteConstants.GetWalletList, UserName);

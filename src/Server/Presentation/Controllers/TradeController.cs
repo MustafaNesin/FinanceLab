@@ -24,7 +24,7 @@ public sealed class TradeController : BaseController
     public async Task<ActionResult<TradeListOutput>> GetListAsync([FromQuery] TradeListInput input)
     {
         var userName = EnsureAuthorizationForUserName(input.UserName);
-        var request = new GetTradeListQuery(input.UserName, input.Filter, input.Page, input.Sort);
+        var request = new GetTradeListQuery(userName, input.Filter, input.Page, input.Sort);
         var tradeList = await Mediator.Send(request);
 
         return Ok(tradeList);
@@ -35,8 +35,9 @@ public sealed class TradeController : BaseController
     {
         var userName = _httpContext.User.FindFirstValue(ClaimTypes.Name);
         var price = await _binanceService.GetTickerPriceAsync(input.BaseCoinCode + input.QuoteCoinCode);
-        var request = new TradeCommand(userName, input.Side, input.BaseCoinCode, input.QuoteCoinCode, input.Quantity,
-            price);
+        var request = new TradeCommand(
+            userName, input.Side, input.BaseCoinCode, input.QuoteCoinCode, input.Quantity, price);
+        
         await Mediator.Send(request);
 
         return Ok();

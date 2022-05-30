@@ -1,6 +1,4 @@
-﻿using FinanceLab.Client.Presentation.Components;
-using Microsoft.AspNetCore.Components;
-using MudBlazor;
+﻿using MudBlazor;
 
 namespace FinanceLab.Client.Presentation.Layouts;
 
@@ -45,17 +43,11 @@ public partial class MainLayout
             }
         }
     };
-
+  
     [Inject]
     private IDialogService DialogService { get; set; } = default!;
 
-    private void OpenDialog()
-    {
-        DialogService.Show<NewGameComponent>("New Game", _dialogOptions);
-    }
+    private void OpenNewGameDialog() => DialogService.Show<NewGameComponent>("New Game", _dialogOptions);
 
-    private void OpenDepositDialog()
-    {
-        DialogService.Show<DepositComponent>("Deposit", _dialogOptions);
-    }
+    private void OpenDepositDialog() => DialogService.Show<DepositComponent>("Deposit", _dialogOptions);
 }

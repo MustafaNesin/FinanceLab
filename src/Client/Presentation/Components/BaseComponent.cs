@@ -48,7 +48,7 @@ public class BaseComponent : ComponentBase, IAsyncDisposable
         if (showDialog)
             ShowProblemDialog(problemDetails);
 
-        Snackbar.Add(problemDetails.Title ?? "Error", Severity.Error, options =>
+        Snackbar.Add(problemDetails.Title ?? L["Error"], Severity.Error, options =>
             options.Onclick = _ =>
             {
                 ShowProblemDialog(problemDetails);
@@ -61,6 +61,6 @@ public class BaseComponent : ComponentBase, IAsyncDisposable
         var options = new DialogOptions { CloseOnEscapeKey = true };
         var parameters = new DialogParameters { [nameof(ProblemDialogComponent.ProblemDetails)] = problemDetails };
 
-        DialogService.Show<ProblemDialogComponent>("Error", parameters, options);
+        DialogService.Show<ProblemDialogComponent>(L["Error"], parameters, options);
     }
 }

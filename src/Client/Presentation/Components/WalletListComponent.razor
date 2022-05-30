@@ -3,41 +3,41 @@
 <MudTable ServerData="@GetTableDataAsync" @ref="@Table">
     <ToolBarContent>
         <MudText Typo="@Typo.h6">
-            Wallet List of @UserName
+            @L["WalletListOf", UserName]
         </MudText>
         <MudSpacer/>
-        <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="Search"
+        <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="@L["Search"]"
                       Adornment="@Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
                       IconSize="@Size.Medium"/>
     </ToolBarContent>
     <HeaderContent>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(WalletDto.CoinCode)" T="@WalletDto">
-                Coin Code
+                @L["Coin"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(WalletDto.Amount)" T="@WalletDto">
-                Amount
+                @L["Amount"]
             </MudTableSortLabel>
         </MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabel="Coin">
+        <MudTd DataLabel="@L["Coin"]">
             @context.CoinCode
         </MudTd>
-        <MudTd DataLabel="Amount">
+        <MudTd DataLabel="@L["Amount"]">
             @context.Amount
         </MudTd>
     </RowTemplate>
     <NoRecordsContent>
         <MudText>
-            No matching records found.
+            @L["NoRecordsFound"]
         </MudText>
     </NoRecordsContent>
     <LoadingContent>
         <MudText>
-            Loading...
+            @L["Loading"]
         </MudText>
     </LoadingContent>
     <PagerContent>

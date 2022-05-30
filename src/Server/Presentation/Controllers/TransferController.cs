@@ -19,7 +19,7 @@ public sealed class TransferController : BaseController
     public async Task<ActionResult<TransferListOutput>> GetListAsync([FromQuery] TransferListInput input)
     {
         var userName = EnsureAuthorizationForUserName(input.UserName);
-        var request = new GetTransferListQuery(input.UserName, input.Filter, input.Page, input.Sort);
+        var request = new GetTransferListQuery(userName, input.Filter, input.Page, input.Sort);
         var transferList = await Mediator.Send(request);
 
         return Ok(transferList);
