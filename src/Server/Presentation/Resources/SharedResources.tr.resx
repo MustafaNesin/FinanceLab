@@ -40,4 +40,7 @@
     <data name="AlreadyLoggedIn" xml:space="preserve">
         <value>Zaten giriş yapmışsınız.</value>
     </data>
+    <data name="FaultyPriceInformation" xml:space="preserve">
+        <value>{0}{1} marketi için hatalı fiyat bilgisi, {2}</value>
+    </data>
 </root>
