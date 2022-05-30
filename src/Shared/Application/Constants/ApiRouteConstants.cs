@@ -24,6 +24,7 @@ public static class ApiRouteConstants
     public const string GetTransferList = $"{Api}{Transfers}{List}";
     public const string PostTransfer = $"{Api}{Transfers}";
 
+    public const string GetWallet = $"{Api}{Wallets}";
     public const string GetWalletList = $"{Api}{Wallets}{List}";
 
     public const string GetUser = $"{Api}{Users}";

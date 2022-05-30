@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using FinanceLab.Server.Application.Extensions;
 using FinanceLab.Server.Infrastructure.Converters;
 using FinanceLab.Server.Infrastructure.Extensions;
@@ -18,7 +19,12 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews()
     .AddDataAnnotationsLocalization()
-    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new DateTimeOffsetConverter()));
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString |
+                                                       JsonNumberHandling.WriteAsString;
+        options.JsonSerializerOptions.Converters.Add(new DateTimeOffsetConverter());
+    });
 builder.Services.AddValidators();
 builder.Services.AddProblemDetailsWithConventions();
 builder.Services.AddBinanceService();

@@ -1,9 +1,11 @@
 ﻿using FinanceLab.Shared.Application.Abstractions;
 using FinanceLab.Shared.Domain.Models.Inputs;
 using FluentValidation;
+using JetBrains.Annotations;
 
 namespace FinanceLab.Shared.Application.Validators;
 
+[UsedImplicitly]
 public sealed class SignUpInputValidator : BaseValidator<SignUpInput>
 {
     public SignUpInputValidator(ISharedResources l) : base(l)

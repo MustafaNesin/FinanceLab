@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace FinanceLab.Shared.Application.Validators;
 
-[PublicAPI]
+[UsedImplicitly]
 public sealed class UserListInputValidator : BaseListInputValidator<UserListInput>
 {
     private static readonly string[] SortFields =

@@ -35,11 +35,22 @@ public sealed class TradeController : BaseController
     {
         var userName = _httpContext.User.FindFirstValue(ClaimTypes.Name);
         var price = await _binanceService.GetTickerPriceAsync(input.BaseCoinCode + input.QuoteCoinCode);
-        var request = new TradeCommand(
+        var tradeRequest = new TradeCommand(
             userName, input.Side, input.BaseCoinCode, input.QuoteCoinCode, input.Quantity, price);
-        
-        await Mediator.Send(request);
 
-        return Ok();
+        await Mediator.Send(tradeRequest);
+
+        var baseWalletQuery = new GetWalletQuery(userName, input.BaseCoinCode);
+        var quoteWalletQuery = new GetWalletQuery(userName, input.QuoteCoinCode);
+        var baseWallet = await Mediator.Send(baseWalletQuery);
+        var quoteWallet = await Mediator.Send(quoteWalletQuery);
+        var tradeOutput = new TradeOutput
+        {
+            BaseWallet = baseWallet,
+            QuoteWallet = quoteWallet,
+            Price = price
+        };
+
+        return Ok(tradeOutput);
     }
 }
