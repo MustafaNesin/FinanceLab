@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Security.Claims;
+using FinanceLab.Shared.Application.Abstractions;
 using FinanceLab.Shared.Application.Constants;
 using Hellang.Middleware.ProblemDetails;
 using MediatR;
@@ -14,7 +15,12 @@ namespace FinanceLab.Server.Presentation.Controllers;
 public abstract class BaseController : ControllerBase
 {
     private IMediator? _mediator;
+    private ISharedResources? _sharedResources;
+    
     protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
+
+    protected ISharedResources L
+        => _sharedResources ??= HttpContext.RequestServices.GetRequiredService<ISharedResources>();
 
     [NonAction]
     protected string EnsureAuthorizationForUserName(string? userName)

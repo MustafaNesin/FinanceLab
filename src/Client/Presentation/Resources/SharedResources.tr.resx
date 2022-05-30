@@ -17,19 +17,16 @@
         </value>
     </resheader>
     <data name="SelectLanguage" xml:space="preserve">
-        <value>Bir dil seçin</value>
+        <value>Bir dil seçin.</value>
     </data>
     <data name="SortMustBe" xml:space="preserve">
         <value>Sıralama alanı {0} değerlerinden biri olmalıdır.</value>
     </data>
-    <data name="Markets" xml:space="preserve">
-        <value>Market</value>
-    </data>
-    <data name="Wallets" xml:space="preserve">
-        <value>Cüzdanlar</value>
+    <data name="Wallet" xml:space="preserve">
+        <value>Cüzdan</value>
     </data>
     <data name="Trades" xml:space="preserve">
-        <value>Al-Sat</value>
+        <value>Alım Satımlar</value>
     </data>
     <data name="Users" xml:space="preserve">
         <value>Kullanıcılar</value>
@@ -42,5 +39,134 @@
     </data>
     <data name="SignUp" xml:space="preserve">
         <value>Kayıt Ol</value>
+    </data>
+    <data name="Authorizing" xml:space="preserve">
+        <value>Yetkilendiriliyor...</value>
+    </data>
+    <data name="NotFoundDescription" xml:space="preserve">
+        <value>Üzgünüz, bu adreste bir şey yok.</value>
+    </data>
+    <data name="NotFound" xml:space="preserve">
+        <value>Sayfa Bulunamadı</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>Hata</value>
+    </data>
+    <data name="Deposit" xml:space="preserve">
+        <value>Para Yatır</value>
+    </data>
+    <data name="Transfers" xml:space="preserve">
+        <value>Transferler</value>
+    </data>
+    <data name="Dictionary" xml:space="preserve">
+        <value>Sözlük</value>
+    </data>
+    <data name="Market" xml:space="preserve">
+        <value>Market</value>
+    </data>
+    <data name="NewGameWarning" xml:space="preserve">
+        <value>Oyun yeniden başlatıldığında tüm ilerlemeleriniz kaybolur.</value>
+    </data>
+    <data name="GameDifficulty" xml:space="preserve">
+        <value>Oyun Zorluğu</value>
+    </data>
+    <data name="SelectGameDifficulty" xml:space="preserve">
+        <value>Oyun zorluğunu seçin.</value>
+    </data>
+    <data name="Sandbox" xml:space="preserve">
+        <value>Sandbox</value>
+    </data>
+    <data name="Normal" xml:space="preserve">
+        <value>Normal</value>
+    </data>
+    <data name="Easy" xml:space="preserve">
+        <value>Kolay</value>
+    </data>
+    <data name="Hard" xml:space="preserve">
+        <value>Zor</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>İptal</value>
+    </data>
+    <data name="Start" xml:space="preserve">
+        <value>Başlat</value>
+    </data>
+    <data name="Redirecting" xml:space="preserve">
+        <value>Yeniden yönlendiriliyor...</value>
+    </data>
+    <data name="NoRecordsFound" xml:space="preserve">
+        <value>Eşleşen kayıt bulunamadı.</value>
+    </data>
+    <data name="Loading" xml:space="preserve">
+        <value>Yükleniyor...</value>
+    </data>
+    <data name="Coin" xml:space="preserve">
+        <value>Para Birimi</value>
+    </data>
+    <data name="Amount" xml:space="preserve">
+        <value>Miktar</value>
+    </data>
+    <data name="Search" xml:space="preserve">
+        <value>Ara</value>
+    </data>
+    <data name="WalletListOf" xml:space="preserve">
+        <value>{0} Adlı Kullanıcının Cüzdanı</value>
+    </data>
+    <data name="UserName" xml:space="preserve">
+        <value>Kullanıcı Adı</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value>Parola</value>
+    </data>
+    <data name="RememberMe" xml:space="preserve">
+        <value>Beni Hatırla</value>
+    </data>
+    <data name="DontHaveAccount" xml:space="preserve">
+        <value>Hesabınız yok mu?</value>
+    </data>
+    <data name="Submit" xml:space="preserve">
+        <value>Tamam</value>
+    </data>
+    <data name="SuccessfulSignIn" xml:space="preserve">
+        <value>Başarıyla giriş yapıldı!</value>
+    </data>
+    <data name="SigningOut" xml:space="preserve">
+        <value>Çıkış yapılıyor...</value>
+    </data>
+    <data name="SuccessfulSignOut" xml:space="preserve">
+        <value>Başarıyla çıkış yapıldı!</value>
+    </data>
+    <data name="FirstName" xml:space="preserve">
+        <value>Ad</value>
+    </data>
+    <data name="LastName" xml:space="preserve">
+        <value>Soyad</value>
+    </data>
+    <data name="PasswordRepeat" xml:space="preserve">
+        <value>Parola Tekrarı</value>
+    </data>
+    <data name="HaveAccount" xml:space="preserve">
+        <value>Hesabınız var mı?</value>
+    </data>
+    <data name="ChoosePassword" xml:space="preserve">
+        <value>Güçlü bir şifre seçin</value>
+    </data>
+    <data name="RepeatPassword" xml:space="preserve">
+        <value>Parolayı tekrar girin</value>
+    </data>
+    <data name="Role" xml:space="preserve">
+        <value>Rol</value>
+    </data>
+    <data name="RegisteredAt" xml:space="preserve">
+        <value>Kayıt Tarihi</value>
+    </data>
+    <data name="GameRestartedAt" xml:space="preserve">
+        <value>Oyun Başlatma Tarihi</value>
+    </data>
+    <data name="User" xml:space="preserve">
+        <value>Kullanıcı</value>
+    </data>
+    <data name="NotAuthorized" xml:space="preserve">
+        <value>Bu sayfayı görmeye yetkiniz yok.</value>
     </data>
 </root>

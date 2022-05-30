@@ -19,7 +19,7 @@ public partial class SignOutPage
         if (response.IsSuccessful)
         {
             AuthenticationStateProvider.SetAuthenticationState(null);
-            Snackbar.Add("Signed out successfully!", Severity.Success);
+            Snackbar.Add(L["SuccessfulSignOut"], Severity.Success);
         }
         else
             ShowProblem(response.ProblemDetails, false);

@@ -3,33 +3,33 @@
 <MudDialog>
     <DialogContent>
         <MudAlert Severity="Severity.Warning">
-            All your progress will be lost when the game is restarted
+            @L["NewGameWarning"]
         </MudAlert>
         <MudForm>
             <MudSelect T="GameDifficulty"
-                       Label="Game Difficulty"
-                       HelperText="Select a game difficulty.">
+                       Label="@L["GameDifficulty"]"
+                       HelperText="@L["SelectGameDifficulty"]">
                 <MudSelectItem Value="@GameDifficulty.Sandbox">
-                    Sandbox
+                    @L["Sandbox"]
                 </MudSelectItem>
                 <MudSelectItem Value="@GameDifficulty.Easy">
-                    Easy
+                    @L["Easy"]
                 </MudSelectItem>
                 <MudSelectItem Value="@GameDifficulty.Normal">
-                    Normal
+                    @L["Normal"]
                 </MudSelectItem>
                 <MudSelectItem Value="@GameDifficulty.Hard">
-                    Hard
+                    @L["Hard"]
                 </MudSelectItem>
             </MudSelect>
         </MudForm>
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Cancel">
-            Cancel
+            @L["Cancel"]
         </MudButton>
         <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Submit">
-            Start
+            @L["Start"]
         </MudButton>
     </DialogActions>
 </MudDialog>

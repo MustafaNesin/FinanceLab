@@ -5,7 +5,7 @@
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="routeData" DefaultLayout="@typeof(MainLayout)">
                 <Authorizing>
-                    <p>Authorizing...</p>
+                    <p>@L["Authorizing"]</p>
                 </Authorizing>
                 <NotAuthorized>
                     <RedirectToSignInComponent/>
@@ -13,10 +13,10 @@
             </AuthorizeRouteView>
         </Found>
         <NotFound>
-            <PageTitle>Not found</PageTitle>
+            <PageTitle>@L["NotFound"] | FinanceLab</PageTitle>
             <LayoutView Layout="@typeof(MainLayout)">
                 <p role="alert">
-                    Sorry, there's nothing at this address.
+                    @L["NotFoundDescription"]
                 </p>
             </LayoutView>
         </NotFound>

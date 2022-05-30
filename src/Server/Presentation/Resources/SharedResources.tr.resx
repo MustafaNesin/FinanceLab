@@ -34,4 +34,10 @@
     <data name="InvalidTradeSide" xml:space="preserve">
         <value>Sadece Alım/Satım işlemlerine izin verilmektedir.</value>
     </data>
+    <data name="InvalidGameDifficulty" xml:space="preserve">
+        <value>Oyun zorluk seviyesi değeri geçersiz.</value>
+    </data>
+    <data name="AlreadyLoggedIn" xml:space="preserve">
+        <value>Zaten giriş yapmışsınız.</value>
+    </data>
 </root>

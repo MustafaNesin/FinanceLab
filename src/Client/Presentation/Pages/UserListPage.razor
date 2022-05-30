@@ -2,85 +2,85 @@
 @inherits BaseListComponent<UserDto, UserListOutput>
 @attribute [Authorize(Roles = RoleConstants.Admin)]
 
-<PageTitle>Users in FinanceLab</PageTitle>
+<PageTitle>@L["Users"] | FinanceLab</PageTitle>
 <MudTable ServerData="@GetTableDataAsync" @ref="@Table">
     <ToolBarContent>
         <MudText Typo="@Typo.h6">
-            User List
+            @L["Users"]
         </MudText>
         <MudSpacer/>
-        <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="Search"
+        <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="@L["Search"]"
                       Adornment="@Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
                       IconSize="@Size.Medium"/>
     </ToolBarContent>
     <HeaderContent>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(UserDto.Role)" T="@UserDto">
-                Role
+                @L["Role"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(UserDto.UserName)" T="@UserDto">
-                User Name
+                @L["UserName"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(UserDto.FirstName)" T="@UserDto">
-                First Name
+                @L["FirstName"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(UserDto.LastName)" T="@UserDto">
-                Last Name
+                @L["LastName"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(UserDto.RegisteredAt)" T="@UserDto">
-                Registered At
+                @L["RegisteredAt"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(UserDto.GameDifficulty)" T="@UserDto">
-                Game Difficulty
+                @L["GameDifficulty"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
             <MudTableSortLabel SortLabel="@nameof(UserDto.GameRestartedAt)" T="@UserDto">
-                Game Restarted At
+                @L["GameRestartedAt"]
             </MudTableSortLabel>
         </MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabel="Role">
-            @(context.Role ?? "User")
+        <MudTd DataLabel="@L["Role"]">
+            @(context.Role ?? L["User"])
         </MudTd>
-        <MudTd DataLabel="User Name">
+        <MudTd DataLabel="@L["UserName"]">
             @context.UserName
         </MudTd>
-        <MudTd DataLabel="First Name">
+        <MudTd DataLabel="@L["FirstName"]">
             @context.FirstName
         </MudTd>
-        <MudTd DataLabel="Last Name">
+        <MudTd DataLabel="@L["LastName"]">
             @context.LastName
         </MudTd>
-        <MudTd DataLabel="Registered At">
+        <MudTd DataLabel="@L["RegisteredAt"]">
             @context.RegisteredAt.ToString("g")
         </MudTd>
-        <MudTd DataLabel="Game Difficulty">
+        <MudTd DataLabel="@L["GameDifficulty"]">
             @context.GameDifficulty
         </MudTd>
-        <MudTd DataLabel="Game Restarted At">
+        <MudTd DataLabel="@L["GameRestartedAt"]">
             @context.GameRestartedAt.ToString("g")
         </MudTd>
     </RowTemplate>
     <NoRecordsContent>
         <MudText>
-            No matching records found.
+            @L["NoRecordsFound"]
         </MudText>
     </NoRecordsContent>
     <LoadingContent>
         <MudText>
-            Loading...
+            @L["Loading"]
         </MudText>
     </LoadingContent>
     <PagerContent>

@@ -42,4 +42,10 @@
     <data name="InvalidTradeSide" xml:space="preserve">
         <value>Only Buy/Sell operations are allowed.</value>
     </data>
+    <data name="InvalidGameDifficulty" xml:space="preserve">
+        <value>Game difficulty value is out of range.</value>
+    </data>
+    <data name="AlreadyLoggedIn" xml:space="preserve">
+        <value>You are already logged in.</value>
+    </data>
 </root>

@@ -16,7 +16,7 @@ public sealed class AuthController : BaseController
     public async Task<ActionResult<UserDto>> SignInAsync(SignInInput input)
     {
         if (HttpContext.User.Identity?.IsAuthenticated == true)
-            Throw(HttpStatusCode.BadRequest, "You are already logged in.");
+            Throw(HttpStatusCode.BadRequest, L["AlreadyLoggedIn"]);
 
         var signInCommand = new SignInCommand(input.UserName, input.Password, input.Remember);
         await Mediator.Send(signInCommand);
@@ -41,7 +41,7 @@ public sealed class AuthController : BaseController
     public async Task<IActionResult> SignUpAsync(SignUpInput input)
     {
         if (HttpContext.User.Identity?.IsAuthenticated == true)
-            Throw(HttpStatusCode.BadRequest, "You are already logged in.");
+            Throw(HttpStatusCode.BadRequest, L["AlreadyLoggedIn"]);
 
         var request = new SignUpCommand(
             input.UserName, input.FirstName, input.LastName, input.Password, input.GameDifficulty);

@@ -2,69 +2,61 @@
 @inherits BasePage
 @attribute [AllowAnonymous]
 
-<PageTitle>Sign Up</PageTitle>
+<PageTitle>@L["SignUp"] | FinanceLab</PageTitle>
 <MudContainer MaxWidth="@MaxWidth.Small">
     <MudCard Class="mx-auto">
         <MudCardHeader>
-            <MudText Typo="@Typo.h6">Sign Up</MudText>
+            <MudText Typo="@Typo.h6">@L["SignUp"]</MudText>
         </MudCardHeader>
         <MudCardContent>
             <MudForm @ref="@_form" Model="@_input">
                 <MudTextField @bind-Value="@_input.FirstName"
                               Validation="@_validator.ValidatePropertyAsync"
                               For="@(() => _input.FirstName)"
-                              Label="First Name"/>
+                              Label="@L["FirstName"]"/>
                 <MudTextField @bind-Value="@_input.LastName"
                               Validation="@_validator.ValidatePropertyAsync"
                               For="@(() => _input.LastName)"
-                              Label="Last Name"/>
+                              Label="@L["LastName"]"/>
                 <MudTextField @bind-Value="@_input.UserName"
                               Validation="@_validator.ValidatePropertyAsync"
                               For="@(() => _input.UserName)"
-                              Label="User Name"/>
+                              Label="@L["UserName"]"/>
                 <MudTextField @bind-Value="@_input.Password"
                               Validation="@_validator.ValidatePropertyAsync"
                               For="@(() => _input.Password)"
-                              Label="Password"
-                              HelperText="Choose a strong password"
+                              Label="@L["Password"]"
+                              HelperText="@L["ChoosePassword"]"
                               InputType="@InputType.Password"/>
                 <MudTextField @bind-Value="@_input.PasswordRepeat"
                               Validation="@_validator.ValidatePropertyAsync"
                               For="@(() => _input.PasswordRepeat)"
-                              Label="Password Repeat"
-                              HelperText="Repeat the password"
+                              Label="@L["PasswordRepeat"]"
+                              HelperText="@L["RepeatPassword"]"
                               InputType="@InputType.Password"/>
                 <MudSelect @bind-Value="@_input.GameDifficulty"
                            Validation="@_validator.ValidatePropertyAsync"
                            For="@(() => _input.GameDifficulty)"
-                           Label="Game Difficulty"
-                           HelperText="Select a game difficulty, 
-                                    you can 
-                                    always start 
-                                    a
-                                    new game
-                                    with a 
-                                    different game 
-                                    difficulty.
-                                    ">
+                           Label="@L["GameDifficulty"]"
+                           HelperText="@L["SelectGameDifficulty"]">
                     <MudSelectItem Value="@GameDifficulty.Sandbox">
-                        Sandbox
+                        @L["Sandbox"]
                     </MudSelectItem>
                     <MudSelectItem Value="@GameDifficulty.Easy">
-                        Easy
+                        @L["Easy"]
                     </MudSelectItem>
                     <MudSelectItem Value="@GameDifficulty.Normal">
-                        Normal
+                        @L["Normal"]
                     </MudSelectItem>
                     <MudSelectItem Value="@GameDifficulty.Hard">
-                        Hard
+                        @L["Hard"]
                     </MudSelectItem>
                 </MudSelect>
             </MudForm>
         </MudCardContent>
         <MudCardActions>
             <MudLink Href="/SignIn" Typo="@Typo.body2">
-                Do you have an account?
+                @L["HaveAccount"]
             </MudLink>
             <MudSpacer/>
             <MudButton Variant="@Variant.Filled"
@@ -72,7 +64,7 @@
                        Class="ml-auto"
                        Disabled="@_isSubmitDisabled"
                        OnClick="@SubmitAsync">
-                Submit
+                @L["Submit"]
             </MudButton>
         </MudCardActions>
     </MudCard>
