@@ -1,0 +1,8 @@
+﻿@page "/Transfers"
+@page "/Users/{UserName}/Transfers"
+@inherits BasePage
+
+<PageTitle>@L["TransferListOf", UserName] | FinanceLab</PageTitle>
+<MudContainer MaxWidth="@MaxWidth.Medium">
+    <TransferListComponent UserName="@UserName"/>
+</MudContainer>

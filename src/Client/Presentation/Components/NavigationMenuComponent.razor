@@ -1,6 +1,6 @@
 ﻿@inherits BaseComponent
 
-<MudAppBar DisableGutters="true" Class="muudstrap-navbar" 
+<MudAppBar DisableGutters="true" Class="muudstrap-navbar"
            Style="color: white; background-color: black" Fixed="false" Elevation="0">
     <div style="color: white; background-color: black" class="d-none d-md-flex align-center px-12">
         <MudPaper style="color: white; background-color: black" Height="36px" Width="36px" Elevation="0"
@@ -9,81 +9,65 @@
                 FL
             </MudText>
         </MudPaper>
-        <MudText Style="color: white; background-color: black" Typo="Typo.h6" Class="ml-4 mr-12 pt-1 pb-2">
+        <MudText Style="color: white; background-color: black" Typo="Typo.h6" Class="ml-2 mr-8 pt-1 pb-2">
             FinanceLab
         </MudText>
         <AuthorizeView>
             <Authorized>
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                <MudButton Style="color: white; background-color: black" Class="ml-2 mr-8 pt-1 pb-2"
                            Color="Color.Dark" Href="/Markets">
                     @L["Market"]
                 </MudButton>
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                <MudButton Style="color: white; background-color: black" Class="ml-2 mr-8 pt-1 pb-2"
                            Color="Color.Dark" Href="/Wallets">
                     @L["Wallet"]
                 </MudButton>
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                <MudButton Style="color: white; background-color: black" Class="ml-2 mr-8 pt-1 pb-2"
                            Color="Color.Dark" Href="/Trades">
                     @L["Trades"]
                 </MudButton>
                 @if (StateContainer.User?.GameDifficulty == GameDifficulty.Sandbox)
                 {
-                    <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+                    <MudButton Style="color: white; background-color: black" Class="ml-2 mr-8 pt-1 pb-2"
                                Color="Color.Dark" Href="/Transfers">
                         @L["Transfers"]
-                    </MudButton>
-                    <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
-                               Color="Color.Dark" Href="/Transfers/Deposit">
-                        @L["Deposit"]
                     </MudButton>
                 }
                 @if (StateContainer.User?.Role == RoleConstants.Admin)
                 {
-                    <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+                    <MudButton Style="color: white; background-color: black" Class="ml-2 mr-8 pt-1 pb-2"
                                Color="Color.Dark" Href="/Users">
                         @L["Users"]
                     </MudButton>
                 }
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
-                           Color="Color.Dark" Href="/Dictionary">
-                     @L["Dictionary"]
-                </MudButton>
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
-                           Color="Color.Dark" Href="/SignOut">
-                    @L["SignOut"]
-                </MudButton>
-                <MudMenu Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language" 
-                         AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                    <MudMenuItem Href="/action">
-                        tr (TR)
-                    </MudMenuItem>
-                    <MudMenuItem Href="/another-action">
-                        en (English)
-                    </MudMenuItem>
-                </MudMenu>
-            </Authorized>
-            <NotAuthorized>
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
-                           Color="Color.Dark" Href="/SignIn">
-                    @L["SignIn"]
-                </MudButton>
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
-                           Color="Color.Dark" Href="/SignUp">
-                    @L["SignUp"]
-                </MudButton>
-                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2" 
+                <MudButton Style="color: white; background-color: black" Class="ml-2 mr-8 pt-1 pb-2"
                            Color="Color.Dark" Href="/Dictionary">
                     @L["Dictionary"]
                 </MudButton>
-                <MudMenu Color="Color.Inherit" Label="Language" EndIcon="@Icons.Material.Filled.Language" 
-                         AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                    <MudMenuItem Href="/action">
-                        tr (TR)
-                    </MudMenuItem>
-                    <MudMenuItem Href="/another-action">
-                        en (English)
-                    </MudMenuItem>
-                </MudMenu>
+                <MudButton Style="color: white; background-color: black" Class="ml-2 mr-8 pt-1 pb-2"
+                           Color="Color.Dark" Href="@_userUri">
+                    @_fullName
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-2 mr-8 pt-1 pb-2"
+                           Color="Color.Dark" Href="/SignOut">
+                    @L["SignOut"]
+                </MudButton>
+                <CultureSelectComponent/>
+            </Authorized>
+            <NotAuthorized>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+                           Color="Color.Dark" Href="/SignIn">
+                    @L["SignIn"]
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+                           Color="Color.Dark" Href="/SignUp">
+                    @L["SignUp"]
+                </MudButton>
+                <MudButton Style="color: white; background-color: black" Class="ml-4 mr-12 pt-1 pb-2"
+                           Color="Color.Dark" Href="/Dictionary">
+                    @L["Dictionary"]
+                </MudButton>
+                <CultureSelectComponent/>
             </NotAuthorized>
         </AuthorizeView>
     </div>

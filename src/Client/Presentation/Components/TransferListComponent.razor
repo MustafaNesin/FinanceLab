@@ -1,0 +1,61 @@
+﻿@inherits BaseListComponent<TransferDto, TransferListOutput>
+
+<MudTable ServerData="@GetTableDataAsync" @ref="@Table">
+    <ToolBarContent>
+        <MudText Typo="@Typo.h6">
+            @L["TransferListOf", UserName]
+        </MudText>
+        <MudSpacer/>
+        <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="@L["Search"]"
+                      Adornment="@Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                      IconSize="@Size.Medium"/>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TransferDto.CoinCode)" T="@TransferDto">
+                @L["Coin"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TransferDto.Amount)" T="@TransferDto">
+                @L["Amount"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TransferDto.OccurredAt)" T="@TransferDto">
+                @L["OccurredAt"]
+            </MudTableSortLabel>
+        </MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="@L["Coin"]">
+            @context.CoinCode
+        </MudTd>
+        <MudTd DataLabel="@L["Amount"]">
+            @context.Amount
+        </MudTd>
+        <MudTd DataLabel="@L["OccurredAt"]">
+            @context.OccurredAt
+        </MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>
+            @L["NoRecordsFound"]
+        </MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <MudText>
+            @L["Loading"]
+        </MudText>
+    </LoadingContent>
+    <PagerContent>
+        @if (Environment.IsDevelopment())
+        {
+            <MudTablePager PageSizeOptions="@(new[] {1, 2, 3})"/>
+        }
+        else
+        {
+            <MudTablePager/>
+        }
+    </PagerContent>
+</MudTable>

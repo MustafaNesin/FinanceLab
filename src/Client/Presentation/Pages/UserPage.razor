@@ -1,0 +1,23 @@
+﻿@page "/Users/{UserName}"
+@inherits BaseComponent
+
+<div class="d-none d-md-flex align-center px-12">
+    <div style="height: 50%; width: 100%">
+        <UserProfileComponent UserName="@UserName"/>
+    </div>
+    @if (StateContainer.User?.Role is RoleConstants.Admin || StateContainer.User?.UserName == UserName)
+    {
+        <div class="mt-1" style="height: 400px; width: 100%">
+            <WalletListComponent UserName="@UserName"/>
+        </div>
+    }
+</div>
+<div class="d-none d-md-flex align-center px-12">
+    @if (StateContainer.User?.Role is RoleConstants.Admin ||
+         (StateContainer.User?.UserName == UserName && StateContainer.User?.GameDifficulty == GameDifficulty.Sandbox))
+    {
+        <div class="mt-1" style="height: 400px; width: 100%">
+            <TransferListComponent UserName="@UserName"/>
+        </div>
+    }
+</div>
