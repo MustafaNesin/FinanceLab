@@ -16,7 +16,7 @@ public abstract class BaseController : ControllerBase
 {
     private IMediator? _mediator;
     private ISharedResources? _sharedResources;
-    
+
     protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
 
     protected ISharedResources L

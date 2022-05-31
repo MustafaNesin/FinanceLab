@@ -7,11 +7,10 @@ namespace FinanceLab.Server.Presentation.Controllers;
 public class CheckMarketController : BaseController
 {
     [HttpGet(ApiRouteConstants.CheckMarketExist)]
-    public async Task<IActionResult> CheckMarketAsync([FromQuery] string BaseCoinCode, [FromQuery] string QuoteCoinCode)
+    public async Task<IActionResult> CheckMarketAsync([FromQuery] string baseCoinCode, [FromQuery] string quoteCoinCode)
     {
-        var request = new CheckMarketQuery(BaseCoinCode, QuoteCoinCode);
+        var request = new CheckMarketQuery(baseCoinCode, quoteCoinCode);
         var result = await Mediator.Send(request);
         return Ok(result);
     }
-    
 }

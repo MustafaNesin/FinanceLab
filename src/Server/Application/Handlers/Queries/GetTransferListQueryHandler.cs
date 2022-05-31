@@ -32,7 +32,7 @@ public sealed class GetTransferListQueryHandler : BaseRequestHandler<GetTransfer
 
         var query = user.Transfers.AsQueryable();
 
-        if (request.Filter is {Length: > 0})
+        if (request.Filter is { Length: > 0 })
             query = from transfer in query
                 where transfer.CoinCode.Contains(request.Filter) ||
                       transfer.OccurredAt.ToString().Contains(request.Filter)

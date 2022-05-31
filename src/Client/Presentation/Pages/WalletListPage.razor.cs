@@ -19,8 +19,8 @@ public partial class WalletListPage
         if (StateContainer.User?.UserName == UserName ||
             StateContainer.User?.Role is RoleConstants.Admin)
             return;
-        
-        ShowProblem(new ProblemDetails { Title = L["NotAuthorized"]}, false);
+
+        ShowProblem(new ProblemDetails { Title = L["NotAuthorized"] }, false);
         NavigationManager.NavigateTo("/Wallets");
     }
 }

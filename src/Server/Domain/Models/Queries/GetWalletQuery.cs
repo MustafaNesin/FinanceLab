@@ -6,5 +6,5 @@ namespace FinanceLab.Server.Domain.Models.Queries;
 
 [PublicAPI]
 public sealed record GetWalletQuery(
-    string UserName, 
+    string UserName,
     string CoinCode) : IRequest<WalletDto>;

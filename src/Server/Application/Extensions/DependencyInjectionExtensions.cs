@@ -26,7 +26,7 @@ public static class DependencyInjectionExtensions
     {
         services.AddSingleton(TypeAdapterConfig.GlobalSettings);
         services.AddScoped<IMapper, ServiceMapper>();
-        
+
         TypeAdapterConfig<Market, MarketDto>.NewConfig()
             .ConstructUsing(market => new MarketDto(market.BaseCoinCode, market.QuoteCoinCode));
 

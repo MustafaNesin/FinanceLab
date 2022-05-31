@@ -63,7 +63,7 @@ public sealed class TransferCommandHandler : BaseRequestHandler<TransferCommand>
 
             //Update for target wallet
             await _dbContext.Users.UpdateOneAsync(filterUserName, updateWallet,
-                new UpdateOptions {IsUpsert = true}, cancellationToken);
+                new UpdateOptions { IsUpsert = true }, cancellationToken);
         }
 
         return Unit.Value;

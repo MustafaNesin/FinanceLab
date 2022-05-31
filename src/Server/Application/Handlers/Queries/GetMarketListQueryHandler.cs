@@ -25,7 +25,7 @@ public sealed class GetMarketListQueryHandler : BaseRequestHandler<GetMarketList
 
         var query = markets.AsQueryable().AsQueryable();
 
-        if (request.Filter is {Length: > 0})
+        if (request.Filter is { Length: > 0 })
             query = from market in query
                 where market.Symbol.Contains(request.Filter) ||
                       market.BaseCoinCode.Contains(request.Filter) ||

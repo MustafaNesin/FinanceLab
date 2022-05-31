@@ -53,7 +53,7 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
 
         //Options
         //If updateOne does not find with given filters, this option makes it create a new one
-        var upsertOption = new UpdateOptions {IsUpsert = true};
+        var upsertOption = new UpdateOptions { IsUpsert = true };
 
         switch (request.Side)
         {

@@ -31,7 +31,7 @@ public sealed class GetTradeListQueryHandler : BaseRequestHandler<GetTradeListQu
 
         var query = user.Trades.AsQueryable();
 
-        if (request.Filter is {Length: > 0})
+        if (request.Filter is { Length: > 0 })
             query = from trade in query
                 where trade.Side.ToString().Contains(request.Filter) ||
                       trade.OccurredAt.ToString().Contains(request.Filter) ||

@@ -31,7 +31,7 @@ public sealed class GetWalletListQueryHandler : BaseRequestHandler<GetWalletList
 
         var query = user.Wallets.AsQueryable();
 
-        if (request.Filter is {Length: > 0})
+        if (request.Filter is { Length: > 0 })
             query = from wallet in query
                 where wallet.CoinCode.Contains(request.Filter)
                 select wallet;

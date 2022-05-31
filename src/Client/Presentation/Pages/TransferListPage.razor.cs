@@ -20,7 +20,7 @@ public partial class TransferListPage
             StateContainer.User?.Role is RoleConstants.Admin)
             return;
 
-        ShowProblem(new ProblemDetails {Title = L["NotAuthorized"]}, false);
+        ShowProblem(new ProblemDetails { Title = L["NotAuthorized"] }, false);
         NavigationManager.NavigateTo("/Transfers");
     }
 }

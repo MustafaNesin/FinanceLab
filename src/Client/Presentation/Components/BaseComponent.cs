@@ -18,7 +18,7 @@ public class BaseComponent : ComponentBase, IAsyncDisposable
 
     [Inject]
     protected IWebAssemblyHostEnvironment Environment { get; private set; } = default!;
-    
+
     [Inject]
     protected IHttpClientService HttpClientService { get; private set; } = default!;
 

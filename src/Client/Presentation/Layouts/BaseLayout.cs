@@ -8,7 +8,7 @@ public class BaseLayout : LayoutComponentBase, IAsyncDisposable
 {
     [Inject]
     protected IDialogService DialogService { get; private set; } = default!;
-    
+
     [Inject]
     protected IStateContainerService StateContainer { get; private set; } = default!;
 

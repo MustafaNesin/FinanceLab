@@ -31,7 +31,7 @@ public static class DependencyInjectionExtensions
 
         if (dbContext.Markets.AsQueryable().Any())
             return app;
-        
+
         dbContext.Markets.InsertMany(new Market[]
         {
             new("USDT", "TRY"),
@@ -48,7 +48,6 @@ public static class DependencyInjectionExtensions
             new("XRP", "BNB"),
             new("XRP", "ETH"),
             new("DOGE", "BTC"),
-            new("DOGE", "BNB"),
             new("ADA", "BTC"),
             new("ADA", "BNB"),
             new("ADA", "ETH"),

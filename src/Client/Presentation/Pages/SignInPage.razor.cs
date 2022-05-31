@@ -35,7 +35,7 @@ public partial class SignInPage
         _validator = new SignInInputValidator(L);
     }
 
-    private async Task OnSubmitAsync()
+    private async Task SubmitAsync()
     {
         _isSubmitDisabled = true;
         await _form.Validate();

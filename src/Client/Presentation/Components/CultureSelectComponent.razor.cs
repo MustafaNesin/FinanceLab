@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Blazored.LocalStorage;
+﻿using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 
 namespace FinanceLab.Client.Presentation.Components;

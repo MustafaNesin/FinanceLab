@@ -18,14 +18,14 @@
             </MudText>
             @if (_isAdmin == true || (_isSelf == true && _user.GameDifficulty == GameDifficulty.Sandbox))
             {
-                <MudButton Style="background-color: black; color: white ;alignment: center; margin-top: 10%; margin-left: 35%" 
+                <MudButton Style="background-color: black; color: white; alignment: center; margin-top: 10%; margin-left: 35%"
                            OnClick="@OpenDepositDialog">
                     @L["Deposit"]
                 </MudButton>
             }
             @if (_isSelf == true)
             {
-                <MudButton Style="background-color: black; color: white ;alignment: center; margin-top: 10%; margin-left: 35%" 
+                <MudButton Style="background-color: black; color: white; alignment: center; margin-top: 10%; margin-left: 35%"
                            OnClick="@OpenNewGameDialog">
                     @L["NewGame"]
                 </MudButton>
