@@ -233,4 +233,10 @@
     <data name="SuccessfulSell" xml:space="preserve">
         <value>Successfully sold {1} {0} at the price of {2}.</value>
     </data>
+    <data name="SuccessfulNewGame" xml:space="preserve">
+        <value>New game started successfully.</value>
+    </data>
+    <data name="SuccessfulTransfer" xml:space="preserve">
+        <value>Successfully transferred {1} {0} to your wallet.</value>
+    </data>
 </root>

@@ -1,0 +1,24 @@
+﻿@inherits BaseComponent
+<MudDialog>
+    <DialogContent>
+        <MudForm>
+            <MudTextField @bind-Value="@_input.Amount" Label="@L["Amount"]"/>
+            <MudSelect T="string" @bind-Text="@_input.CoinCode" Label="@L["Coin"]" Variant="Variant.Filled"
+                       AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem Value="@("USDT")"/>
+                <MudSelectItem Value="@("TRY")"/>
+                <MudSelectItem Value="@("BTC")"/>
+                <MudSelectItem Value="@("ETH")"/>
+                <MudSelectItem Value="@("XRP")"/>
+            </MudSelect>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">
+            @L["Cancel"]
+        </MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="SubmitAsync">
+            @L["Submit"]
+        </MudButton>
+    </DialogActions>
+</MudDialog>

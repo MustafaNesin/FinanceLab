@@ -7,7 +7,7 @@ namespace FinanceLab.Client.Presentation.Components;
 
 public partial class UserProfileComponent
 {
-    private readonly DialogOptions _dialogOptions = new() { MaxWidth = MaxWidth.Medium, FullWidth = true };
+    private readonly DialogOptions _dialogOptions = new() { MaxWidth = MaxWidth.Small, FullWidth = true };
     private string? _fullName;
     private string? _initials;
     private bool? _isAdmin;
@@ -48,6 +48,6 @@ public partial class UserProfileComponent
         }
     }
 
-    private void OpenDepositDialog() => DialogService.Show<DepositComponent>(L["Deposit"], _dialogOptions);
-    private void OpenNewGameDialog() => DialogService.Show<NewGameComponent>(L["NewGame"], _dialogOptions);
+    private void OpenDepositDialog() => DialogService.Show<DepositDialogComponent>(L["Deposit"], _dialogOptions);
+    private void OpenNewGameDialog() => DialogService.Show<NewGameDialogComponent>(L["NewGame"], _dialogOptions);
 }

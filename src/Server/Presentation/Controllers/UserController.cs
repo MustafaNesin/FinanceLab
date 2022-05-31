@@ -34,7 +34,7 @@ public sealed class UserController : BaseController
     }
 
     [HttpPost(ApiRouteConstants.NewGame)]
-    public async Task<IActionResult> NewGameAsync([FromQuery] NewGameInput input)
+    public async Task<IActionResult> NewGameAsync([FromBody] NewGameInput input)
     {
         var userName = EnsureAuthorizationForUserName(input.UserName);
         var request = new NewGameCommand(userName, input.GameDifficulty);
