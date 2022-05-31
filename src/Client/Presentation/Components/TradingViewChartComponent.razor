@@ -1,0 +1,13 @@
+﻿@inherits BaseComponent
+
+@if (Market is not null)
+{
+    <div class="tradingview-widget-container" style="height: 100%">
+        <div id="@ContainerId" style="height: 100%"></div>
+        <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/symbols/@Market.Symbol/?exchange=BINANCE" rel="noopener" target="_blank">
+                <span class="blue-text">@Market.Symbol Chart</span>
+            </a> by TradingView
+        </div>
+    </div>
+}

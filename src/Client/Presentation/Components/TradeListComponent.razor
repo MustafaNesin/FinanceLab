@@ -3,7 +3,7 @@
 <MudTable ServerData="@GetTableDataAsync" @ref="@Table">
     <ToolBarContent>
         <MudText Typo="@Typo.h6">
-            @L["PastTradeList"]
+            @L["TradeListOf", UserName]
         </MudText>
         <MudSpacer/>
         <MudTextField T="@string" ValueChanged="@OnSearch" Placeholder="@L["Search"]"
@@ -27,17 +27,19 @@
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel SortLabel="@nameof(TradeDto.Amount)" T="@TradeDto">
-                @L["Amount"]
-            </MudTableSortLabel>
-        </MudTh>
-        <MudTh>
             <MudTableSortLabel SortLabel="@nameof(TradeDto.Price)" T="@TradeDto">
                 @L["Price"]
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel SortLabel="@nameof(TradeDto.OccurredAt)" T="@TradeDto">
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.Amount)" T="@TradeDto">
+                @L["Quantity"]
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.OccurredAt)"
+                               InitialDirection="@SortDirection.Descending"
+                               T="@TradeDto">
                 @L["OccuredAt"]
             </MudTableSortLabel>
         </MudTh>
@@ -50,16 +52,24 @@
             @context.QuoteCoinCode
         </MudTd>
         <MudTd DataLabel="@L["Side"]">
-            @{
-                string typeString = context.Side == TradeSide.Buy ? L["Buy"] : L["Sell"];
+            @if (context.Side == TradeSide.Buy)
+            {
+                <MudText Color="Color.Success">
+                    @L["Buy"]
+                </MudText>
             }
-            @typeString
-        </MudTd>
-        <MudTd DataLabel="@L["Amount"]">
-            @context.Amount
+            else
+            {
+                <MudText Color="Color.Error">
+                    @L["Sell"]
+                </MudText>
+            }
         </MudTd>
         <MudTd DataLabel="@L["Price"]">
             @context.Price
+        </MudTd>
+        <MudTd DataLabel="@L["Amount"]">
+            @context.Amount
         </MudTd>
         <MudTd DataLabel="@L["OccuredAt"]">
             @context.OccurredAt.ToString("g")
@@ -78,7 +88,7 @@
     <PagerContent>
         @if (Environment.IsDevelopment())
         {
-            <MudTablePager PageSizeOptions="@(new[] {1, 2, 3})"/>
+            <MudTablePager PageSizeOptions="@(new[] { 1, 2, 3 })"/>
         }
         else
         {

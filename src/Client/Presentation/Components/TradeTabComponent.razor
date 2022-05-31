@@ -1,0 +1,26 @@
+﻿@inherits BaseComponent
+
+@* ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract *@
+@if (Wallet is not null)
+{
+    <MudElement Class="d-inline-flex align-center justify-end gap-3 mt-3">
+        <MudIcon Icon="@Icons.Filled.AccountBalanceWallet" Size="@Size.Small"/>
+        <MudText>
+            @Wallet.Amount @Wallet.CoinCode
+        </MudText>
+    </MudElement>
+    <MudElement Class="d-flex flex-column">
+        <MudNumericField @bind-Value="@_input.Quantity"
+                         For="@(() => _input.Quantity)"
+                         Min="0"
+                         Label="@L["Quantity"]"
+                         Class="my-3"/>
+        <MudButton Variant="@Variant.Filled"
+                   Color="@Color.Primary"
+                   Disabled="@_isSubmitDisabled"
+                   OnClick="@SubmitAsync"
+                   Class="mud-width-full">
+            @L[$"{Side}Coin", BaseCoinCode]
+        </MudButton>
+    </MudElement>
+}

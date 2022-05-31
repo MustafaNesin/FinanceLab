@@ -5,28 +5,26 @@ using Microsoft.JSInterop;
 
 namespace FinanceLab.Client.Presentation.Components;
 
-public partial class TradingViewMarketComponent
+public partial class TradingViewChartComponent
 {
-    private const string ContainerId = "tradingview-market";
+    private const string ContainerId = "tradingview-chart";
     private bool _isRendered;
 
     [Inject]
     private IJSRuntime JsRuntime { get; set; } = default!;
 
     [Parameter]
-    public IReadOnlyCollection<MarketDto>? Markets { get; set; }
+    public MarketDto? Market { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_isRendered || Markets is null)
+        if (_isRendered || Market is null)
             return;
 
         const string theme = "light";
-        var symbols = Markets.Select(market => market.Symbol).ToArray();
         var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-        var baseUri = NavigationManager.BaseUri;
 
-        await JsRuntime.InvokeVoidAsync("createTradingViewMarketWidget", symbols, theme, locale, baseUri, ContainerId);
+        await JsRuntime.InvokeVoidAsync("createTradingViewChartWidget", Market.Symbol, theme, locale, ContainerId);
         _isRendered = true;
     }
 }

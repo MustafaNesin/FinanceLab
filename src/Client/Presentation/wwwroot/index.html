@@ -23,7 +23,25 @@
 </div>
 <script src="_framework/blazor.webassembly.js"></script>
 <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+<script src="https://s3.tradingview.com/tv.js" type="text/javascript"></script>
 <script type="text/javascript">
+    window.createTradingViewChartWidget = (symbol, theme, locale, containerId) => new TradingView.widget(
+        {
+            "autosize": true,
+            "symbol": "BINANCE:" + symbol,
+            "interval": "D",
+            "timezone": "Europe/Istanbul",
+            "theme": theme,
+            "style": "1",
+            "locale": locale,
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "save_image": false,
+            "container_id": containerId
+        }
+    );
+
     window.createTradingViewMarketWidget = (symbols, theme, locale, baseUri, containerId) => {
         let symbolArray = symbols.map(function (symbol) {
             return {
@@ -49,7 +67,28 @@
             "locale": locale
         });
         document.getElementById(containerId).append(s);
-    }
+    };
+
+    window.createTradingViewTickerWidget = (symbols, theme, locale, baseUri, containerId) => {
+        let symbolArray = symbols.map(function (symbol) {
+            return {
+                "proName": "BINANCE:" + symbol,
+                "description": symbol
+            };
+        })
+        let s = document.createElement('script');
+        s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+        s.innerText = JSON.stringify({
+            "symbols": symbolArray,
+            "showSymbolLogo": true,
+            "colorTheme": theme,
+            "largeChartUrl": baseUri + "Markets/{tvsymbol}",
+            "isTransparent": true,
+            "displayMode": "regular",
+            "locale": locale
+        });
+        document.getElementById(containerId).append(s);
+    };
 </script>
 </body>
 

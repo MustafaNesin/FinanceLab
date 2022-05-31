@@ -5,9 +5,9 @@ using Microsoft.JSInterop;
 
 namespace FinanceLab.Client.Presentation.Components;
 
-public partial class TradingViewMarketComponent
+public partial class TradingViewTickerComponent
 {
-    private const string ContainerId = "tradingview-market";
+    private const string ContainerId = "tradingview-ticker";
     private bool _isRendered;
 
     [Inject]
@@ -26,7 +26,7 @@ public partial class TradingViewMarketComponent
         var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
         var baseUri = NavigationManager.BaseUri;
 
-        await JsRuntime.InvokeVoidAsync("createTradingViewMarketWidget", symbols, theme, locale, baseUri, ContainerId);
+        await JsRuntime.InvokeVoidAsync("createTradingViewTickerWidget", symbols, theme, locale, baseUri, ContainerId);
         _isRendered = true;
     }
 }

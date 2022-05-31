@@ -117,7 +117,7 @@
         <value>Search</value>
     </data>
     <data name="WalletListOf" xml:space="preserve">
-        <value>Wallet of {0}</value>
+        <value>Wallet of @{0}</value>
     </data>
     <data name="UserName" xml:space="preserve">
         <value>User Name</value>
@@ -177,10 +177,10 @@
         <value>You're not authorized to view this page.</value>
     </data>
     <data name="TradeListOf" xml:space="preserve">
-        <value>Trades of {0}</value>
+        <value>Trades of @{0}</value>
     </data>
     <data name="TransferListOf" xml:space="preserve">
-        <value>Transfers of {0}</value>
+        <value>Transfers of @{0}</value>
     </data>
     <data name="NewGame" xml:space="preserve">
         <value>New Game</value>
@@ -212,7 +212,25 @@
     <data name="OccuredAt" xml:space="preserve">
         <value>Transaction Date</value>
     </data>
-    <data name="PastTradeList" xml:space="preserve">
-        <value>Your Past Trades</value>
+    <data name="MarketNotFound" xml:space="preserve">
+        <value>Market not found.</value>
+    </data>
+    <data name="BuyCoin" xml:space="preserve">
+        <value>Buy {0}</value>
+    </data>
+    <data name="SellCoin" xml:space="preserve">
+        <value>Sell {0}</value>
+    </data>
+    <data name="Quantity" xml:space="preserve">
+        <value>Quantity</value>
+    </data>
+    <data name="SuccessfulSignUp" xml:space="preserve">
+        <value>Signed up successfully!</value>
+    </data>
+    <data name="SuccessfulBuy" xml:space="preserve">
+        <value>Successfully purchased {1} {0} at the price of {2}.</value>
+    </data>
+    <data name="SuccessfulSell" xml:space="preserve">
+        <value>Successfully sold {1} {0} at the price of {2}.</value>
     </data>
 </root>

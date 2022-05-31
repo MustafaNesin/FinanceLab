@@ -2,6 +2,7 @@
 @page "/Users/{UserName}/Trades"
 @inherits BasePage
 
-<PageTitle>@L["WalletListOf", UserName] | FinanceLab</PageTitle>
-<TradeListComponent UserName="@UserName"/>
-<TradeComponent BaseCoinCode="BTC" QuoteCoinCode="TRY" Side="@TradeSide.Buy"/>
+<PageTitle>@L["TradeListOf", UserName] | FinanceLab</PageTitle>
+<MudContainer MaxWidth="@MaxWidth.Medium">
+    <TradeListComponent UserName="@UserName"/>
+</MudContainer>

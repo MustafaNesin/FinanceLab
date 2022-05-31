@@ -22,7 +22,9 @@
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel SortLabel="@nameof(TransferDto.OccurredAt)" T="@TransferDto">
+            <MudTableSortLabel SortLabel="@nameof(TransferDto.OccurredAt)"
+                               InitialDirection="@SortDirection.Descending"
+                               T="@TransferDto">
                 @L["OccurredAt"]
             </MudTableSortLabel>
         </MudTh>
@@ -35,7 +37,7 @@
             @context.Amount
         </MudTd>
         <MudTd DataLabel="@L["OccurredAt"]">
-            @context.OccurredAt
+            @context.OccurredAt.ToString("g")
         </MudTd>
     </RowTemplate>
     <NoRecordsContent>
@@ -51,7 +53,7 @@
     <PagerContent>
         @if (Environment.IsDevelopment())
         {
-            <MudTablePager PageSizeOptions="@(new[] {1, 2, 3})"/>
+            <MudTablePager PageSizeOptions="@(new[] { 1, 2, 3 })"/>
         }
         else
         {

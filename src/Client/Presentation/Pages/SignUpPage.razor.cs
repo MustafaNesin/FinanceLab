@@ -37,7 +37,7 @@ public partial class SignUpPage
         if (response.IsSuccessful)
         {
             NavigationManager.NavigateTo("/SignIn?UserName=" + _input.UserName);
-            Snackbar.Add("Successfully registered!", Severity.Success);
+            Snackbar.Add(L["SuccessfulSignUp"], Severity.Success);
         }
         else
             ShowProblem(response.ProblemDetails, false);

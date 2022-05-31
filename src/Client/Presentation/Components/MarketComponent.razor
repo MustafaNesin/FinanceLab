@@ -1,0 +1,23 @@
+﻿@inherits BaseComponent
+
+@if (_currentMarket is not null)
+{
+    <MudContainer Fixed="@true" Style="height: 100%">
+        <MudElement Class="mud-width-full pa-3" Style="width: 100%">
+            <TradingViewTickerComponent Markets="@_markets"/>
+        </MudElement>
+        <MudGrid Class="ma-0" Style="width: 100%; height: 75%">
+            <MudItem xs="12" md="8" Class="pa-3" Style="height: 100%">
+                <MudElement Class="mud-width-full" Style="height: 100%">
+                    <TradingViewChartComponent Market="@_currentMarket"/>
+                </MudElement>
+            </MudItem>
+            <MudItem xs="12" md="4" Class="pa-3">
+                <MudElement Class="mud-width-full">
+                    <TradeComponent BaseCoinCode="@_currentMarket.BaseCoinCode"
+                                    QuoteCoinCode="@_currentMarket.QuoteCoinCode"/>
+                </MudElement>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+}

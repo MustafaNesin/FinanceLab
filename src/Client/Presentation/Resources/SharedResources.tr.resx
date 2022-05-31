@@ -110,7 +110,7 @@
         <value>Ara</value>
     </data>
     <data name="WalletListOf" xml:space="preserve">
-        <value>{0} Adlı Kullanıcının Cüzdanı</value>
+        <value>@{0} Cüzdanı</value>
     </data>
     <data name="UserName" xml:space="preserve">
         <value>Kullanıcı Adı</value>
@@ -170,10 +170,10 @@
         <value>Bu sayfayı görmeye yetkiniz yok.</value>
     </data>
     <data name="TradeListOf" xml:space="preserve">
-        <value>{0} Adlı Kullanıcının Alım Satımları</value>
+        <value>@{0} Al/Sat Geçmişi</value>
     </data>
     <data name="TransferListOf" xml:space="preserve">
-        <value>{0} Adlı Kullanıcının Transferleri</value>
+        <value>@{0} Transfer Geçmişi</value>
     </data>
     <data name="NewGame" xml:space="preserve">
         <value>Yeni Oyun</value>
@@ -191,7 +191,7 @@
         <value>Hedef Para Birimi</value>
     </data>
     <data name="Buy" xml:space="preserve">
-        <value>Sell</value>
+        <value>Al</value>
     </data>
     <data name="Sell" xml:space="preserve">
         <value>Sat</value>
@@ -205,7 +205,25 @@
     <data name="OccuredAt" xml:space="preserve">
         <value>İşlem Tarihi</value>
     </data>
-    <data name="PastTradeList" xml:space="preserve">
-        <value>Geçmiş Tarihli İşlemleriniz</value>
+    <data name="MarketNotFound" xml:space="preserve">
+        <value>Market bulunamadı.</value>
+    </data>
+    <data name="BuyCoin" xml:space="preserve">
+        <value>{0} Al</value>
+    </data>
+    <data name="SellCoin" xml:space="preserve">
+        <value>{0} Sat</value>
+    </data>
+    <data name="Quantity" xml:space="preserve">
+        <value>Miktar</value>
+    </data>
+    <data name="SuccessfulSignUp" xml:space="preserve">
+        <value>Başarıyla kayıt yapıldı!</value>
+    </data>
+    <data name="SuccessfulBuy" xml:space="preserve">
+        <value>Başarıyla {2} fiyatından {1} {0} satın alındı.</value>
+    </data>
+    <data name="SuccessfulSell" xml:space="preserve">
+        <value>Başarıyla {2} fiyatından {1} {0} satıldı.</value>
     </data>
 </root>
