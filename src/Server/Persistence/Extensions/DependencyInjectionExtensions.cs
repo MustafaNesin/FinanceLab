@@ -1,8 +1,11 @@
 ﻿using FinanceLab.Server.Application.Abstractions;
 using FinanceLab.Server.Domain.Models.Entities;
 using FinanceLab.Server.Persistence.Contexts;
+using FinanceLab.Shared.Application.Constants;
+using FinanceLab.Shared.Domain.Models.Enums;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
@@ -29,6 +32,23 @@ public static class DependencyInjectionExtensions
     {
         var dbContext = app.ApplicationServices.GetRequiredService<IMongoDbContext>();
 
+        if (!dbContext.Users.AsQueryable().Any(user => user.Role == RoleConstants.Admin))
+        {
+            using var scope = app.ApplicationServices.CreateScope();
+            var passwordHasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>();
+            var adminUser = new User
+            {
+                UserName = "admin",
+                FirstName = "Admin",
+                LastName = "User",
+                Role = RoleConstants.Admin,
+                GameDifficulty = GameDifficulty.Sandbox
+            };
+
+            adminUser.PasswordHash = passwordHasher.HashPassword(adminUser, "admin");
+            dbContext.Users.InsertOne(adminUser);
+        }
+            
         if (dbContext.Markets.AsQueryable().Any())
             return app;
 
