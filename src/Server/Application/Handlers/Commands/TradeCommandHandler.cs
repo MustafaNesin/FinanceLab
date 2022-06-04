@@ -182,7 +182,7 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
             Side = request.Side,
             BaseCoinCode = request.BaseCoinCode,
             QuoteCoinCode = request.QuoteCoinCode,
-            Amount = request.Quantity,
+            Quantity = request.Quantity,
             Price = request.Price
         };
 

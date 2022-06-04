@@ -8,6 +8,6 @@ public sealed record TradeDto(
     TradeSide Side,
     string BaseCoinCode,
     string QuoteCoinCode,
-    double Amount,
+    double Quantity,
     double Price,
     DateTimeOffset OccurredAt);

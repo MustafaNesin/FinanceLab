@@ -10,7 +10,7 @@ public sealed class Trade
     public TradeSide Side { get; init; }
     public string BaseCoinCode { get; init; } = default!;
     public string QuoteCoinCode { get; init; } = default!;
-    public double Amount { get; init; }
+    public double Quantity { get; init; }
     public double Price { get; init; }
     public DateTimeOffset OccurredAt { get; init; } = DateTimeOffset.UtcNow;
 }

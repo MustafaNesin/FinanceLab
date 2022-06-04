@@ -41,10 +41,10 @@ public sealed class GetTradeListQueryHandler : BaseRequestHandler<GetTradeListQu
 
         query = request.Sort.By switch
         {
-            nameof(TradeDto.Amount) => request.Sort.Direction switch
+            nameof(TradeDto.Quantity) => request.Sort.Direction switch
             {
-                ListSortDirection.Ascending => from trade in query orderby trade.Amount select trade,
-                ListSortDirection.Descending => from trade in query orderby trade.Amount descending select trade,
+                ListSortDirection.Ascending => from trade in query orderby trade.Quantity select trade,
+                ListSortDirection.Descending => from trade in query orderby trade.Quantity descending select trade,
                 _ => query
             },
             nameof(TradeDto.Price) => request.Sort.Direction switch

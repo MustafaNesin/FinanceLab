@@ -32,7 +32,7 @@
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel SortLabel="@nameof(TradeDto.Amount)" T="@TradeDto">
+            <MudTableSortLabel SortLabel="@nameof(TradeDto.Quantity)" T="@TradeDto">
                 @L["Quantity"]
             </MudTableSortLabel>
         </MudTh>
@@ -68,8 +68,8 @@
         <MudTd DataLabel="@L["Price"]">
             @context.Price
         </MudTd>
-        <MudTd DataLabel="@L["Amount"]">
-            @context.Amount
+        <MudTd DataLabel="@L["Quantity"]">
+            @context.Quantity
         </MudTd>
         <MudTd DataLabel="@L["OccuredAt"]">
             @context.OccurredAt.ToString("g")

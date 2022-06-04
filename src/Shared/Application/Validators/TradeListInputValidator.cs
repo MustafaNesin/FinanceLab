@@ -12,7 +12,7 @@ public sealed class TradeListInputValidator : BaseListInputValidator<TradeListIn
     private static readonly string[] SortFields =
     {
         nameof(TradeDto.Side), nameof(TradeDto.BaseCoinCode), nameof(TradeDto.QuoteCoinCode),
-        nameof(TradeDto.Amount), nameof(TradeDto.Price), nameof(TradeDto.OccurredAt)
+        nameof(TradeDto.Quantity), nameof(TradeDto.Price), nameof(TradeDto.OccurredAt)
     };
 
     private static readonly string SortFieldsCsv = string.Join(", ", SortFields);
