@@ -4,7 +4,7 @@
            Style="color: white; background-color: black" Fixed="false" Elevation="0">
     <div style="color: white; background-color: black" class="d-none d-md-flex flex-grow-1 gap-1 align-center ">
         <MudPaper style="color: white; background-color: black" Height="30px" Width="30px" Elevation="0"
-                  Class="pa-1 rounded-lg d-flex justify-center align-center mud-theme-primary">
+                  Class="pa-1 rounded-lg d-flex justify-center align-center mud-theme-primary ml-4">
             <MudText Typo="Typo.h6">
                 FL
             </MudText>
@@ -14,69 +14,84 @@
         </MudText>
         <AuthorizeView>
             <Authorized>
-                <div style="color: white; background-color: black" class="d-none justify-start d-md-flex flex-grow-1 gap-1 align-center ">
-                    <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-2 mr-4 pt-1 pb-2 py-4"
-                                               Color="Color.Dark" Href="/Markets">
-                                        @L["Market"]
-                                    </MudButton>
-                                    <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-2 mr-4 pt-1 pb-2 py-4"
-                                               Color="Color.Dark" Href="/Wallets">
-                                        @L["Wallet"]
-                                    </MudButton>
-                                    <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-4 mr-1 pt-1 pb-2 py-4"
-                                               Color="Color.Dark" Href="/Trades">
-                                        @L["Trades"]
-                                    </MudButton>
-                                    @if (StateContainer.User?.GameDifficulty == GameDifficulty.Sandbox)
-                                    {
-                                        <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-2 mr-2 pt-1 pb-2 py-4"
-                                                   Color="Color.Dark" Href="/Transfers">
-                                            @L["Transfers"]
-                                        </MudButton>
-                                    }
-                                    @if (StateContainer.User?.Role == RoleConstants.Admin)
-                                    {
-                                        <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-2 mr-2 pt-1 pb-2 py-4"
-                                                   Color="Color.Dark" Href="/Users">
-                                            @L["Users"]
-                                        </MudButton>
-                                    }
-                                    <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-2 mr-2 pt-1 pb-2 py-4"
-                                               Color="Color.Dark" Href="/Dictionary">
-                                        @L["Dictionary"]
-                                    </MudButton>
+                <div style="color: white; background-color: black"
+                     class="d-none justify-start d-md-flex flex-grow-1 gap-1 align-center ">
+                    <MudButton Style="color: white; background-color: black"
+                               Class="mud-button-text-size-small ml-2 mr-4 pt-1 pb-2 py-4"
+                               Color="Color.Dark" Href="/Markets">
+                        @L["Market"]
+                    </MudButton>
+                    <MudButton Style="color: white; background-color: black"
+                               Class="mud-button-text-size-small ml-2 mr-4 pt-1 pb-2 py-4"
+                               Color="Color.Dark" Href="/Wallets">
+                        @L["Wallet"]
+                    </MudButton>
+                    <MudButton Style="color: white; background-color: black"
+                               Class="mud-button-text-size-small ml-4 mr-1 pt-1 pb-2 py-4"
+                               Color="Color.Dark" Href="/Trades">
+                        @L["Trades"]
+                    </MudButton>
+                    @if (StateContainer.User?.GameDifficulty == GameDifficulty.Sandbox)
+                    {
+                        <MudButton Style="color: white; background-color: black"
+                                   Class="mud-button-text-size-small ml-2 mr-2 pt-1 pb-2 py-4"
+                                   Color="Color.Dark" Href="/Transfers">
+                            @L["Transfers"]
+                        </MudButton>
+                    }
+                    @if (StateContainer.User?.Role == RoleConstants.Admin)
+                    {
+                        <MudButton Style="color: white; background-color: black"
+                                   Class="mud-button-text-size-small ml-2 mr-2 pt-1 pb-2 py-4"
+                                   Color="Color.Dark" Href="/Users">
+                            @L["Users"]
+                        </MudButton>
+                    }
+                    <MudButton Style="color: white; background-color: black"
+                               Class="mud-button-text-size-small ml-2 mr-2 pt-1 pb-2 py-4"
+                               Color="Color.Dark" Href="/Dictionary">
+                        @L["Dictionary"]
+                    </MudButton>
                 </div>
-                <div style="color: white; background-color: black" class="d-none justify-end d-md-flex flex-grow-1  ">
-                <MudButton Class="invisible ml-2 mr-8 pt-1 pb-2"
-                           Color="Color.Dark">
-                    ......................
-                </MudButton>
-                <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-8 mr-2 pt-1 pb-2 py-4"
-                           Color="Color.Dark" Href="@_userUri">
-                   <MudAvatar Style="font-size:smaller;"Class=" mr-2 "Size="Size.Small "Color="Color.Primary">@_avatar</MudAvatar> @_fullName
-                </MudButton>
-                <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-2 mr-2 pt-1 pb-2 py-4"
-                           Color="Color.Dark" Href="/SignOut">
-                    @L["SignOut"]
-                </MudButton>
-                <CultureSelectComponent/>
+                <div style="color: white; background-color: black" class="d-none justify-end d-md-flex flex-grow-1">
+                    <MudButton Class="invisible ml-2 mr-8 pt-1 pb-2"
+                               Color="Color.Dark">
+                        ......................
+                    </MudButton>
+                    <MudButton Style="color: white; background-color: black"
+                               Class="mud-button-text-size-small ml-8 mr-2 pt-1 pb-2 py-4"
+                               Color="Color.Dark" Href="@_userUri">
+                        <MudAvatar Style="font-size:smaller;" Class="mr-2" Size="Size.Small" Color="Color.Primary">
+                            @_avatar
+                        </MudAvatar>
+                        @_fullName
+                    </MudButton>
+                    <MudButton Style="color: white; background-color: black"
+                               Class="mud-button-text-size-small ml-2 mr-2 pt-1 pb-2 py-4"
+                               Color="Color.Dark" Href="/SignOut">
+                        @L["SignOut"]
+                    </MudButton>
+                    <CultureSelectComponent/>
                 </div>
             </Authorized>
             <NotAuthorized>
-                <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-4 mr-2 pt-1 pb-2 py-4"
+                <MudButton Style="color: white; background-color: black" 
+                           Class="mud-button-text-size-small ml-4 mr-2 pt-1 pb-2 py-4"
                            Color="Color.Dark" Href="/SignIn">
                     @L["SignIn"]
                 </MudButton>
-                <MudButton Style="color: white; background-color: black" Class=" mud-button-text-size-small ml-4 mr-2 pt-1 pb-2 py-4"
+                <MudButton Style="color: white; background-color: black" 
+                           Class=" mud-button-text-size-small ml-4 mr-2 pt-1 pb-2 py-4"
                            Color="Color.Dark" Href="/SignUp">
                     @L["SignUp"]
                 </MudButton>
-                <div style="color: white; background-color: black" class="d-none justify-end d-md-flex flex-grow-1  ">
-                <MudButton Style="color: white; background-color: black" Class="mud-button-text-size-small ml-4 mr-2 pt-1 pb-2 py-4"
-                           Color="Color.Dark" Href="/Dictionary">
-                    @L["Dictionary"]
-                </MudButton>
-                <CultureSelectComponent/>
+                <div style="color: white; background-color: black" class="d-none justify-end d-md-flex flex-grow-1">
+                    <MudButton Style="color: white; background-color: black"
+                               Class="mud-button-text-size-small ml-4 mr-2 pt-1 pb-2 py-4"
+                               Color="Color.Dark" Href="/Dictionary">
+                        @L["Dictionary"]
+                    </MudButton>
+                    <CultureSelectComponent/>
                 </div>
             </NotAuthorized>
         </AuthorizeView>
