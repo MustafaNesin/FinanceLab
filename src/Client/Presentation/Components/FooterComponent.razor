@@ -1,0 +1,148 @@
+@* *@
+@* *@
+@* @using System.Reflection.Metadata *@
+@* @inherits LayoutComponentBase *@
+@* *@
+@* $1$ <div class="page"> #1# *@
+@* $1$     <div  class="sidebar"> #1# *@
+@* $1$         <NavMenu /> #1# *@
+@* $1$     </div> #1# *@
+@* <div class="main invisible  mud-theme-dark "> *@
+@*         <div> *@
+@*             <div class="d-block pa-2 top-row px-4 d-flex justify-center"> *@
+@*                         Anything *@
+@*                     </div> *@
+@* *@
+@*             <div class="d-block pa-2 d-flex justify-right"> *@
+@*                 @(DateTime.Today.Date) *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*     </div> *@
+@* $1$ </div> #1# *@
+@* $1$ <div class="main  mud-theme-dark "> #1# *@
+@* $1$     <div> #1# *@
+@* $1$         <div class="d-block pa-2 top-row px-4 d-flex justify-center"> #1# *@
+@* $1$             BinanceLab #1# *@
+@* $1$         </div> #1# *@
+@* $1$              #1# *@
+@* $1$         <div class="d-block pa-2 d-flex justify-right"> #1# *@
+@* $1$             @(DateTime.Today.Date) #1# *@
+@* $1$         </div> #1# *@
+@* $1$     </div> #1# *@
+@* $1$          #1# *@
+@* $1$ </div> #1# *@
+
+<br/>
+<br/>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray ;width:100%">
+<br/>
+<MudGrid  Class="docs-footer " Style="background-color: aliceblue">
+    <MudItem Style="padding: 0" xs="12">
+        <MudToolBar class="d-flex flex-row-reverse">
+            <MudIconButton Link="https://twitter.com/" Target="_blank" Edge="Edge.Start" Class="me-2" Color="Color.Inherit" Icon="@Icons.Custom.Brands.Twitter" aria-label="twitter"/>
+            <MudIconButton Link="https://discord.gg/" Target="_blank" Edge="Edge.Start" Class="me-2" Color="Color.Inherit" Icon="@Icons.Custom.Brands.Discord" aria-label="discord"/>
+            <MudIconButton Link="https://github.com/MustafaNesin/FinanceLab" Target="_blank" Edge="Edge.Start" Class="me-2" Color="Color.Inherit" Icon="@Icons.Custom.Brands.GitHub" aria-label="github"/>
+            <MudIconButton Link="https://play.google.com/store/games?gl=TR&utm_source=emea_Med&utm_medium=hasem&utm_content=Nov2020&utm_campaign=Evergreen&pcampaignid=MKT-EDR-emea-tr-1001280-Med-hasem-py-Evergreen-Nov2020-Text_Search_BKWS%7CONSEM_kwid_43700007034273692&gclid=Cj0KCQjwheyUBhD-ARIsAHJNM-NY3Irn8XtoX9uixn0CLtsJYvJ1vz1r3ZRbutFpC3RUnWWrF2gCuRIaApPLEALw_wcB&gclsrc=aw.ds" Target="_blank" Edge="Edge.Start" Class="me-2" Color="Color.Inherit" Icon="@Icons.Custom.Brands.Chrome" aria-label="Googleplay"/>
+        </MudToolBar>
+    </MudItem>
+    <MudItem xs="1" sm="1" class="invisible d-flex flex-column  ">
+
+
+    </MudItem>
+    <MudItem  xs="6" sm="2" Style=" padding-top:0" class="d-flex flex-column pl-6 ">
+
+        <MudText Typo="Typo.subtitle2"  Class="mb-3 pl-2">About The Game</MudText>
+        <MudButton Class="justify-start" OnClick="@((e) => Esitle(new string("What is FinanceLab ?")))" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">What is FinanceLab</MudButton>
+        <MudButton Class="justify-start" OnClick="@((e) => Esitle(new string("Game Rules")))" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">Game Rules</MudButton>
+        <MudLink Class="pl-2"Href="/Dictionary" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">DICTIONARY</MudLink>
+
+    </MudItem>
+    <MudItem xs="6" sm="3" Style="padding: 0" Class="d-flex flex-column pl-16">
+        <MudText Typo="Typo.subtitle2"  Class="mb-3 pl-2">Who are We?</MudText>
+        <MudButton Class="justify-start" OnClick="@((e) => Esitle(new string("Meet Us")))" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">Meet Us</MudButton>
+        <MudLink  Class="pl-2" Href="https://gazi.edu.tr/" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">LINK</MudLink>
+
+    </MudItem>
+    <MudItem xs="6" Style="padding: 0" sm="3" Class="d-flex flex-column pl-6">
+        <MudText Typo="Typo.subtitle2" Class="mb-3"> About Project</MudText>
+        <MudLink Href="https://onedrive.live.com/redir?resid=827DE40ECC848D22%2111950&authkey=%21APosLXto6gJngOM&page=View&wd=target%28G%C3%B6revler.one%7C42d23466-e3fb-45f2-85f7-b5b9d2588a66%2FNavigasyon%20Men%C3%BCs%C3%BC%7C40256728-86b3-417e-8025-a61bcf781bbc%2F%29&wdorigin=NavigationUrl" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">PROJECT SCHEDULE</MudLink>
+        <MudLink Href="https://github.com/MustafaNesin/FinanceLab" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">OUR PROJECT</MudLink>
+        <MudLink Href="https://www.binance.com/en" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">TECHNICAL SUPPORT</MudLink>
+        <MudLink Href="https://tr.wikipedia.org/wiki/Binance" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">HELPING LINK</MudLink>
+    </MudItem>
+    <MudItem xs="6" Style="padding: 0" sm="3" Class="d-flex flex-column pl-6">
+        <MudText Typo="Typo.subtitle2" Class="mb-3 pl-2">Comunication</MudText>
+        <MudButton OnClick="@((e) => Esitle(new string("Telephone-GMail-Adress")))" Class="justify-start" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">Gmail/Mail/ICloud</MudButton>
+        <MudLink   Class="pl-2" Href="/SignUp" Target="_blank" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">TRY US</MudLink>
+        <MudLink  Class="pl-2" Href="https://mf-bm.gazi.edu.tr/" Target="_blank" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">OUR COMPANY PLACE</MudLink>
+
+    </MudItem>
+
+    <MudItem  Style="padding: 0" xs="12">
+        <MudToolBar Class="d-flex justify-center" DisableGutters="true" Dense="true">
+            <MudText Typo="Typo.body1">Copyright© 2022 FinanceLab.</MudText>
+        </MudToolBar>
+    </MudItem>
+
+</MudGrid>
+@* <MudGrid>   <MudLink  Class="pl-2" Href="/#" Target="_blank" Typo="Typo.body1" Color="Color.Inherit" Underline="Underline.None">OUR COMPANY PLACE</MudLink> </MudGrid> *@
+
+<span class="mud-scroll-to-top visible" style="z-index:2000;">
+   <button  type="button" class="mud-button-root mud-fab mud-fab-primary mud-fab-size-large mud-ripple" _bl_4="">
+           <span class="mud-fab-label"><!--!--><svg class="mud-icon-root mud-svg-icon mud-icon-size-medium" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><!--!-->
+               <path d="M0 0h24v24H0z" fill="none"></path>
+               <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg></span>
+       </button></span>
+
+<br/>
+<hr style="height:3px;border-width:0;color:gray;background-color:gray ;width:100%">
+
+
+@inject IDialogService Dialog
+@code {
+    
+
+    protected override void OnInitialized()
+    {
+    }
+
+    public string Text { get; set; }
+    public string Values { get; set; }
+     DialogOptions maxWidth = new DialogOptions() {MaxWidth =MaxWidth.ExtraLarge, FullWidth = true};
+    
+    
+     private void Esitle(string Esitle)
+     {
+         Text = Esitle;
+         var kullanicilar = new Dictionary<string,string>();
+         kullanicilar.Add("What is FinanceLab ?", "Geliştirdiğimiz proje ciddi oyun projesi başlığı altında geliştirilmiştir. Projemizin temel amacı kullanıcıya bir şey kaybetme riski olmadan gerçek borsa deneyimi sunmaktır. Bu sayede oyunu oynayan kullanıcı kendini bu alanda geliştirilecektir. Oyunun gerçekçi olabilmesi için borsada kullanılan tüm veriler Binance API’ndan gerçek zamanlı olacak şekilde çekilmiştir. Ve son olarak oyunun olabildiğince eğitici olabilmesi için bir de finansal terimlerin ve açıklamalarının olduğu bir modül eklenmiştir.Sunucu projesi dahili API’ın geliştirildiği kısımdır. İstemci buradaki uç noktalar istekler yollayarak sunucu ile etkileşime geçer.İstemci projesi ise, projenin kullanıcı ile etkileşime girdiği, arayüzlerin tasarlandığı kısımdır. Paylaşımlı proje ise 2 proje arasında ortak olan veri tabanı transfer objeleri gibi ortak yapıların tutulduğu projedir. Tüm sistem CLEAN Architecture prensiplerini temel alarak tanımlanmış ve projeler Giriş Yapıldığında: \n Markets  \n Wallets \n  Trades \n Transfers degerleri görülmektedir bunlardan Transfers sayfası; yalnızca Sandbox oyun modunda gösterilecektir. \n Users : Yalnızca admin rolünde gösterilecektir.   \n   Language : Kullanmak istediği dil seçimi");
+         kullanicilar.Add("Game Rules", "Kullanıcı olarak giriş yapıp profilinizdenseçtiğiniz türe göre oyun başlamaktadır. Her bir tür bir zorluğu temsil etmekle birlikte zorluk seviyelerine göre size verilen para durumu ve süre gibi değişkenler değişilkil göstermektedir. Yaptığınız para durumuna göre cüzdan/wallet sayfasında güncellenmiş hallerini görebilmekle beraber para transferleriniz transfers ; yaptığınız al/sat değerleri trades sayfalarında görüntülenmektedir \n 1-Bu oyun gerçek para birimleri içermemektedir. \n 2- Yapılan bir hackleme durumunda yasal soruşturma başlatılacaktır. \n İyi Oyunlar Dileriz \n \t \t \t \t \t \t                  BinanceLab Yönetmeliği");
+         kullanicilar.Add("Meet Us", "Barış KÖSE (181180759)\n \n Mert KOCA (191180054) \n \n Mustafa NESİN (181180054) \n \n Nisa İlayda KARADUMAN (181180044)");
+         kullanicilar.Add("Telephone-GMail-Adress", "Our Cominication : \n +1(720)738 75 64 -Denver/USA \n +49(720)738 75 64 Berlin/Germany \n +90(505)6695202 Ankara/Türkiye \n Gmail: \n Binancelab_game@gmail.com \n Lab_Binance@Icloud.com \n Googleplay: https://play.google.com/store/apps/BinanceLab/ \n Adress : \n Home Adres: Bahçelievler mah Yukarı ayran sok no :49 Çankaya/Ankara");
+         foreach (var kullanici in kullanicilar)
+         {
+             if (kullanici.Key.Equals(Esitle))
+             {
+                 Values = kullanici.Value;
+             }
+         }
+
+         OpenDialog(maxWidth);
+        
+    
+    }
+    private void OpenDialog(DialogOptions options){
+        var Parameters = new DialogParameters();
+        Parameters.Add("text",Values ?? "Not selected");
+        Dialog.Show<AboutUsDialogComponent>(Text,Parameters,options);
+    
+    }
+
+}
+
+   
+    
+    
+
+

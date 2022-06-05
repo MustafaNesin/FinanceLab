@@ -1,9 +1,11 @@
 ﻿html, body {
     height: 100%;
+    
 }
 
 #app {
     height: 88%;
+    
 }
 
 #blazor-error-ui {

@@ -3,33 +3,76 @@
 @if (_user is not null)
 {
     <MudContainer Fixed="true">
-        <MudPaper Style="background-color: white" Height="400px" Width="100%" Square="true" Class="ml-4 mr-6 pt-1 pb-2">
-            <MudAvatar Style="margin-left:45%" Typo="Typo.h6" Color="Color.Info">
-                @_initials
-            </MudAvatar>
-            <MudText Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h6">
-                @L["FullName"]: @_fullName
-            </MudText>
-            <MudText Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h6">
-                @L["UserName"]: @UserName
-            </MudText>
-            <MudText Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h6">
-                @L["GameDifficulty"]: @L[_user.GameDifficulty.ToString()]
-            </MudText>
-            @if (_isAdmin == true || (_isSelf == true && _user.GameDifficulty == GameDifficulty.Sandbox))
-            {
-                <MudButton Style="background-color: black; color: white; alignment: center; margin-top: 10%; margin-left: 35%"
-                           OnClick="@OpenDepositDialog">
-                    @L["Deposit"]
-                </MudButton>
-            }
-            @if (_isSelf == true)
-            {
-                <MudButton Style="background-color: black; color: white; alignment: center; margin-top: 10%; margin-left: 35%"
-                           OnClick="@OpenNewGameDialog">
-                    @L["NewGame"]
-                </MudButton>
-            }
+        <MudPaper Style="background-color: white" Height="470px" Width="100%" Square="true" Class=" mt-8 ml-4 mr-6 pt-1 pb-2">
+           
+            <MudGrid Style="background-color: #e6e5ed" Class="rounded-xl">
+                <MudItem xs=12 sm=6 class=" d-inline d-flex flex-column  align-start ">
+                     <MudAvatar   Class="ml-8 mt-4 border-double" Style="height: 100px; width: 100px; border-bottom-width: thin"  Typo="Typo.h4" Color="Color.Info">
+                                    @_initials
+                                </MudAvatar>
+                    <MudText Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h5">
+                        @L["FullName"]: @_fullName
+                    </MudText>
+                    <MudText Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h5">
+                        @L["UserName"]: @UserName
+                    </MudText>
+                    <MudText Style="padding-top: 20px" Align="Align.Center" Typo="Typo.h5">
+                        @L["GameDifficulty"]: @L[_user.GameDifficulty.ToString()]
+                    </MudText>
+
+
+                </MudItem>
+                <MudItem xs=12 sm=6 class=" mt-4  d-inline d-flex flex-column  ">
+                                        <div class="d-flex flex-column  align-center "  style=" width: 100%">
+                                            <MudRating Class="align-start" @bind-SelectedValue="selectedVal" MaxValue="10" Size="Size.Large" HoveredValueChanged="HandleHoveredValueChanged"/>
+                                            <MudText Typo="Typo.subtitle2" Class="align-start deep-purple-text mt-2">@LabelText</MudText>
+                                            <div  class=" d-flex justfy-center align-center">
+                                                <MudImage  ObjectFit="ObjectFit.Fill" Height="200" Width="140" Alt="qrcodes" Src="/img/qrcode.png" Elevation="25" Class="rounded-lg justfy-center align-center"/>
+                                            </div>
+                                        </div>
+                                    
+                                    </MudItem>
+                                    <MudItem Style="padding: 0" xs="12" class="  d-inline d-flex flex-column">
+                                                        @if (_isAdmin == true || (_isSelf == true && _user.GameDifficulty == GameDifficulty.Sandbox))
+                                                        {
+                                                            <MudButton Typo="Typo.h6" border-double Variant="Variant.Filled" Class="mt-4 d-flex justify-center pa-4 border-double  ml-26" FullWidth="true" Style="background-color: #5f635d;color: antiquewhite; alignment: center;  "
+                                                                       OnClick="@OpenDepositDialog">
+                                                                @L["Deposit"]
+                                                            </MudButton>
+                                                        }
+                                                        @if (_isSelf == true)
+                                                        {
+                                                            <MudButton Typo="Typo.h6" border-double Variant="Variant.Filled" Class=" mt-10 d-flex justify-center pa-4  ml-26 border-double" FullWidth="true" Style="alignment: center;color: antiquewhite; background-color: #5f635d  "
+                                                                       OnClick="@OpenNewGameDialog">
+                                                                @L["NewGame"]
+                                                            </MudButton>
+                                                        }
+                                                    </MudItem>
+                               
+            </MudGrid>
+            
         </MudPaper>
     </MudContainer>
+}
+@code
+{
+    private int selectedVal = 0;
+    private int? activeVal;
+
+    private void HandleHoveredValueChanged(int? val) => activeVal = val;
+
+    private string LabelText => (activeVal ?? selectedVal) switch
+    {
+        1 => "Very bad I will never use it",
+        3 => "Bad",
+        5 => "Ehh..",
+        7 => "Good",
+        9 => "Awesome!",
+        2 => "Very bad ",
+        4 => "Not Bad",
+        6 => "Sufficient ",
+        8 => "Good, I like it" ,
+        10 => "Awesome! I will Share This Game!!",
+        _ => "Rate our product!"
+        };
 }
