@@ -26,7 +26,7 @@
         <value>Sıralama alanı {0} değerlerinden biri olmalıdır.</value>
     </data>
     <data name="PurchaseNotAuthorized" xml:space="preserve">
-        <value>Hatalı Alım/Satım işlemi.</value>
+        <value>{0} cüzdanında {1} işlemi için yetersiz bakiye bulunmaktadır.</value>
     </data>
     <data name="WalletTypeDoesNotExist" xml:space="preserve">
         <value>{0} tipinde işlem yapılabilecek bir cüzdan bulunmamaktadır.</value>
@@ -42,5 +42,11 @@
     </data>
     <data name="FaultyPriceInformation" xml:space="preserve">
         <value>{0}{1} marketi için hatalı fiyat bilgisi, {2}</value>
+    </data>
+    <data name="Buy" xml:space="preserve">
+        <value>Satın Al</value>
+    </data>
+    <data name="Sell" xml:space="preserve">
+        <value>Sat</value>
     </data>
 </root>

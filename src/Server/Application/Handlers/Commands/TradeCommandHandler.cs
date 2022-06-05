@@ -53,7 +53,7 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
 
         //Options
         //If updateOne does not find with given filters, this option makes it create a new one
-        var upsertOption = new UpdateOptions { IsUpsert = true };
+        var upsertOption = new UpdateOptions {IsUpsert = true};
 
         switch (request.Side)
         {
@@ -104,7 +104,11 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
                         }
                     }
                     else
-                        Throw(HttpStatusCode.NotAcceptable, L["PurchaseNotAuthorized"]);
+                    {
+                        string type = request.Side == TradeSide.Buy ? L["Buy"] : L["Sell"];
+                        Throw(HttpStatusCode.NotAcceptable,
+                            L["PurchaseNotAuthorized", request.BaseCoinCode, type.ToLowerInvariant()]);
+                    }
                 }
                 else
                     Throw(HttpStatusCode.NotFound, L["WalletTypeDoesNotExist", request.QuoteCoinCode]);
@@ -157,7 +161,11 @@ public sealed class TradeCommandHandler : BaseRequestHandler<TradeCommand>
                         }
                     }
                     else
-                        Throw(HttpStatusCode.NotAcceptable, L["PurchaseNotAuthorized"]);
+                    {
+                        string type = request.Side == TradeSide.Buy ? L["Buy"] : L["Sell"];
+                        Throw(HttpStatusCode.NotAcceptable,
+                            L["PurchaseNotAuthorized", request.BaseCoinCode, type.ToLowerInvariant()]);
+                    }
                 }
                 else
                 {
