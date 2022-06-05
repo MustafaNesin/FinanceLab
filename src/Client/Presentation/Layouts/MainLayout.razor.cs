@@ -6,9 +6,12 @@ public partial class MainLayout
 {
     private readonly MudTheme _muudstrapTheme = new()
     {
+        
+        
+        
         Palette = new Palette
         {
-            AppbarBackground = "#000000",
+            AppbarBackground = "#e0eef6",
             AppbarText = "#000000"
         },
         Typography = new Typography
@@ -28,6 +31,7 @@ public partial class MainLayout
             },
             Button = new Button
             {
+                
                 FontFamily = new[]
                 {
                     "system-ui", "-apple-system", "Segoe UI", "Roboto ", "Helvetica Neue", "Arial", "Noto Sans",

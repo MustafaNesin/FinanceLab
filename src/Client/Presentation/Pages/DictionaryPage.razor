@@ -1,0 +1,382 @@
+
+@page "/Dictionary"
+@inherits BasePage
+@attribute [AllowAnonymous]
+
+<div class=" d-none d-md-flex align-left px-12">
+    <MudPaper Style="background-color:black ; color: aliceblue; " Width="350px" MaxHeight="620px" Class="overflow-y-auto" Elevation="0">
+        <br/>
+        
+       
+        <MudTreeView   MultiSelection="true" Items="@TreeItems" @bind-ActivatedValue="ActivatedValue" @bind-SelectedValues="SelectedValues" >
+            <ItemTemplate>
+                <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems" Value="@context"Text="@context.Text">
+                    <Content>
+                        <MudTreeViewItemToggleButton @bind-Expanded="@context.IsExpanded" Visible="@context.HasChild"/>
+                        <MudIcon Style="color: aliceblue" Icon="@context.Icon" Class="ml-0 mr-2" Color="@Color.Default"/>
+                        <MudText>@context.Text</MudText>
+                    </Content>
+                </MudTreeViewItem>
+            </ItemTemplate>
+        </MudTreeView>
+             
+             
+    </MudPaper>
+
+    <div style="background-color: aliceblue;width: 90%">
+        <MudCarousel Class="mud-width-full" @ref="_carousel" ItemsSource="@_source"  Style="background-color: darkgray; color: aliceblue; height:200px;" ShowArrows="true" ShowBullets="true" AutoCycle="true" >
+            <ItemTemplate>
+                <div class="d-flex flex-column flex-column justify-center" style="height:100%">
+                    <MudText Align="@Align.Center" Class="mx-auto">@context</MudText>
+                </div>
+            </ItemTemplate>
+        </MudCarousel>
+        <MudCard Style="margin-top: 50px">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Align="Align.Center" Typo="@Typo.h5">@(ActivatedValue?.Text)</MudText>
+                </CardHeaderContent>
+                    
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText  Align="Align.Center" Typo="@Typo.body2">@(ActivatedValue?.Means)</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton OnClick="OpenDialog"  Variant="Variant.Text" Color="Color.Primary">Read More</MudButton>
+            </MudCardActions>
+        </MudCard>
+             
+           
+             
+    </div>
+        
+            
+</div>
+
+@inject IDialogService Dialog
+
+@code {
+   
+  
+   
+    private void OpenDialog()
+    {
+        var Parameters = new DialogParameters();
+        Parameters.Add("text",ActivatedValue?.ActuallyMeans ?? "Not selected");
+        Dialog.Show<DictionaryDialogComponent>(ActivatedValue?.Text,Parameters);
+    }
+   
+    private MudCarousel<string> _carousel;
+    private string valuesolution="";
+     private HashSet<TreeItemData> TreeItems { get; set; } = new HashSet<TreeItemData>();
+    private TreeItemData ActivatedValue { get; set; }
+    private IList<string> _source = new List<string>() {"Bitcoin ile ödeme yaparken banka ekstresine veya satıcıya gereksiz kişisel bilgiler vermeye gerek yoktur. Bitcoin işlemleri, bitcoin adresleri ve ilgili tutarlar dışında herhangi bir tanımlayıcı bilgi içermez.","Dünyanın her yerine kolayca Bitcoin gönderebilirsiniz. Bu fiziksel dünyada nakitle ödeme yapmak kadar kolaydır. Hafta sonları kapalı değildir, paranıza erişmek için ücret ödemeniz gerekmez ve hiçbir bir keyfi sınır yoktur.", "Diğer tüm varlıklar gibi, BTC'yi düşük fiyattan alıp yüksek fiyattan satarak para kazanabilir veya bunun tersinin gerçekleşmesi hâlinde para kaybedebilirsiniz.", "Bitcoin'in en önemli unsurlarından biri, bir bankanın varlıkları takip etme biçimine benzer şekilde kimin neye sahip olduğunu izleyen blok zinciridir. Bitcoin blok zincirini bir bankanın defterinden ayıran şey, merkezî olmamasıdır. Yani herkes onu görebilir ve bu defter tek bir kurum tarafından kontrol edilmez.", "Bitcoin ile ödeme yapmanın avantajlarından biri, bunu yaparken daha az kişisel bilgi paylaşmanızın gerekmesidir. Yalnızca gönderilmesi gereken fiziksel ürünler satın aldığınızda adınızı ve adresinizi belirtmeniz gerekir."};
+    private HashSet<TreeItemData> SelectedValues { get; set; }
+    public class TreeItemData
+    {
+        public string Text { get; set; }
+
+        public string Icon { get; set; }
+        public string Means { get; set; }
+        public string ActuallyMeans { get; set; }
+        public bool IsExpanded { get; set; } = true;
+
+        public bool HasChild => TreeItems != null && TreeItems.Count > 0;
+
+        public HashSet<TreeItemData> TreeItems { get; set; } = new HashSet<TreeItemData>();
+
+        public TreeItemData(string text, string icon,string means,string actuallyMeans)
+        {
+            Text = text;
+            Icon = icon;
+            Means = means;
+            ActuallyMeans = actuallyMeans;
+
+
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        TreeItems.Add(new TreeItemData("KRİPTO ALIM SATIM TERİMLERİ", Icons.Sharp.Biotech,"",""));
+        TreeItems.Add(new TreeItemData("A", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                new TreeItemData("Altcoin", Icons.Filled.Folder, "Bitcoin’e alternatif olarak sunulan kripto para birimleri için kullanılan toplu isim. Alternatif Coin’in...","Bitcoin’e alternatif olarak sunulan kripto para birimleri için kullanılan toplu isim. Alternatif Coin’in kısaltması. Ethereum, Litecoin, Avalanche ve Cardano birer altcoindir."
+                    ),
+                new TreeItemData("AML", Icons.Filled.Folder,"Kara para aklamanın önüne geçilmesi. Yasal olarak kazanılmış gibi görünmesini sağlamak için, yasa dışı yollardan elde edilen her türlü fonu dönüş...", "Kara para aklamanın önüne geçilmesi. Yasal olarak kazanılmış gibi görünmesini sağlamak için, yasa dışı yollardan elde edilen her türlü fonu dönüştüren insanları durdurmak için kullanılan terimdir. Sadece Bitcoin ve Kripto para ile ilgili olmayıp tüm dünyada kara paranın aklanmasını engelleyen kurumlar bulunur. Türkiye’de Masak bu amaçla kurulmuştur.AML düzenlemeleri, bankalar gibi finans kurumlarının, müşterilerinin işlemlerini takip etmesini ve şüpheli hareketleri bildirmesini gerekli kılar. Bu sayede, suçluların yasa dışı yollardan kazandıkları fonları aklayabilmesi daha zor hale gelir."),
+                new TreeItemData("ATH-ATL", Icons.Filled.Folder,"ATH;Fakat varlık ATH'sini aşarsa, başa baş noktasında çıkış yapmayı bekleyen hiçbir satıcı kalmaz. Bazı kişiler ATH'lerin aşı...",             "ATH;Fakat varlık ATH'sini aşarsa, başa baş noktasında çıkış yapmayı bekleyen hiçbir satıcı kalmaz. Bazı kişiler ATH'lerin aşılmasına mavi gökyüzü kırılmaları (blue sky breakouts) adını verir çünkü bu noktadan sonra ileride net direnç alanları kalmaz.ATH'nin aşılmasına işlem hacminde bir artış da çoğu zaman eşlik eder. Neden? Çünkü günlük alım satım yapanlar da hızla kar elde etmek ve daha yüksek bir fiyattan satış yapmak için piyasa emirleriyle bu fırsattan faydalanmak isteyecektir.  ATH'nin aşılması fiyatın sonsuza kadar yükseleceği anlamına mı gelir? Tabi ki hayır. Alım satım yapanlar ve yatırımcılar bir noktada karlarını almak isteyeceğinden belirli fiyat seviyelerine limit emirleri koyabilirler. Bu durum özellikle, daha önceki tüm zamanların en yüksek değerlerinin tekrar tekrar aşılması durumunda geçerlidir. ATL;ATH'nin tersi olan Tüm Zamanların En Düşük Değeri (ATL) bir varlığın en düşük fiyatıdır. Örneğin BNB'nin ATL'si işleme açıldığı ilk günde BNB/USDT piyasa çiftinde 0,5 USDT'dir.Bir varlıkta Tüm Zamanların En Düşük Değerinin aşılması, Tum Zamanların En Yüksek Değerinin aşılmasına benzer etkiler yaratabilir – ama ters yönde. Önceki ATL aşıldığında birçok stop emri tetiklenebilir ve bu da keskin bir düşüşe neden olabilir.Tüm Zamanların En Düşük Değerinin altında bir fiyat geçmişi var olmadığından piyasa değeri düşmeye devam ederek alt sınırı gitgide daha aşağıya çekebilir. Fiyat düşüşünün duracağı mantıklı noktalar bulunmadığından böyle zamanlarda alım yapmak çok risklidir."
+            ),
+               
+            }
+        });
+        TreeItems.Add(new TreeItemData("B", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                new TreeItemData("Blockchain", Icons.Filled.Folder,  "Cumhurbaşkanlığı Dijital Dönüşüm Ofisi’ne göre Blokzincir şeklinde yazılan ve kripto varlıkların tüm kullanıcılara açık işlem kaydıdır...","Cumhurbaşkanlığı Dijital Dönüşüm Ofisi’ne göre Blokzincir şeklinde yazılan ve kripto varlıkların tüm kullanıcılara açık işlem kaydıdır."
+                    ),
+                new TreeItemData("Blok Ödülü", Icons.Filled.Folder,"Başarılı şekilde bir blok yaratan madenciye verilen ödüldür. Söz konusu kripto para birimi tarafından kullanılan politikaya bağlı olarak ve tüm bloğun zaten başarıyla çıkarılıp çıkarılmadığına göre, bir para ve işlem ücretleri karışımı olabilir. Şu anda Bitcoin ağında her blok için 6,25 Bitcoin ödülü verili...","Başarılı şekilde bir blok yaratan madenciye verilen ödüldür. Söz konusu kripto para birimi tarafından kullanılan politikaya bağlı olarak ve tüm bloğun zaten başarıyla çıkarılıp çıkarılmadığına göre, bir para ve işlem ücretleri karışımı olabilir. Şu anda Bitcoin ağında her blok için 6,25 Bitcoin ödülü veriliyor. Blok ödülü belli bir sayıda blok çıkarıldığında yarılanıyor. Bitcoin’de eşik 210,000 bloktur."
+                    ),
+                new TreeItemData("BUIDL", Icons.Filled.Folder, "BUIDL, HODL'dan türetilmiş bir terimdir. Genellikle, fiyat dalgalanmalarından bağımsız olarak inşa etmeye (build) devam eden kripto para sektörünün katılımcılarını tanımlar. Ana fikir, kripto sektörüne gerçekten inananların ciddi ayı piyasalarına rağmen inşa etmeye devam edeceğidir. Bu bağlamda BUIDLer'lar (geliştirme yapanlar/inşa edenler), blockchain ve kripto paraların dünyaya neler sunabileceğini içten bir şekilde önemser ve bu amaca yönelik aktif olarak çalışır.BUIDL, kripto paraların yalnızca spekülasyonla değil, aslında bu teknolojiyi...","BUIDL, HODL'dan türetilmiş bir terimdir. Genellikle, fiyat dalgalanmalarından bağımsız olarak inşa etmeye (build) devam eden kripto para sektörünün katılımcılarını tanımlar. Ana fikir, kripto sektörüne gerçekten inananların ciddi ayı piyasalarına rağmen inşa etmeye devam edeceğidir. Bu bağlamda BUIDLer'lar (geliştirme yapanlar/inşa edenler), blockchain ve kripto paraların dünyaya neler sunabileceğini içten bir şekilde önemser ve bu amaca yönelik aktif olarak çalışır.BUIDL, kripto paraların yalnızca spekülasyonla değil, aslında bu teknolojiyi kitlelere sunmakla ilgili olduğunu göstermeyi amaçlayan bir düşünce yapısıdır. Kendi işinle ilgilenmeyi ve gelecekte milyarlarca kişiye hizmet edebilecek bir altyapıyı inşa etmeye devam etmeyi anımsatma işlevi görür. Buna ek olarak BUIDLer'lar, uzun vadeli bir bakış açısıyla inşa etmeye devam eden ekiplerin uzun vadede yüksek ihtimalle başarılı olacağının bilincindedir."
+                    ),
+            }
+        });TreeItems.Add(new TreeItemData("C", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+              
+                new TreeItemData("Chargeback", Icons.Filled.Folder,"Türkçe’ye ters ibraz olarak çevrilen chargeback kredi kartı veya paypal ile ödemesi yapılan ancak karşılığında alınması gereken mal veya hizmeti hiç veya gereği gibi alınmaması nedeniyle ödenen paranın ilgili kredi kartına...","Türkçe’ye ters ibraz olarak çevrilen chargeback kredi kartı veya paypal ile ödemesi yapılan ancak karşılığında alınması gereken mal veya hizmeti hiç veya gereği gibi alınmaması nedeniyle ödenen paranın ilgili kredi kartına iade edilmesi işlemine verilen isimdir."
+                    ),
+                new TreeItemData("Coinbase", Icons.Filled.Folder,"80 milyondan fazla kullanıcıya sahip ABD merkezli kripto para işlem platformu..","80 milyondan fazla kullanıcıya sahip ABD merkezli kripto para işlem platformu."
+                    ),
+                new TreeItemData("Confirmation", Icons.Filled.Folder,"Bir işlemin ağ tarafından doğrulanmış olduğu ve geri döndürülme olasılığının düşük olduğu anlamına gelen işlemdir. Bir onaylama yeterince güvenlidir. Yine de daha büyük miktarlar için birden fazla onay istenebilir. Her onay, sistem yoğunluğuna göre 5 dakikadan 30 dakikaya kadar zaman alabilir.. “" ,"Bir işlemin ağ tarafından doğrulanmış olduğu ve geri döndürülme olasılığının düşük olduğu anlamına gelen işlemdir. Bir onaylama yeterince güvenlidir. Yine de daha büyük miktarlar için birden fazla onay istenebilir. Her onay, sistem yoğunluğuna göre 5 dakikadan 30 dakikaya kadar zaman alabilir. “Üç onay” çoğunluk tarafından kabul gören işlem sayısıdır. Her yeni onaylama ters tepme riskini kat kat düşürür. Her onay, işlemin doğruluğunun tekrar teyidi anlamına gelir."
+                    ),
+                new TreeItemData("Cryptography", Icons.Filled.Folder, "Kriptografi, gizlilik, kimlik denetimi, bütünlük gibi bilgi güvenliği kavramlarını sağlamak için çalışan matematiksel yöntemler bütünüdür. Bu yöntemler, bir bilginin iletimi esnasında karşılaşılabilecek aktif ya da pasif ataklardan bilgiyi (dolayısıyla bilgi ile beraber bilginin göndericisi ve alıcısını da) koruma amacı güderler. Bir başka deyişle kriptografi..","Kriptografi, gizlilik, kimlik denetimi, bütünlük gibi bilgi güvenliği kavramlarını sağlamak için çalışan matematiksel yöntemler bütünüdür. Bu yöntemler, bir bilginin iletimi esnasında karşılaşılabilecek aktif ya da pasif ataklardan bilgiyi (dolayısıyla bilgi ile beraber bilginin göndericisi ve alıcısını da) koruma amacı güderler. Bir başka deyişle kriptografi, okunabilir durumdaki bir bilginin istenmeyen taraflarca okunamayacak bir hale dönüştürülmesinde kullanılan tekniklerin tümü olarak da gösterilir. Bitcoin işlemlerini doğrulamak ve güvenliğini sağlamak için kullanılır."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("D", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+                new TreeItemData("DD", Icons.Filled.Folder, "Ayrıntılı inceleme (Due diligence - DD), DYOR ile bir derece ilişkilidir. Rasyonel bir kişinin ya da şirketin, başka bir partiyle anlaşmaya varmadan önce yapması beklenen inceleme ve değerlendirmeler anlamına gelir. Rasyonel şirketler bir anlaşmaya vardığında, bu şirketlerin birbirlerini ayrıntılı olarak incelemiş olması beklenir. Neden? Çünkü rasyonel herhangi biri","Ayrıntılı inceleme (Due diligence - DD), DYOR ile bir derece ilişkilidir. Rasyonel bir kişinin ya da şirketin, başka bir partiyle anlaşmaya varmadan önce yapması beklenen inceleme ve değerlendirmeler anlamına gelir. Rasyonel şirketler bir anlaşmaya vardığında, bu şirketlerin birbirlerini ayrıntılı olarak incelemiş olması beklenir. Neden? Çünkü rasyonel herhangi biri, anlaşmada sorun yaratması potansiyel bir durum olmadığından emin olmak ister. Aksi takdirde beklenen faydalarla potansiyel riskler nasıl kıyaslanabilir ki? Aynı şey yatırımlar için de geçerlidir. Yatırımcıların, potansiyel yatırımlar ararken tüm riskleri dikkate alabilmesi için projeyi ayrıntılı bir şekilde inceleme konusunda üzerine düşeni yapması gerekir. Bunu yapmazlarsa, yatırım kararlarının kontrolü kendi ellerinde olmaz ve yanlış kararlar alabilirler."
+                    ),
+                new TreeItemData("Double Spending", Icons.Filled.Folder, "Bitcoin ya da diğer altcoinleri iki kez harcama hareketidir. Kullanıcı Bitcoin’leri işlem yaptığı aynı kripto para ile 2. işlem yaptığında meydana gelir..","Bitcoin ya da diğer altcoinleri iki kez harcama hareketidir. Kullanıcı Bitcoin’leri işlem yaptığı aynı kripto para ile 2. işlem yaptığında meydana gelir. Bitcoin ağı işletimi ve güvenliği sistemi sayesinde çift harcama yapmak kolay değildir ama yine de sıfır-onay işlemlerini kabul eden kişiler için risk oluşturur."
+                    ),
+                new TreeItemData("Dust Transaction", Icons.Filled.Folder,"Çok küçük bir mali değeri olan, fakat blok zincirinde yer kaplayan, son derece küçük Bitcoin miktarları içeren transfer işlemdir. Bitcoin geliştirici ekibi ağ...", "Çok küçük bir mali değeri olan, fakat blok zincirinde yer kaplayan, son derece küçük Bitcoin miktarları içeren transfer işlemdir. Bitcoin geliştirici ekibi ağ tarafından iletilecek minimum transfer miktarını artırarak toz işlemleri ortadan kaldırmak için çaba harcamaktadır."
+                    ),
+                new TreeItemData("DYOR", Icons.Filled.Folder,"Finans piyasalarında DYOR terimi Temel Analizle (FA) yakından ilişkilidir. Yatırımcıların, yatırımlarına dair kendi araştırmalarını yapması ve bu işi başkalarına bırakmaması gerektiğini ifade eder. Güvenme, doğrula, kripto para piyasalarında benzer bir anlamda kullanılan yaygın bir diğer sözdür.En başarılı yatırımcılar kendi araştırmalarını yapar ve kendi çıkarımlarına ulaşır. Dolayısıyla, finans piyasalarında başarılı olmak isteyen herkesin de kendi benzersiz alım satım stratejisini yaratması gerekir. Bu aynı zamanda, farklı yatırımcılar arasında fikir...", "Finans piyasalarında DYOR terimi Temel Analizle (FA) yakından ilişkilidir. Yatırımcıların, yatırımlarına dair kendi araştırmalarını yapması ve bu işi başkalarına bırakmaması gerektiğini ifade eder. Güvenme, doğrula, kripto para piyasalarında benzer bir anlamda kullanılan yaygın bir diğer sözdür.En başarılı yatırımcılar kendi araştırmalarını yapar ve kendi çıkarımlarına ulaşır. Dolayısıyla, finans piyasalarında başarılı olmak isteyen herkesin de kendi benzersiz alım satım stratejisini yaratması gerekir. Bu aynı zamanda, farklı yatırımcılar arasında fikir ayrılıklarına da neden olabilir ama bu fikir ayrılıkları yatırım ve alım satımların son derece doğal bir parçasıdır. Bir yatırımcı piyasanın yükselmesini beklerken diğerleri düşüş öngörüyor olabilir.Farklı fikirler farklı stratejilere neden olabilir; başarılı yatırımcılar ve tacirler son derece farklı stratejilere sahip olacaktır. Ana fikir, bu kişilerin hepsinin kendi araştırmalarını yaptığı, kendi çıkarımlarına ulaştığı ve yatırım kararlarını bu çıkarımlara dayanarak verdiğidir."
+            ),
+                }
+        });
+            TreeItems.Add(new TreeItemData("E", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                
+                new TreeItemData("Escrow", Icons.Filled.Folder,"Bir işlem sırasında transfer edilen değeri korumak için bir üçüncü parti hesabında para veya varlık tutma eylemidir. Burada 3. parti hesabı alıcı ve satıcı için güvenilir bir hesap olarak","Bir işlem sırasında transfer edilen değeri korumak için bir üçüncü parti hesabında para veya varlık tutma eylemidir. Burada 3. parti hesabı alıcı ve satıcı için güvenilir bir hesap olarak kabul edilir. Örneğin internet sitesi alışverişlerinde siz ürünü aldığınızı onaylayana kadar paranın sistemde kalması gibi."
+                    ),
+                new TreeItemData("EVM", Icons.Filled.Folder, "İnternet tarayıcısı aracılığıyla erişebilen bir geliştirme arayüzüdür. Geliştiriciler, merkeziyetsiz uygulamalar (dApp)", "İnternet tarayıcısı aracılığıyla erişebilen bir geliştirme arayüzüdür. Geliştiriciler, merkeziyetsiz uygulamalar (dApp) yayınlayabilir ve dağıtabilir."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("F", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+              
+                new TreeItemData("FUD", Icons.Filled.Folder,"FUD yalnızca alım satıma has bir terim olmasa da finans piyasaları bağlamında sıkça kullanılır. FUD, belirli bir şirket, ürün ya da projenin itibarını yanlış bilgi yayarak zedelemeyi amaçlayan bir stratejidir. Amaç, korku yaratmak ve bir şekilde avantaj elde etmektir. ", "FUD yalnızca alım satıma has bir terim olmasa da finans piyasaları bağlamında sıkça kullanılır. FUD, belirli bir şirket, ürün ya da projenin itibarını yanlış bilgi yayarak zedelemeyi amaçlayan bir stratejidir. Amaç, korku yaratmak ve bir şekilde avantaj elde etmektir. Bu, rekabete yönelik ve taktiksel bir avantaj olabilir ya da zarar verme potansiyeli olan haberler nedeniyle hisse senedi fiyatlarındaki düşüşten kar elde etmek amaçlanabilir.Tahmin edebileceğiniz gibi FUD, kripto para dünyasında da oldukça yaygındır. Çoğu örnekte, yatırımcılar bir varlıkta kısa pozisyona girer ve pozisyonlarını aldıktan sonra zarar verme potansiyeli olan ya da yanıltıcı haberler yayar. Bu sayede, açığa satış yaparak ya da satış opsiyonları satın alarak büyük karlar elde edebilirler. Bu kişiler, borsa dışı (OTC) işlemlerle daha önceden pozisyon almış da olabilir.Yayılan bilgilerin çoğu zaman yanlış ya da en azından yanıltıcı olduğu ortaya çıkar. Fakat bazı durumlarda haberler gerçek olabilir. İddiaları tüm açılardan değerlendirmeye çalışmak her zaman için daha iyidir. İnsanları, belirli fikirlerini herkese açık şekilde paylaşmaya neyin teşvik edebileceğini düşünmek faydalı olabilir."
+                    ),
+                new TreeItemData("FPGA", Icons.Filled.Folder,"Alan Programlanabilir Geçit Dizilimi, imal edildikten sonra özel fonksiyonları ile konfigüre edilebilir bir işleme çipidir. Üzerine talimatlar yazılabilir boş bir silikon barut gibi düşünün. FPGA topluca üretilebilir ve üretimden sonra yapılandırılabilir olduğu için, üreticiler ASIC çiplerini daha ucuza yaparak ölçek e...","Alan Programlanabilir Geçit Dizilimi, imal edildikten sonra özel fonksiyonları ile konfigüre edilebilir bir işleme çipidir. Üzerine talimatlar yazılabilir boş bir silikon barut gibi düşünün. FPGA topluca üretilebilir ve üretimden sonra yapılandırılabilir olduğu için, üreticiler ASIC çiplerini daha ucuza yaparak ölçek ekonomisinden faydalanır. Ancak bunlar genellikle çok yavaştır."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("G", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+              new TreeItemData("Gigahash", Icons.Filled.Folder,"Ölçülen milyarlarca sağlayıcılardan, saniyedeki olası sağlama girişimlerinin sayısıdır","Ölçülen milyarlarca sağlayıcılardan, saniyedeki olası sağlama girişimlerinin sayısıdır. (1000 Megahash)"
+                  ), 
+                new TreeItemData("Golden Cross", Icons.Filled.Folder,"Altın Kesişim, 50 günlük hareketli ortalamanın 200 günlük hareketli ortalamanın üzerine çıktığını gösteren teknik göstergedir" , "Altın Kesişim, 50 günlük hareketli ortalamanın 200 günlük hareketli ortalamanın üzerine çıktığını gösteren teknik göstergedir. Death Cross’un tersi. Yükselişi işaret eder."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("H", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+                new TreeItemData("HODL", Icons.Filled.Folder,"Bir kripto varlığı düşse de çıksa da elde tutmaya devam edileceğini ifade eden argo terim. Bitcointalk forumunda sarhoş bir kullanıcının sitemle yazdığı gönderideki yazım hatasıyla ortaya çıkmış ve bir meme haline gelmiştir. Kripto para yatırımcıları tarafından sıklıkla kullanılır.HODLing stratejisi geleneksel piyasalardaki al ve tut yatırım stratejisine benzerdir. Al ve tut yatırımcıları düşük değerlenmiş", "Bir kripto varlığı düşse de çıksa da elde tutmaya devam edileceğini ifade eden argo terim. Bitcointalk forumunda sarhoş bir kullanıcının sitemle yazdığı gönderideki yazım hatasıyla ortaya çıkmış ve bir meme haline gelmiştir. Kripto para yatırımcıları tarafından sıklıkla kullanılır.HODLing stratejisi geleneksel piyasalardaki al ve tut yatırım stratejisine benzerdir. Al ve tut yatırımcıları düşük değerlenmiş varlıkları bulmaya çalışır ve bunları uzun bir süre boyunca tutar. Birçok yatırımcı Bitcoin için bu stratejiyi kullanır.Dolar maliyeti ortalaması (DCA) makalemizi okuduysanız, bunun Bitcoin için son derece karlı bir strateji olabileceğini biliyorsunuzdur. Örneğin, geçtiğimiz beş yıl boyunca her hafta 10 USD'lik BTC almış olsaydınız, bugün orijinal yatırımınızın yedi katından fazlasına ulaşmış olabilirdiniz!"
+                    ),
+               
+            }
+        });TreeItems.Add(new TreeItemData("I", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                new TreeItemData("Inflation", Icons.Filled.Folder,"Bir kripto varlığı düşse de çıksa da elde tutmaya devam edileceğini ifade eden argo terim. Bitcointalk forumunda sarhoş bir kullanıcının sitemle yazdığı gönderideki yazım hatasıyla ortaya çıkmış ve bir meme haline gelmiştir.","Bir kripto varlığı düşse de çıksa da elde tutmaya devam edileceğini ifade eden argo terim. Bitcointalk forumunda sarhoş bir kullanıcının sitemle yazdığı gönderideki yazım hatasıyla ortaya çıkmış ve bir meme haline gelmiştir. Kripto para yatırımcıları tarafından sıklıkla kullanılır."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("J", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+
+            }
+        });TreeItems.Add(new TreeItemData("K", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+                new TreeItemData("KYC", Icons.Filled.Folder,"Müşterinizi Tanıyın. Aracı kurumların müşterilerine ait kimlik vb. doğrulama işlemlerine denir. Genellikle, kripto", "Müşterinizi Tanıyın. Aracı kurumların müşterilerine ait kimlik vb. doğrulama işlemlerine denir. Genellikle, kripto para platformlarına üye olurken karşılaşılır."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("L", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+                new TreeItemData("Lightning Network", Icons.Filled.Folder,"Blokzincirleri üzerinde çalışan ikinci katman (layer 2) ölçeklendirme teknolojisidir. Bitcoin",   "Blokzincirleri üzerinde çalışan ikinci katman (layer 2) ölçeklendirme teknolojisidir. Bitcoin Lightning Network buna bir örnektir."
+                    ),
+                new TreeItemData("Litecoin", Icons.Filled.Folder,"Scrypt kanıtına dayalı bir altcoindir. Kısa adıyla", "Scrypt kanıtına dayalı bir altcoindir. Kısa adıyla LTC."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("M", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                new TreeItemData("Madenci", Icons.Filled.Folder,"İş kanıtı (Proof of Work) ile çalışan kripto paraların blokzincirdeki doğrulamalarını yapan ve karşılığında kazanç elde eden kullanıcılara denir","İş kanıtı (Proof of Work) ile çalışan kripto paraların blokzincirdeki doğrulamalarını yapan ve karşılığında kazanç elde eden kullanıcılara denir. Blokzincir üzerindeki işlemler madenciler aracılığıyla gerçekleşir."
+                    ),
+                new TreeItemData("Market Order", Icons.Filled.Folder,"Bir trade için verilen anlık talimat. Piyasa hızında bir varlık satın almak veya satmak için borsada girilen emir. Bir Bitcoin borsasında, Bitcoin’lerinin acilen satılmasını ya da satın alınmasını isteyen kişi, piyasa ...","Bir trade için verilen anlık talimat. Piyasa hızında bir varlık satın almak veya satmak için borsada girilen emir. Bir Bitcoin borsasında, Bitcoin’lerinin acilen satılmasını ya da satın alınmasını isteyen kişi, piyasa durumunun kar yapmak için tetiklenmesini beklemek yerine, bir piyasa emri verebilir. Bekleyen piyasa emirlerinin en yakınının gerçekleştirilmesidir."
+                    ),
+                new TreeItemData("Microtransaction", Icons.Filled.Folder,"Çevrimiçi olmak üzere, bir varlık veya hizmet için küçük bir miktar ödemek. Mikro-işlemlerin içerdiği ağır komisyon nedeniyle geleneksel ödeme sistemleri altında gerçekleştirilmesi zordur. Örneğin çevrimiçi makale okuma işi için", "Çevrimiçi olmak üzere, bir varlık veya hizmet için küçük bir miktar ödemek. Mikro-işlemlerin içerdiği ağır komisyon nedeniyle geleneksel ödeme sistemleri altında gerçekleştirilmesi zordur. Örneğin çevrimiçi makale okuma işi için kredi kartı kullanarak iki kuruş ödemek zordur."
+                    ),
+                new TreeItemData("Mixing Service", Icons.Filled.Folder, "Bitcoin’lerinizi başkalarınınkiyle karıştıran, sizin Bitcoin’lerinizi, sizin gönderdiklerinden farklı yeni girdi ve çıktılarla size geri gönderen hizmettir. Karıştırma hizmeti (aynı zamanda döner hazne olarak bilinir) sizin gizliliğinizi korur.." , "Bitcoin’lerinizi başkalarınınkiyle karıştıran, sizin Bitcoin’lerinizi, sizin gönderdiklerinden farklı yeni girdi ve çıktılarla size geri gönderen hizmettir. Karıştırma hizmeti (aynı zamanda döner hazne olarak bilinir) sizin gizliliğinizi korur çünkü insanların size belirli bir Bitcoin göndermesini engeller. Ayrıca para aklama için kullanılacak bir potansiyele sahiptir."
+                    ),
+                new TreeItemData("Mt. Gox", Icons.Filled.Folder, "İlk Bitcoin borsalarından biri ve tarihsel olarak en popüleri. Şimdi iflas etmiş olan ve Japonya’da temeli atılan, Mt. Gox 2010 yılında Jed McCaleb’ tarafından kurulmuştur..", "İlk Bitcoin borsalarından biri ve tarihsel olarak en popüleri. Şimdi iflas etmiş olan ve Japonya’da temeli atılan, Mt. Gox 2010 yılında Jed McCaleb’ tarafından kurulmuştur. Geçmişte yaşadığı hack ve davalar ile gündeme gelmektedir."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("N", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                
+                new TreeItemData("NFT", Icons.Filled.Folder,"Non Fungible Token, başka bir varlık türü ile değiştirilemeyen benzersiz kripto varlık. Genellikle blokzincire kayıtlı olan sanatsal çalışmalar olarak...", "Non Fungible Token, başka bir varlık türü ile değiştirilemeyen benzersiz kripto varlık. Genellikle blokzincire kayıtlı olan sanatsal çalışmalar olarak bilinir. Resim, fotoğraf, video, müzik vb. çoğu şey örnek verilebilir."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("O", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                
+                new TreeItemData("Orphan Block", Icons.Filled.Folder,  "Geçersiz blok zinciri parçası.", "Geçersiz blok zinciri parçası."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("P", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                new TreeItemData("(PoS)-(PoW)", Icons.Filled.Folder,"Proof of Stake (PoS)Bir para birimi mevcut hissesinin, çıkarım yapabileceğin para miktarını hesaplamak için kullanıldığı çalışma kanıtına bir alternatiftir.*******Proof of Work (PoW)Hesapl", "Proof of Stake (PoS)Bir para birimi mevcut hissesinin, çıkarım yapabileceğin para miktarını hesaplamak için kullanıldığı çalışma kanıtına bir alternatiftir.*******Proof of Work (PoW)Hesaplama gücünü kazma kapasitesine bağlayan bir sistemdir. Blokların kendi içinde kolay bir hesaplama işlemi ile kazılması gerekir. Ancak bir ek değişken kazma sürecini daha zor hale getirmek için eklenir. Bir blok başarıyla çıkarıldığında, çıkarım biraz zaman ve hesaplamalı çaba almış olmalıdır. Böylece çıkarım blok işin kanıtı olarak kabul edilir."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("R", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+                new TreeItemData("ROI", Icons.Filled.Folder,"Yatırım Getirisi (ROI), bir yatırımın performansını ölçmenin yollarından biridir. ROI, bir yatırımın orijinal maliyetine kıyasla ne kadar kar getirdiğini ölçer. Aynı zamanda, farklı yatırımların...", " Yatırım Getirisi (ROI), bir yatırımın performansını ölçmenin yollarından biridir. ROI, bir yatırımın orijinal maliyetine kıyasla ne kadar kar getirdiğini ölçer. Aynı zamanda, farklı yatırımların performanslarını kıyaslamanın da kolay bir yoludur.ROI şu şekilde hesaplanır: Yatırımın güncel değerinden başlangıç maliyeti çıkarılır. Daha sonra bu sayı başlangıç maliyetine bölünür.ROI = Güncel Değer - Başlangıç Maliyeti / Başlangıç Maliyeti"
+                    ),
+                
+            }
+        });
+        TreeItems.Add(new TreeItemData("Q", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                new TreeItemData("QR Code", Icons.Filled.Folder,"Kare kod. Bir veri dizisini temsil eden bir tek renkli bir desen içeren iki boyutlu bir grafik bloktur. QR kodları mobil telefonlardakiler de dahil olmak üzere kameralar..." , "Kare kod. Bir veri dizisini temsil eden bir tek renkli bir desen içeren iki boyutlu bir grafik bloktur. QR kodları mobil telefonlardakiler de dahil olmak üzere kameralar tarafından taranacak şekilde tasarlanmıştır. Kripto para adreslerini kodlamak için de kullanılır."
+                    ),
+               
+            }
+        });
+
+        TreeItems.Add(new TreeItemData("S", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                new TreeItemData("SAFU", Icons.Filled.Folder,"SAFU'nun kaynağı Bizonacci tarafından yüklenen bir memdir. Bu memde Binance CEO'su Changpeng Zhao (CZ), planlanmamış bir platform bakımını sırasında fonlar güvende (funds are saf...","SAFU'nun kaynağı Bizonacci tarafından yüklenen bir memdir. Bu memde Binance CEO'su Changpeng Zhao (CZ), planlanmamış bir platform bakımını sırasında fonlar güvende (funds are safe) demektedir.Bu video, kripto para dünyasında viral hale gelmiştir. Buna yanıt olarak Binance de, işlem komisyonlarının %10'u ile fonlanan bir acil durum sigorta fonu olan Kullanıcılar İçin Güvenli Varlık Fonu'nu (Secure Asset Fund for Users - SAFU) kurmuştur. Bu fonlar ayrı bir soğuk cüzdanda tutulur. Ana fikir, SAFU'nun olağan dışı durumlarda kullanıcıların fon kayıplarını karşılayarak Binance kullanıcılarına ekstra koruma sunmasıdır.Fonlar safu sözünü sıkça duymanızın sebebi budur."
+                    ),
+                new TreeItemData("SHA-256", Icons.Filled.Folder, "SHA (Secure Hash Algorithm), NSA (National Security Agency) tarafından geliştirilmiş Sayısal İmza Standardında (DSA-Digital Signature Standard) kullanılmak üzere tasarlanmış bir algoritmadır...","SHA (Secure Hash Algorithm), NSA (National Security Agency) tarafından geliştirilmiş Sayısal İmza Standardında (DSA-Digital Signature Standard) kullanılmak üzere tasarlanmış bir algoritmadır. SHA-0, SHA-1, SHA-2 olmak üzere üç versiyonu mevcuttur. Bu versiyonlardan ilki olan SHA-0 algoritması 1993 yılında oluşturulmuş, güvenlik açığı nedeniyle 2 yıl sonra 1995 yılında SHA-1 algoritması geliştirilmiştir. Kriptolojinin temelinde olduğu gibi e-imza uygulamalarında da algoritmaların hızlı çalışması önemlidir. Bunun için de verinin kendisi değil özeti imzalanır. Bitcoin işlemleri bu protokol ile yapılmaktadır."
+                    ),
+                new TreeItemData("Stale", Icons.Filled.Folder, "Bir Bitcoin bloğu başarılı bir şekilde oluşturulduğunda başkalarının da bu bloğu alma girişimleri durdurulabilir çünkü o blok artık ‘eskimiş’tir.","Bir Bitcoin bloğu başarılı bir şekilde oluşturulduğunda başkalarının da bu bloğu alma girişimleri durdurulabilir çünkü o blok artık ‘eskimiş’tir. Başka birinin çoktan yapmış olduğu bir işi ücretsiz olarak tekrar yapmaya çalışmak olacaktır (Çoktan yapılmış, ortaklaşa çıkarılmış bir iş). Stale blok çıkaran madenci o blok için ödeme alamaz."
+                    ),
+              
+            }
+        });
+       
+        TreeItems.Add(new TreeItemData("T", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+                
+            new TreeItemData("Taint", Icons.Filled.Folder,"",""), 
+                new TreeItemData("Token-Terahash", Icons.Filled.Folder,"Blokzincirinde yer alan kripto paralara denir. Kendilerine ait bir blokzincir yoktur, var olan blokzincirlerinde çalışırlar.","Blokzincirinde yer alan kripto paralara denir. Kendilerine ait bir blokzincir yoktur, var olan blokzincirlerinde çalışırlar.Ölçülen trilyonlarca sağlayıcılardan, verilen süredeki olası sağlama girişimlerinin sayısıdır. (Binlerce Gigahash). Madencilikte kullanılan en yüksek üretim gücü değeridir."
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("U", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+                new TreeItemData("uBTC", Icons.Filled.Folder,"Bitcoin’in yüz binde biri...","Bitcoin’in yüz binde biri (0.000001 BTC)"
+                    ),
+              
+            }
+        });TreeItems.Add(new TreeItemData("V", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+              
+                new TreeItemData("Vanity Address", Icons.Filled.Folder,"İsim gibi, isteğe bağlı bir modeli olan bir cüzdan adresidir. Örneğin FB Token için...",  "İsim gibi, isteğe bağlı bir modeli olan bir cüzdan adresidir. Örneğin FB Token için kullanılan 0xFB19075D77a0F111796FB259819830F4780f1429 adresi gibi, içerisinde FB ve 1907 ifadeleri yer alıyor."
+            ),
+               
+            }
+        });
+        TreeItems.Add(new TreeItemData("W", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+                new TreeItemData("Wallet", Icons.Filled.Folder,"Kripto varlıklarınızı taşımak ve depolamak için kullanılan cüzdana denir. Cüzdan aslında blokzincirdeki cüzdan adreslerinizde yer alan kripto paralarınızı harcamaya yarayan gizli anahtarlarınızı saklar.","Kripto varlıklarınızı taşımak ve depolamak için kullanılan cüzdana denir. Cüzdan aslında blokzincirdeki cüzdan adreslerinizde yer alan kripto paralarınızı harcamaya yarayan gizli anahtarlarınızı saklar. Her cüzdan tüm adreslerinizin toplam bakiyesini gösterir ve belli adrese belli bir miktar ödemenizi sağlar."
+                    ),
+               
+              
+            }
+        });TreeItems.Add(new TreeItemData("X", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+                
+               
+            }
+        });TreeItems.Add(new TreeItemData("Y", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+              
+            }
+        });
+        TreeItems.Add(new TreeItemData("Z", Icons.Custom.FileFormats.FileCode,"","")
+        {
+            TreeItems = new HashSet<TreeItemData>()
+            {
+               
+              
+            }
+        });
+        
+      
+        
+           
+        
+        
+       
+    }
+   
+}
+
+
+
+
+

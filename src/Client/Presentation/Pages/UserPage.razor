@@ -5,6 +5,14 @@
     <div style="height: 50%; width: 100%">
         <UserProfileComponent UserName="@UserName"/>
     </div>
+     
+    <br/>
+   
+   
+</div>
+
+<div class="d-none d-md-flex align-center px-12">
+  
     @if (StateContainer.User?.Role is RoleConstants.Admin || StateContainer.User?.UserName == UserName)
     {
         <div class="mt-1" style="height: 400px; width: 100%">
@@ -21,3 +29,4 @@
         </div>
     }
 </div>
+
