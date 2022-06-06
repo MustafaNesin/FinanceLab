@@ -49,4 +49,7 @@
     <data name="Sell" xml:space="preserve">
         <value>Sat</value>
     </data>
+    <data name="WrongGameType" xml:space="preserve">
+        <value>Para transferi yapabilmeniz için oyun modu Sandbox olmalıdır.</value>
+    </data>
 </root>

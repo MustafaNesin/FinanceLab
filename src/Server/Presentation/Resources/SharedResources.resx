@@ -57,4 +57,7 @@
     <data name="Sell" xml:space="preserve">
         <value>Sell</value>
     </data>
+    <data name="WrongGameType" xml:space="preserve">
+        <value>You can not transfer money if your game difficulty is not Sandbox</value>
+    </data>
 </root>

@@ -3,6 +3,7 @@ using FinanceLab.Server.Application.Abstractions;
 using FinanceLab.Server.Domain.Models.Commands;
 using FinanceLab.Server.Domain.Models.Entities;
 using FinanceLab.Shared.Application.Abstractions;
+using FinanceLab.Shared.Domain.Models.Enums;
 using JetBrains.Annotations;
 using MediatR;
 using MongoDB.Bson;
@@ -28,6 +29,9 @@ public sealed class TransferCommandHandler : BaseRequestHandler<TransferCommand>
 
         if (user is null)
             Throw(HttpStatusCode.NotFound, L["UserNotFound"]);
+
+        if (user.GameDifficulty != GameDifficulty.Sandbox)
+            Throw(HttpStatusCode.BadRequest, L["WrongGameType"]);
 
         var transfer = new Transfer(request.CoinCode, request.Amount);
 
@@ -63,7 +67,7 @@ public sealed class TransferCommandHandler : BaseRequestHandler<TransferCommand>
 
             //Update for target wallet
             await _dbContext.Users.UpdateOneAsync(filterUserName, updateWallet,
-                new UpdateOptions { IsUpsert = true }, cancellationToken);
+                new UpdateOptions {IsUpsert = true}, cancellationToken);
         }
 
         return Unit.Value;
